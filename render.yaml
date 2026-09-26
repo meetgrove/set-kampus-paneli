@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: set-kampus-paneli
+    runtime: python
+    buildCommand: ""
+    startCommand: "python3 server.py"
+    plan: free
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0

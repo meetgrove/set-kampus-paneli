@@ -1,0 +1,31 @@
+{
+  "name": "SET Kampüse Hoş Geldin — Festival Kroki & Alan Paneli",
+  "short_name": "SET Kroki",
+  "description": "SET Kampüse Hoş Geldin Festivali İnteraktif Saha Yerleşim ve Stand Krokisi",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0F172A",
+  "theme_color": "#1E293B",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

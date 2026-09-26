@@ -1,0 +1,1295 @@
+{
+  "festival": {
+    "name": "SET Kampüse Hoş Geldin Fest",
+    "sub": "Tekirdağ Namık Kemal Üniversitesi Topluluk Tanıtım Günleri Festivali",
+    "dates": "6 - 7 - 8 Ekim 2026",
+    "start_time": "2026-10-06T10:00:00",
+    "location": "NKÜ Spor Kompleksi Önü Açık Çim Alan & Tartan Parkur",
+    "backup_location": "NKÜ Kapalı Spor Salonu"
+  },
+  "departments": [
+    {
+      "id": "dep_1",
+      "name": "Üst Yönetim & Genel Koordinasyon",
+      "lead": "Berke Saygılı"
+    },
+    {
+      "id": "dep_2",
+      "name": "Sahne, Ses, Işık & Canlı Performans",
+      "lead": "Efe Kağan Yağcı"
+    },
+    {
+      "id": "dep_3",
+      "name": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "lead": "Mecit Çalık & Mert Akmeşe"
+    },
+    {
+      "id": "dep_4",
+      "name": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "lead": "Ceren Çakmak & Samet Kara"
+    },
+    {
+      "id": "dep_5",
+      "name": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "lead": "Melike Konar & Hakan Karadağ"
+    }
+  ],
+  "team_members": [
+    {
+      "id": "tm_1",
+      "name": "Berke Saygılı",
+      "username": "berke",
+      "pin": "2026",
+      "role": "Başkan & Festival Sorumlusu",
+      "department": "Üst Yönetim & Genel Koordinasyon",
+      "badge": "Yönetim",
+      "role_type": "admin"
+    },
+    {
+      "id": "tm_2",
+      "name": "Burak Avcı",
+      "username": "burak",
+      "pin": "1001",
+      "role": "Başkan Yardımcısı & Genel İşleyiş",
+      "department": "Üst Yönetim & Genel Koordinasyon",
+      "badge": "İşleyiş",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_3",
+      "name": "Selin Aşkın",
+      "username": "selin",
+      "pin": "1002",
+      "role": "Genel Koordinatör",
+      "department": "Üst Yönetim & Genel Koordinasyon",
+      "badge": "Koordinasyon",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_4",
+      "name": "Emrullah Genç",
+      "username": "emrullah",
+      "pin": "1003",
+      "role": "Organizasyon Sorumlusu",
+      "department": "Sahne, Ses, Işık & Canlı Performans",
+      "badge": "Organizasyon",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_5",
+      "name": "Melike Konar",
+      "username": "melike",
+      "pin": "1004",
+      "role": "Ar-Ge & Konsept Tasarımı",
+      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "badge": "Ar-Ge",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_6",
+      "name": "Mecit Çalık",
+      "username": "mecit",
+      "pin": "1005",
+      "role": "Saha İçeriği Planlama (Meydan & Oyun)",
+      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "badge": "Saha İçerik",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_7",
+      "name": "Mert Akmeşe",
+      "username": "mert",
+      "pin": "1006",
+      "role": "Saha İçeriği Planlama (Stant & Yerleşim)",
+      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "badge": "Saha Yerleşim",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_8",
+      "name": "Ceren Çakmak",
+      "username": "ceren",
+      "pin": "1007",
+      "role": "Saha İçi Koordinasyon & Hizmetler",
+      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "badge": "Saha İçi Koord",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_9",
+      "name": "Efe Kağan Yağcı",
+      "username": "efe",
+      "pin": "1008",
+      "role": "Ses, Işık, Sahne İçerikleri Sorumlusu",
+      "department": "Sahne, Ses, Işık & Canlı Performans",
+      "badge": "Teknik & Sahne",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_10",
+      "name": "Samet Kara",
+      "username": "samet",
+      "pin": "1009",
+      "role": "Saha İçerikleri Tamamlayıcı & Lojistik",
+      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "badge": "Lojistik Destek",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_11",
+      "name": "Hakan Karadağ",
+      "username": "hakan",
+      "pin": "1010",
+      "role": "Grafik Tasarım, Afiş & Sahne Tasarımları",
+      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "badge": "Grafik & Tasarım",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_genel",
+      "name": "Genel Ekip / Festival Akışı",
+      "username": "genel",
+      "pin": "0000",
+      "role": "Tüm Festival Alanları & Görev Takibi",
+      "department": "Genel Koordinasyon",
+      "badge": "Genel Erişim (0000)",
+      "role_type": "general"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "tsk_1",
+      "title": "Büyükşehir Belediyesi Sahne Tırları Kampüs Giriş İzni",
+      "description": "Rektörlük dilekçesi EBYS akışı üzerinden güvenlik amirliğine tır plaka ve belediye personel listesinin bildirilmesi.",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "alindi",
+      "deadline": "2026-09-29",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:07",
+      "updated_by": "Berke Saygılı (Görevi Aldı)",
+      "completed_by": "",
+      "completed_at": ""
+    },
+    {
+      "id": "tsk_3",
+      "title": "Büyükşehir ve Rektörlük Festival Açılış Protokolü",
+      "description": "6 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Yüksek",
+      "status": "alindi",
+      "deadline": "2026-10-02",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:13",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_4",
+      "title": "10 Günlük Operasyonel İşleyiş Takviminin Takibi",
+      "description": "Departmanların günlük çıktılarını denetlemek ve her akşam 20:00 genel durum raporunu konsolide etmek.",
+      "assignee": "Burak Avcı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-09-28"
+    },
+    {
+      "id": "tsk_6",
+      "title": "SKS ile 60 Çadır, 120 Sandalye ve Masa Zimmet Protokolü",
+      "description": "SKS ambarındaki envanterin 5 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
+      "assignee": "Selin Aşkın",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-09-29"
+    },
+    {
+      "id": "tsk_7",
+      "title": "Departmanlar Arası İletişim & Sabah 09:30 Stand-Up Moderasyonu",
+      "description": "10 kişilik çekirdek ekibin her sabah 15 dakikalık hızlı senkronizasyon toplantısını yönetmek ve engelleri çözmek.",
+      "assignee": "Selin Aşkın",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Yüksek",
+      "status": "alindi",
+      "deadline": "2026-09-28",
+      "claimed_by": "Selin Aşkın",
+      "claimed_at": "25 Eyl 21:20",
+      "updated_by": "Selin Aşkın (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_8",
+      "title": "Üniversite Tanıtım ve Basın Birimi Duyuru Koordinasyonu",
+      "description": "Festivalin üniversite web sitesinde ve resmi sosyal medya hesaplarında duyurulması için basın bülteninin iletilmesi.",
+      "assignee": "Selin Aşkın",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Orta",
+      "status": "yapilacak",
+      "deadline": "2026-10-02"
+    },
+    {
+      "id": "tsk_9",
+      "title": "3 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
+      "description": "Açılış, kulüp performansları, yarışmalar ve kapanış konserlerinin saat saat dakika dakika akış planı.",
+      "assignee": "Mecit Çalık",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-01",
+      "claimed_by": "",
+      "updated_by": "Berke Saygılı (Düzenledi)"
+    },
+    {
+      "id": "tsk_10",
+      "title": "Öğrenci Kulüpleri Sahne Şovları ve Sıralaması (Line-up)",
+      "description": "Dans topluluğu, tiyatro kulübü ve spor topluluklarının sahneye çıkış saatleri ve prova çizelgesi.",
+      "assignee": "Emrullah Genç",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-02"
+    },
+    {
+      "id": "tsk_11",
+      "title": "Festival Sunucusu (MC) ve Canlı Anons Metinleri",
+      "description": "Gün boyu mikrofonu yönetecek enerjik sunucunun belirlenmesi, yarışma anonsları ve festival akış provaları.",
+      "assignee": "Emrullah Genç",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Orta",
+      "status": "yapilacak",
+      "deadline": "2026-10-03"
+    },
+    {
+      "id": "tsk_12",
+      "title": "50 Adet Armut Koltuk / Puf Temini Araştırması",
+      "description": "",
+      "assignee": "Mert Akmeşe",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-01",
+      "claimed_by": "",
+      "updated_by": "Berke Saygılı (Düzenledi)"
+    },
+    {
+      "id": "tsk_13",
+      "title": "Instagram Photo-Booth ve İnteraktif Anı Duvarı Tasarımı",
+      "description": "Öğrencilerin önünde fotoğraf çekileceği SET temalı arka plan panosu ve festival anı defteri/duvarı konsepti.",
+      "assignee": "Melike Konar",
+      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "priority": "Yüksek",
+      "status": "yapildi",
+      "deadline": "2026-10-02",
+      "claimed_by": "Melike Konar",
+      "claimed_at": "26 Eyl 01:29",
+      "updated_by": "Melike Konar (Tamamladı)",
+      "completed_by": "Melike Konar",
+      "completed_at": "26 Eyl 01:29"
+    },
+    {
+      "id": "tsk_14",
+      "title": "Festival Flamaları, İpli Renkli Bayraklar ve Gece Işıklandırması",
+      "description": "Çim alan ağaçları ve çadırlar arasına gerilecek üçgen festival flamaları ile günışığı peri ampulleri konsepti.",
+      "assignee": "Melike Konar",
+      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "priority": "Orta",
+      "status": "yapilacak",
+      "deadline": "2026-10-03"
+    },
+    {
+      "id": "tsk_15",
+      "title": "Dev Ahşap Jenga ve Cornhole İstasyonları Kurulum Planı",
+      "description": "2 takım dev ahşap jenga ve cornhole atış tahtalarının hazırlanması, çim alandaki güvenlik mesafelerinin belirlenmesi.",
+      "assignee": "Mecit Çalık",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-02",
+      "updated_by": "Mecit Çalık (Geri Aldı)"
+    },
+    {
+      "id": "tsk_16",
+      "title": "Masa Langırtı ve Çim Halat Çekme Turnuva Kuralları",
+      "description": "Çim alana yerleştirilecek 2 langırt masasının teraziye alınması ve kulüpler arası turnuva fikstürünün yazılması.",
+      "assignee": "Mecit Çalık",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-03"
+    },
+    {
+      "id": "tsk_17",
+      "title": "Çim Dinlenme Meydanında Varil Masa ve Puf Yerleşim Planı",
+      "description": "25 varil kokteyl masası ve 50 armut pufun öğrencilerin sahneyi rahat göreceği şekilde çim alana yerleşim krokisi.",
+      "assignee": "Mecit Çalık",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-03"
+    },
+    {
+      "id": "tsk_18",
+      "title": "60 Kulüp Çadırının Tartan Parkur Boyunca Sıralanma Planı",
+      "description": "Spor kompleksi önündeki koşu parkurunda 3x3m çadırların elektrik hatlarına ve yaya akışına göre numaralandırılması.",
+      "assignee": "Mert Akmeşe",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Kritik",
+      "status": "alindi",
+      "deadline": "2026-10-02",
+      "claimed_by": "Mert Akmeşe",
+      "claimed_at": "25 Eyl 21:08",
+      "updated_by": "Mert Akmeşe (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_20",
+      "title": "SKS Masa ve Sandalyelerinin Stantlara Dağıtım Krokisi",
+      "description": "5 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
+      "assignee": "Mert Akmeşe",
+      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "priority": "Yüksek",
+      "status": "alindi",
+      "deadline": "2026-10-04",
+      "claimed_by": "Mert Akmeşe",
+      "claimed_at": "25 Eyl 21:08",
+      "updated_by": "Mert Akmeşe (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_23",
+      "title": "SET Danışma Masası, Karşılama Ekibi ve Yaka Kartları",
+      "description": "Girişte öğrencilere festival broşürü dağıtacak karşılama ekibi ile çekirdek kadro akreditasyon yaka kartlarının dağıtımı.",
+      "assignee": "Ceren Çakmak",
+      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "priority": "Orta",
+      "status": "alindi",
+      "deadline": "2026-10-04",
+      "claimed_by": "Ceren Çakmak",
+      "claimed_at": "25 Eyl 22:41",
+      "updated_by": "Ceren Çakmak (Tamamlanmayı Geri Aldı)",
+      "completed_by": "",
+      "completed_at": ""
+    },
+    {
+      "id": "tsk_24",
+      "title": "Büyükşehir Belediyesi Ses & Sahne Teknisyenleri Rider Keşfi",
+      "description": "Büyükşehir teknik ekibiyle sahada mikser, telsiz mikrofonlar, hoparlör açıları ve truss güvenliğinin incelenmesi.",
+      "assignee": "Efe Kağan Yağcı",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-09-30"
+    },
+    {
+      "id": "tsk_25",
+      "title": "Ana Sahne LED Ekran Görselleri ve Video Döngüsü (Loop)",
+      "description": "1920x1080 oranında 'SET KAMPÜSE HOŞ GELDİN' temalı, gündüz kulüp logoları akşam konser dinamik LED video loop'ları.",
+      "assignee": "Efe Kağan Yağcı",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-02"
+    },
+    {
+      "id": "tsk_26",
+      "title": "5 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
+      "description": "Konser verecek üniversite grupları ve DJ ile ses sisteminin test edilmesi, desibel ayarlarının kilitlenmesi.",
+      "assignee": "Efe Kağan Yağcı",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-05"
+    },
+    {
+      "id": "tsk_27",
+      "title": "Sanayi Sitesinden 25 Adet Boş Sac Varilin Toplanması ve Nakliyesi",
+      "description": "Süleymanpaşa oto tamircilerinden toplanan 200L varillerin kamyonetle kampüs bahçesine taşınması.",
+      "assignee": "Samet Kara",
+      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-01"
+    },
+    {
+      "id": "tsk_28",
+      "title": "2 Ekim SET Varil Boyama Atölyesi Malzeme ve Lojistik Hazırlığı",
+      "description": "Mat siyah/antrasit sprey boyalar, SET logo stencilleri ve zımparaların hazırlanarak atölye alanının kurulması.",
+      "assignee": "Samet Kara",
+      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-02"
+    },
+    {
+      "id": "tsk_29",
+      "title": "Sahne Arkası Elektrik Hatları, Jeneratör ve Yakıt Kontrolü",
+      "description": "Büyükşehir sahne jeneratörünün konumlandırılması, yakıt rezervi ve ana panodan seyyar hatların çekilmesi.",
+      "assignee": "Samet Kara",
+      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-10-04"
+    },
+    {
+      "id": "tsk_30",
+      "title": "Resmi Festival Afişi & Sosyal Medya Görsel Seti Tasarımı",
+      "description": "Rektörlük ve SKS onaylı festival ana afişi, Instagram duyuru serisi, story formatları ve 3 günlük program takvimi tasarımlarının tamamlanıp dijital baskıya verilmesi.",
+      "assignee": "Hakan Karadağ",
+      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "priority": "Kritik",
+      "status": "yapilacak",
+      "deadline": "2026-09-28"
+    },
+    {
+      "id": "tsk_31",
+      "title": "Sahne Arkası LED Ekran Animasyon & DJ Loop Tasarımları",
+      "description": "Büyükşehir Belediyesi sahne arkası LED ekran için hareketli SET introları, sahne araları video loopları ve görsel efekt paketinin hazırlanması.",
+      "assignee": "Hakan Karadağ",
+      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "priority": "Yüksek",
+      "status": "yapilacak",
+      "deadline": "2026-10-02"
+    },
+    {
+      "id": "tsk_32",
+      "title": "Alan İçi Yönlendirme Tabelaları & Stant Numarataj Şablonları",
+      "description": "Festival çim alanı giriş takı grafikleri, oyun alanı yönlendirmeleri, varil masa üzeri sticker tasarımları ve SKS stant numaratajlarının hazırlanması.",
+      "assignee": "Hakan Karadağ",
+      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "priority": "Orta",
+      "status": "yapilacak",
+      "deadline": "2026-10-03"
+    },
+    {
+      "id": "tsk_28_8756633344",
+      "title": "AREM ARMAN İLETİŞİM",
+      "description": "konuşulacak",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "alindi",
+      "deadline": "2026-10-04",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:06",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_29_8756633344",
+      "title": "MAHMUT ORHAN",
+      "description": "iletişim",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "alindi",
+      "deadline": "2026-10-04",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:06",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_30_8756633344",
+      "title": "HİKAYEDEN ADAMLAR",
+      "description": "iletişime geçildi dönüş bekleniyor",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "alindi",
+      "deadline": "2026-10-04",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:06",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_31_8756633344",
+      "title": "EMİR CAN İĞREK İLETİŞİM",
+      "description": "",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Yüksek",
+      "status": "alindi",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 21:08",
+      "completed_by": "",
+      "completed_at": "",
+      "deadline": "2026-10-04",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_32_8756633344",
+      "title": "SKS SET TOPLULUK STAND TALEBİ",
+      "description": "SET İÇİN RESMİ BELGE TESLİMİ",
+      "assignee": "Berke Saygılı & Emrullah Genç",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Kritik",
+      "status": "alindi",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 22:03",
+      "completed_by": "",
+      "completed_at": "",
+      "deadline": "2026-10-04",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    },
+    {
+      "id": "tsk_33_8756633344",
+      "title": "DANS TOPLULUĞU WORKSHOP-SHOW",
+      "description": "Selin Su iletişime geçilecek",
+      "assignee": "Berke Saygılı",
+      "category": "Üst Yönetim & Genel Koordinasyon",
+      "priority": "Orta",
+      "status": "alindi",
+      "claimed_by": "Berke Saygılı",
+      "claimed_at": "25 Eyl 22:07",
+      "completed_by": "",
+      "completed_at": "",
+      "deadline": "2026-10-04",
+      "updated_by": "Berke Saygılı (Görevi Aldı)"
+    }
+  ],
+  "inventory": [
+    {
+      "id": "cosm_1",
+      "item": "Renkli Festival Armut Koltukları (Su Geçirmez)",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 60,
+      "current": 50,
+      "unit": "Adet",
+      "source": "Sahil Kafeleri & Sponsorluk / Melike Konar",
+      "responsible": "Melike Konar",
+      "status": "Beklemede",
+      "notes": "Çim meydana dağınık ve renk blokları halinde yerleştirilecek.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:35"
+    },
+    {
+      "id": "cosm_2",
+      "item": "Boyalı Metal Varil Bistro & Bar Masaları",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 25,
+      "current": 25,
+      "unit": "Varil",
+      "source": "Sanayi Toplaması & SET Boyama Workshop",
+      "responsible": "Samet Kara & Melike Konar",
+      "status": "Beklemede",
+      "notes": "25 varil sanayiden toplandı, 2 Ekim workshopunda boyanacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 02:08"
+    },
+    {
+      "id": "cosm_3",
+      "item": "Renkli Etnik Yer Örtüleri & Piknik Halıları",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 20,
+      "current": 10,
+      "unit": "Adet",
+      "source": "Öğrenci İmecesi & Yurt Temini / Selin Aşkın",
+      "responsible": "Selin Aşkın",
+      "status": "Beklemede",
+      "notes": "Armut minderlerin altına ve çim alana serilerek piknik atmosferi kurulacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 02:08"
+    },
+    {
+      "id": "cosm_4",
+      "item": "Ahşap Palet Oturma Grupları & Minderleri",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 15,
+      "current": 6,
+      "unit": "Takım",
+      "source": "Lojistik Palet Temini / Samet Kara",
+      "responsible": "Samet Kara",
+      "status": "Sürece Alındı",
+      "notes": "Zımparalanmış euro paletler üstüne sünger minderler konulacak."
+    },
+    {
+      "id": "cosm_5",
+      "item": "Ahşap Kablo Makaraları Sehpa Seti",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 8,
+      "current": 4,
+      "unit": "Adet",
+      "source": "TREDAŞ Elektrik Deposu / Burak Avcı",
+      "responsible": "Burak Avcı",
+      "status": "Sürece Alındı",
+      "notes": "Büyük ahşap makaralar verniklenip rustik sehpa olarak kullanılacak."
+    },
+    {
+      "id": "cosm_6",
+      "item": "Chill Lounge Gölgelik Tenteleri (Bambu/Kumaş)",
+      "category": "chill_lounge",
+      "category_title": "🛋️ Chill Lounge & Oturma",
+      "target": 6,
+      "current": 2,
+      "unit": "Adet",
+      "source": "Sponsorluk & Kiralama / Mert Akmeşe",
+      "responsible": "Mert Akmeşe",
+      "status": "Beklemede",
+      "notes": "Öğle güneşinde gölge alan sağlamak için çim alana kurulacak."
+    },
+    {
+      "id": "cosm_7",
+      "item": "Retro Edison & Peri LED Işık Zincirleri",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 150,
+      "current": 60,
+      "unit": "Metre",
+      "source": "SET Ar-Ge / Hakan Karadağ",
+      "responsible": "Hakan Karadağ & Efe Kağan Yağcı",
+      "status": "Sürece Alındı",
+      "notes": "Akşam saatlerinde ağaçlar ve çadırlar arasına asılacak."
+    },
+    {
+      "id": "cosm_8",
+      "item": "Kampüse Hoş Geldin Ahşap & Neon Selfie Tagı",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 1,
+      "current": 1,
+      "unit": "Sistem",
+      "source": "SET Tasarım / Melike Konar & Hakan Karadağ",
+      "responsible": "Melike Konar",
+      "status": "Beklemede",
+      "notes": "Girişte öğrencilerin fotoğraf çekileceği dev festival karşılama tagı.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 02:08"
+    },
+    {
+      "id": "cosm_9",
+      "item": "SET Fest Renkli Üçgen Kumaş Flama Bayrakları",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 500,
+      "current": 350,
+      "unit": "Metre",
+      "source": "Tekstil Atölyesi / Selin Aşkın",
+      "responsible": "Selin Aşkın",
+      "status": "Sürece Alındı",
+      "notes": "Festival alanının tüm sınırlarına ve tartan pist boyunca asılacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 02:08"
+    },
+    {
+      "id": "cosm_10",
+      "item": "Yönlendirme Ahşap Ok Tabelaları (Sahne, Oyun, WC)",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 12,
+      "current": 12,
+      "unit": "Adet",
+      "source": "Ahşap Atölyesi / Hakan Karadağ",
+      "responsible": "Hakan Karadağ",
+      "status": "Beklemede",
+      "notes": "Festival alanının giriş ve kavşak noktalarına çakılacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_11",
+      "item": "Varil Boyama Şablon & Sprey Akrilik Boya Setleri",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 30,
+      "current": 30,
+      "unit": "Kutu",
+      "source": "Kırtasiye Sponsorluğu / Berke Saygılı",
+      "responsible": "Melike Konar",
+      "status": "Beklemede",
+      "notes": "2 Ekim'deki varil boyama etkinliğinde kullanılacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_12",
+      "item": "Renkli Sıfır Atık & Geri Dönüşüm İstasyonları",
+      "category": "atmosphere_decor",
+      "category_title": "✨ Atmosfer, Işık & Dekor",
+      "target": 10,
+      "current": 6,
+      "unit": "İstasyon",
+      "source": "Süleymanpaşa Belediyesi Çevre Koruma",
+      "responsible": "Ceren Çakmak",
+      "status": "Beklemede",
+      "notes": "Plastik, cam, kağıt ve evsel atıklar için ayrı renkli varil kutuları.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_13",
+      "item": "Dev Ahşap Jenga Turnuva Seti",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 3,
+      "current": 2,
+      "unit": "Set",
+      "source": "SET Envanteri / Mecit Çalık",
+      "responsible": "Mecit Çalık",
+      "status": "Sürece Alındı",
+      "notes": "Kulüplerarası tanışma turnuvası için çim zemin üzerine kurulacak."
+    },
+    {
+      "id": "cosm_14",
+      "item": "Açık Hava Ayaklı Masa Langırtı",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 2,
+      "current": 1,
+      "unit": "Adet",
+      "source": "Gençlik Merkezi / Mecit Çalık",
+      "responsible": "Mecit Çalık",
+      "status": "Sürece Alındı",
+      "notes": "Öğrencilerin festival boyunca ücretsiz oynayabileceği oyun istasyonu."
+    },
+    {
+      "id": "cosm_15",
+      "item": "Ahşap Cornhole (Fasulye Torbası) Parkuru",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 4,
+      "current": 4,
+      "unit": "Takım",
+      "source": "SET Üretim / Mecit Çalık",
+      "responsible": "Mecit Çalık",
+      "status": "Beklemede",
+      "notes": "Amerikan kampüs klasiği delikli fırlatma tahtası ve torbaları hazır.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_16",
+      "item": "30 Metrelik Kalın Jüt Halat Çekme İpi",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 2,
+      "current": 2,
+      "unit": "Adet",
+      "source": "Spor Kulübü / Emrullah Genç",
+      "responsible": "Emrullah Genç",
+      "status": "Beklemede",
+      "notes": "Fakülteler ve kulüpler arası büyük halat çekme yarışması için.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_17",
+      "item": "Dev Çim Satrancı & Dama Yer Örtüsü",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 1,
+      "current": 0,
+      "unit": "Set",
+      "source": "NKÜ Satranç Topluluğu / Selin Aşkın",
+      "responsible": "Selin Aşkın",
+      "status": "Beklemede",
+      "notes": "Büyük boy figürlerle çim üzerine serilecek interaktif oyun alanı."
+    },
+    {
+      "id": "cosm_18",
+      "item": "Kampüs Kutu Oyunları Köşesi (15 Çeşit Kutu Oyunu)",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 15,
+      "current": 10,
+      "unit": "Kutu",
+      "source": "SET Kütüphanesi & Kulüp İmecesi",
+      "responsible": "Mecit Çalık",
+      "status": "Sürece Alındı",
+      "notes": "Tabu, Codenames, Uno, Jenga, Scrabble, Dixit oyun masası."
+    },
+    {
+      "id": "cosm_19",
+      "item": "Limbo Çubuğu & Açık Hava Müzikli Dans Kiti",
+      "category": "games_experience",
+      "category_title": "🎯 Oyunlar & Deneyim",
+      "target": 2,
+      "current": 2,
+      "unit": "Set",
+      "source": "Dans Kulübü / Efe Kağan Yağcı",
+      "responsible": "Efe Kağan Yağcı",
+      "status": "Beklemede",
+      "notes": "Öğleden sonra DJ performansında müzikli limbo yarışmaları.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_20",
+      "item": "Ana Festival Sahnesi, Truss & Podyum (12x8m)",
+      "category": "logistics_stage",
+      "category_title": "⛺ Çadır, Stant & Sahne",
+      "target": 1,
+      "current": 1,
+      "unit": "Sistem",
+      "source": "Tekirdağ Büyükşehir Belediyesi",
+      "responsible": "Efe Kağan Yağcı",
+      "status": "Beklemede",
+      "notes": "LED ekran, çatı sistemi ve podyum kurulumu belediyece yapılacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_21",
+      "item": "Line Array Ses & Akıllı Sahne Işık Sistemi",
+      "category": "logistics_stage",
+      "category_title": "⛺ Çadır, Stant & Sahne",
+      "target": 1,
+      "current": 1,
+      "unit": "Sistem",
+      "source": "Tekirdağ Büyükşehir Belediyesi",
+      "responsible": "Efe Kağan Yağcı",
+      "status": "Beklemede",
+      "notes": "Konser ve DJ performansları için ana ses/ışık altyapısı.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_22",
+      "item": "Topluluk Tanıtım Çadırları (3x3m Pop-up Gazebo)",
+      "category": "logistics_stage",
+      "category_title": "⛺ Çadır, Stant & Sahne",
+      "target": 60,
+      "current": 40,
+      "unit": "Adet",
+      "source": "NKÜ SKS Daire Başkanlığı & Süleymanpaşa Bld.",
+      "responsible": "Mert Akmeşe & Selin Aşkın",
+      "status": "Temin Edildi",
+      "notes": "Tartan pist boyunca kulüp tanıtım stantları için kurulacak.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_23",
+      "item": "Katlanır Masa & Plastik Sandalye Seti",
+      "category": "logistics_stage",
+      "category_title": "⛺ Çadır, Stant & Sahne",
+      "target": 60,
+      "current": 45,
+      "unit": "Takım",
+      "source": "NKÜ SKS Daire Başkanlığı",
+      "responsible": "Mert Akmeşe & Ceren Çakmak",
+      "status": "Beklemede",
+      "notes": "Her kulüp çadırına 1 masa ve 2 sandalye verilecek.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    },
+    {
+      "id": "cosm_24",
+      "item": "Tartan Pist Kauçuk Kablo Geçiş Rampaları",
+      "category": "logistics_stage",
+      "category_title": "⛺ Çadır, Stant & Sahne",
+      "target": 15,
+      "current": 15,
+      "unit": "Metre",
+      "source": "Büyükşehir Teknik / Samet Kara",
+      "responsible": "Samet Kara",
+      "status": "Sürece Alındı",
+      "notes": "Tartan pist zeminini korumak ve kablo takılmalarını önlemek için.",
+      "updated_by": "Berke Saygılı",
+      "updated_at": "26.09.2026 01:36"
+    }
+  ],
+  "schedule": [
+    {
+      "day": "6 Ekim Pazartesi",
+      "theme": "Açılış, Canlılık & Kampüse Merhaba",
+      "items": [
+        {
+          "time": "09:00 - 10:00",
+          "title": "Topluluk Stantlarının Açılışı ve Sabah Akustiği"
+        },
+        {
+          "time": "10:00 - 16:30",
+          "title": "Topluluk Tanıtım Stantları Açık & Üye Kayıtları"
+        },
+        {
+          "time": "12:00 - 13:00",
+          "title": "Açılış Seremonisi & Rektörlük / SET Açılış Konuşması"
+        },
+        {
+          "time": "13:30 - 15:30",
+          "title": "Kulüplerarası Tanışma & Dev Jenga Şampiyonası"
+        },
+        {
+          "time": "16:00 - 17:30",
+          "title": "Öğrenci Müzik Kulüpleri Sahne Performansları"
+        },
+        {
+          "time": "18:00 - 20:00",
+          "title": "Kampüse Merhaba Açık Hava DJ Performansı & Gün Batımı"
+        }
+      ]
+    },
+    {
+      "day": "7 Ekim Salı",
+      "theme": "Topluluk Gösterileri, Sanat & Alternatif Turnuvalar",
+      "items": [
+        {
+          "time": "10:00 - 16:30",
+          "title": "Topluluk Tanıtım Stantları Açık & Üye Kayıtları"
+        },
+        {
+          "time": "11:30 - 13:00",
+          "title": "Dans, Tiyatro ve Spor Toplulukları Canlı Gösterileri"
+        },
+        {
+          "time": "13:30 - 15:30",
+          "title": "Langırt, Cornhole ve Halat Çekme Kulüpler Ligi"
+        },
+        {
+          "time": "16:00 - 17:30",
+          "title": "İnteraktif Çim Atölyeleri (Resim, Kaligrafi, Akıl Oyunları)"
+        },
+        {
+          "time": "18:00 - 20:30",
+          "title": "Genç Sahne: Üniversite Rock ve Pop Grupları Canlı Konseri"
+        }
+      ]
+    },
+    {
+      "day": "8 Ekim Çarşamba",
+      "theme": "Ödül Töreni, Birlik Ruhu & Festival Büyük Kapanışı",
+      "items": [
+        {
+          "time": "10:00 - 16:00",
+          "title": "Topluluk Kapanış Kayıtları ve Networking"
+        },
+        {
+          "time": "13:00 - 14:30",
+          "title": "Sanat ve Tasarım Toplulukları Açık Sergi Turu"
+        },
+        {
+          "time": "15:30 - 16:30",
+          "title": "Turnuva Finalleri ve En Yaratıcı Stant Ödül Töreni"
+        },
+        {
+          "time": "17:00 - 18:00",
+          "title": "Teşekkür Plaketleri Takdimi (Rektörlük, Büyükşehir & Sponsorlar)"
+        },
+        {
+          "time": "18:00 - 20:30",
+          "title": "Festival Büyük Kapanış Konseri ve Sahne Işık Şovları"
+        }
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "role": "Başkan & Festival Sorumlusu",
+      "name": "Berke Saygılı",
+      "phone": "0534 666 13 17",
+      "notes": "E-posta: set.nku@gmail.com"
+    },
+    {
+      "role": "Başkan Yrd. & Genel İşleyiş",
+      "name": "Burak Avcı",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Genel Koordinatör",
+      "name": "Selin Aşkın",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Organizasyon Sorumlusu",
+      "name": "Emrullah Genç",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Ar-Ge & Konsept Tasarımı",
+      "name": "Melike Konar",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha İçeriği Planlama (Meydan)",
+      "name": "Mecit Çalık",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha İçeriği Planlama (Stant)",
+      "name": "Mert Akmeşe",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha İçi Koordinasyon",
+      "name": "Ceren Çakmak",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Ses, Işık & Sahne Direktörü",
+      "name": "Efe Kağan Yağcı",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha İçerikleri Tamamlayıcı",
+      "name": "Samet Kara",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "NKÜ SKS Daire Başkanlığı",
+      "name": "SKS Şube Müdürü",
+      "phone": "Santral Dahili: 1400"
+    },
+    {
+      "role": "NKÜ Güvenlik Şube Amirliği",
+      "name": "Nizamiye / Güvenlik Masası",
+      "phone": "Santral Dahili: 1155"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ann_3",
+      "title": "HAZIR OLUN, FESTİVAL ORGANİZE EDİYORUZ !",
+      "content": "BAŞARACAĞIZ !!!",
+      "date": "21:15 (Bugün)"
+    },
+    {
+      "id": "ann_1",
+      "title": "Çekirdek Ekip Departman Dağılımı Tamamlandı!",
+      "date": "25 Eylül 2026",
+      "content": "10 kişilik festival yönetim kadromuz ve görev dağılımı panele işlenmiştir. Herkes sağ üstteki menüden kendi ismini seçerek sadece kendi görevlerini filtreleyebilir."
+    },
+    {
+      "id": "ann_2",
+      "title": "2 Ekim Cuma: SET Varil Boyama Workshop'u",
+      "date": "25 Eylül 2026",
+      "content": "Samet Kara koordinasyonunda sanayiden toplanan 25 varil Melike Konar'ın tasarladığı şablonlarla kampüste tüm ekiple boyanacaktır."
+    }
+  ],
+  "partners": [
+    {
+      "id": "part_1",
+      "name": "Trakya Etkinlik & Ekipman Kiralama",
+      "category": "equipment",
+      "category_title": "🪑 Armut, Varil & Chill Ekipmanı",
+      "offering": "100 Adet Su Geçirmez Festival Armut Koltuğu, 25 Adet Boyalı Varil Bar & Bistro Masa",
+      "stand_needs": "Saha Lojistik Girişi (Kamyonet indirme alanı)",
+      "contact_name": "Ahmet Yılmaz (Operasyon Müdürü)",
+      "email": "iletisim@trakyaetkinlik.com",
+      "phone": "0532 450 12 34",
+      "city": "Tekirdağ / Çorlu",
+      "status": "Görüşülüyor",
+      "notes": "Öğrenci kulüplerine %40 indirimli paket sunuyorlar. Festival boyunca kırılma/yıpranma sigortası dahil.",
+      "mail_sent": false,
+      "mail_sent_by": "",
+      "mail_sent_at": ""
+    },
+    {
+      "id": "part_2",
+      "name": "Marmara Çadır & Sahne Sistemleri",
+      "category": "equipment",
+      "category_title": "🪑 Armut, Varil & Chill Ekipmanı",
+      "offering": "3x3m Pop-up Katlanır Kulüp Çadırları, 50 Adet Puf Minder, Gölgelik Tente Sistemleri",
+      "stand_needs": "Depolama ve kurulum için kuzey kapı erişimi",
+      "contact_name": "Serkan Demir",
+      "email": "info@marmaracadirsahne.com",
+      "phone": "0533 890 56 78",
+      "city": "Tekirdağ Merkez",
+      "status": "Teklif Gönderildi",
+      "notes": "Festivaldeki 60 öğrenci kulübü çadırı için toplu kiralama teklifi iletildi. Sponsorluk karşılığı indirim görüşülüyor.",
+      "mail_sent": false,
+      "mail_sent_by": "",
+      "mail_sent_at": ""
+    },
+    {
+      "id": "part_3",
+      "name": "Puf Dünyası & Event Furniture",
+      "category": "equipment",
+      "category_title": "🪑 Armut, Varil & Chill Ekipmanı",
+      "offering": "80 Adet XXL Renkli Armut Koltuk, Palet Oturma Grupları & Ahşap Kablo Makaraları Masaları",
+      "stand_needs": "Çim meydan lounge bölgesi (Chill zone)",
+      "contact_name": "Gökhan Tanır",
+      "email": "etkinlik@pufdunyasi.com.tr",
+      "phone": "0212 654 32 10",
+      "city": "İstanbul (Trakya Teslimatlı)",
+      "status": "İletişime Geçilecek",
+      "notes": "Festival çim meydanı için görsel şölen yaratacak canlı renklerde armutlar temin edebilirler."
+    },
+    {
+      "id": "part_4",
+      "name": "Espressolab Tekirdağ",
+      "category": "coffee_food",
+      "category_title": "☕ Kahve, Gıda & İkram Standı",
+      "offering": "Mobil Kahve Karavanı, Festival Boyunca Öğrenciye Özel İndirimli Menü, 25 Adet Markalı Armut Koltuk",
+      "stand_needs": "6x4m Açık Alan, 380V Trifaze veya 2 adet 16A 220V Hat",
+      "contact_name": "Burcu Alkan (Bölge Mağaza Müdürü)",
+      "email": "tekirdag@espressolab.com",
+      "phone": "0542 333 44 55",
+      "city": "Tekirdağ Değirmenaltı",
+      "status": "Onaylandı & Stant Verildi",
+      "notes": "Yerleşkeye 500m mesafedeler. Festival alanına kahve kokusu ve enerjisi katacaklar. Kendi jeneratörleri de mevcut.",
+      "mail_sent": false,
+      "mail_sent_by": "",
+      "mail_sent_at": ""
+    },
+    {
+      "id": "part_5",
+      "name": "Red Bull Türkiye (Üniversite Saha Ekibi)",
+      "category": "energy_sponsor",
+      "category_title": "⚡ Gençlik & Enerji Sponsorları",
+      "offering": "Red Bull Event DJ Tırı, Canlı DJ Performansı, Ücretsiz Soğuk Enerji İçeceği Dağıtımı & 30 Özel Armut Koltuk",
+      "stand_needs": "12x8m DJ Aracı Giriş ve Park Alanı, 220V Hat",
+      "contact_name": "Can Berk Yılmaz (Saha Etkinlik Sorumlusu)",
+      "email": "canberk.yilmaz@redbull.com.tr",
+      "phone": "0532 999 11 22",
+      "city": "İstanbul / Trakya",
+      "status": "Görüşülüyor",
+      "notes": "Öğrenci kulübü etkinliklerine büyük destek veriyorlar. Sahne aralarında DJ performansıyla festival ritmini yükseltecekler."
+    },
+    {
+      "id": "part_6",
+      "name": "Monster Energy Türkiye",
+      "category": "energy_sponsor",
+      "category_title": "⚡ Gençlik & Enerji Sponsorları",
+      "offering": "Monster Gaming Deneyim Çadırı, Motor Sporları Simülatörü, Ücretsiz İçecek İkramı & Festival Tişörtleri",
+      "stand_needs": "8x6m Açık Alan, 220V Kesintisiz Elektrik",
+      "contact_name": "Murat Çetin (Öğrenci Pazarlama Müdürü)",
+      "email": "mcetin@monsterenergy.com",
+      "phone": "0530 456 78 90",
+      "city": "İstanbul",
+      "status": "Teklif Gönderildi",
+      "notes": "Özellikle oyun alanı ve e-spor köşesinde gençlerin büyük ilgisini çekecek interaktif aktivite vaat ediyorlar."
+    },
+    {
+      "id": "part_7",
+      "name": "Kahve Dünyası Kurumsal Etkinlik",
+      "category": "coffee_food",
+      "category_title": "☕ Kahve, Gıda & İkram Standı",
+      "offering": "Pop-up Sıcak/Soğuk Kahve Tadım Standı, Çikolata İkramı, Festival Çarkıfelek Hediye Dağıtımı",
+      "stand_needs": "4x4m Çadır Alanı, 220V Elektrik",
+      "contact_name": "Ece Karaca",
+      "email": "etkinlik@kahvedunyasi.com",
+      "phone": "0212 345 67 89",
+      "city": "İstanbul / Tekirdağ",
+      "status": "İletişime Geçilecek",
+      "notes": "Öğrencilere termos bardak ve bez çanta hediyeli stant çalışması yapabilirler."
+    },
+    {
+      "id": "part_8",
+      "name": "Köfteci Yusuf & Sokak Lezzetleri Karavanı",
+      "category": "coffee_food",
+      "category_title": "☕ Kahve, Gıda & İkram Standı",
+      "offering": "Ekmek Arası Köfte & Sıcak Sokak Lezzetleri Karavanı (Uygun Öğrenci Fiyatı) & İçecek Standı",
+      "stand_needs": "7x3m Karavan Park Alanı, Su ve 220V Elektrik",
+      "contact_name": "Kemal Özkan (Saha Müdürü)",
+      "email": "kurumsal@kofteciyusuf.com",
+      "phone": "0533 123 45 67",
+      "city": "Tekirdağ Şubesi",
+      "status": "Görüşülüyor",
+      "notes": "Festival boyunca öğrencilerin öğle ve akşam yemek ihtiyaçlarını bütçe dostu şekilde karşılayabilir."
+    },
+    {
+      "id": "part_9",
+      "name": "Tekirdağ Büyükşehir Belediyesi Gençlik ve Spor Dairesi",
+      "category": "institution",
+      "category_title": "🏛️ Belediye & Kamu Kurumları",
+      "offering": "Mobil İkram Aracı (Ücretsiz Sıcak Çorba & Çay), 1500 Festival Şapkası, Çöp Konteynerleri, Yönlendirme Panoları",
+      "stand_needs": "Giriş kapısı yanı ikram noktası (8x4m)",
+      "contact_name": "Gençlik Hizmetleri Şube Müdürlüğü",
+      "email": "genclik@tekirdag.bel.tr",
+      "phone": "0282 229 30 00",
+      "city": "Tekirdağ",
+      "status": "Onaylandı & Stant Verildi",
+      "notes": "Resmi protokol dilekçesi verildi. Rektörlük onayıyla festival alanına resmi ikram aracı tahsis edildi."
+    },
+    {
+      "id": "part_10",
+      "name": "Süleymanpaşa Belediyesi Kültür ve Sosyal İşler",
+      "category": "institution",
+      "category_title": "🏛️ Belediye & Kamu Kurumları",
+      "offering": "Sahne Önü Güvenlik Bariyerleri (Mojo), 40 Adet Belediye Puf Minderi, Ses Teknisyeni Desteği, 50kVA Yedek Jeneratör",
+      "stand_needs": "Sahne arkası lojistik alanı",
+      "contact_name": "Kültür İşleri Koordinatörü",
+      "email": "kultur@suleymanpasa.bel.tr",
+      "phone": "0282 259 59 59",
+      "city": "Tekirdağ / Süleymanpaşa",
+      "status": "Onaylandı & Stant Verildi",
+      "notes": "Lojistik bariyer ve minder desteği teyit edildi. Festival sabahı 08:00'de teslim edilecek."
+    },
+    {
+      "id": "part_11",
+      "name": "Tekirdağ Gençlik ve Spor İl Müdürlüğü (Gençlik Merkezleri)",
+      "category": "institution",
+      "category_title": "🏛️ Belediye & Kamu Kurumları",
+      "offering": "Açık Hava Portatif Okçuluk Parkuru, 4 Adet Masa Tenisi Masası, 2 Dev Langırt, Ebru Sanatı Atölyesi",
+      "stand_needs": "Festival Çim Alanı Etkinlik Köşesi (15x10m)",
+      "contact_name": "Gençlik Lideri Emre Koç",
+      "email": "tekirdag@gsb.gov.tr",
+      "phone": "0282 261 20 40",
+      "city": "Tekirdağ",
+      "status": "Onaylandı & Stant Verildi",
+      "notes": "Kulüp tanıtım günlerinde öğrencilerin ücretsiz spor yapabileceği deneyim istasyonları kuracaklar."
+    },
+    {
+      "id": "part_12",
+      "name": "Türk Kızılay Tekirdağ Şubesi & Genç Kızılay",
+      "category": "institution",
+      "category_title": "🏛️ Belediye & Kamu Kurumları",
+      "offering": "Gönüllü & Kan Bağışı Çadırı, Ücretsiz Meyve Suyu ve İkram, Acil İlkyardım Personeli",
+      "stand_needs": "Ana giriş karşısı gölgelik alan (5x5m)",
+      "contact_name": "Kızılay Şube Koordinasyonu",
+      "email": "tekirdag@kizilay.org.tr",
+      "phone": "0282 262 14 50",
+      "city": "Tekirdağ",
+      "status": "Onaylandı & Stant Verildi",
+      "notes": "Sosyal sorumluluk standı olarak festivalde farkındalık yaratacak ve acil ilkyardım güvencesi sağlayacak."
+    },
+    {
+      "id": "part_13",
+      "name": "Decathlon Çorlu / Tekirdağ",
+      "category": "sports_gaming",
+      "category_title": "🎮 Oyun, Spor & Deneyim",
+      "offering": "Açık Hava Çadır & Kamp Ekipmanları Deneyim Alanı, Mini Badminton Kortu, Hediyeli Şut Çekme Yarışması",
+      "stand_needs": "10x8m Çim Meydan Köşesi",
+      "contact_name": "Serhat Aydın (Mağaza Etkinlik Sorumlusu)",
+      "email": "serhat.aydin@decathlon.com",
+      "phone": "0282 673 45 00",
+      "city": "Çorlu / Tekirdağ",
+      "status": "Görüşülüyor",
+      "notes": "Festivalde spor kulüpleriyle ortak yarışmalar düzenleyip spor malzemeleri hediye çeki verebilirler."
+    },
+    {
+      "id": "part_14",
+      "name": "İş Bankası Maximum Genç",
+      "category": "fintech_student",
+      "category_title": "📱 Fintek & Telekomünikasyon",
+      "offering": "Öğrenci Bankacılık & Kart Standı, Festival Çarkıfeleği (Kulaklık, Sırt Çantası Hediyeleri), Hızlı Şarj İstasyonu",
+      "stand_needs": "4x4m Tanıtım Çadırı, 220V Hat",
+      "contact_name": "Selin Varol (Üniversite Segment Yöneticisi)",
+      "email": "maximumgenc@isbank.com.tr",
+      "phone": "0212 316 00 00",
+      "city": "İstanbul",
+      "status": "Teklif Gönderildi",
+      "notes": "Her yıl üniversite açılış haftasında kampüste stant kuruyorlar. Festival alanında merkezi bir stant talep ediyorlar."
+    },
+    {
+      "id": "part_15",
+      "name": "Turkcell GNÇ / Superonline",
+      "category": "fintech_student",
+      "category_title": "📱 Fintek & Telekomünikasyon",
+      "offering": "Festival Çim Alanına Ücretsiz Yüksek Hızlı Wi-Fi Hotspot, Güneş Enerjili 20 Cihazlık Mobil Şarj İstasyonu",
+      "stand_needs": "Spor kompleksi bina cephesine yakın 4x3m stant",
+      "contact_name": "Ali Deniz (Trakya Bölge Saha Yöneticisi)",
+      "email": "gnc@turkcell.com.tr",
+      "phone": "0532 532 00 00",
+      "city": "İstanbul / Trakya",
+      "status": "Görüşülüyor",
+      "notes": "Öğrencilerin festival süresince kesintisiz internet paylaşımı yapabilmesi için Wi-Fi noktası kurabilirler."
+    },
+    {
+      "id": "part_16",
+      "name": "Papara Kampüs Elçileri",
+      "category": "fintech_student",
+      "category_title": "📱 Fintek & Telekomünikasyon",
+      "offering": "Özel Tasarım SET Festival Tişörtleri Sponsorluğu, Dev Jenga & Beer-Pong (Meyve Suyu ile) Turnuva Alanı",
+      "stand_needs": "6x5m Oyun Alanı, 220V",
+      "contact_name": "Deniz Arda (Kampüs İlişkileri)",
+      "email": "kampus@papara.com",
+      "phone": "0850 340 0 340",
+      "city": "İstanbul",
+      "status": "Teklif Gönderildi",
+      "notes": "Festival oyunları için ödül ve 500 adet festival tişörtü baskısı bütçesi sağlayabilirler."
+    }
+  ]
+}

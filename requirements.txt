@@ -1,0 +1,2 @@
+# Standart Python kütüphaneleri kullanılmaktadır.
+# Render.com Python ortamını tanımak için bu dosya kullanılır.
