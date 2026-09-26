@@ -5034,6 +5034,9 @@
         isMyTasksOnly = false;
       }
       renderUserHeader();
+      if (globalSwRegistration) {
+        syncWebPushSubscription(globalSwRegistration);
+      }
       if (!currentUser) {
         openAuthModal();
       }
@@ -8614,6 +8617,102 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       }
     }
 
+
+    // ============================================================
+    // SERVICE WORKER & WEB PUSH (KAPALI UYGULAMA / TELEFON BİLDİRİMİ)
+    // ============================================================
+    let globalSwRegistration = null;
+
+    function urlBase64ToUint8Array(base64String) {
+      const padding = '='.repeat((4 - base64String.length % 4) % 4);
+      const base64 = (base64String + padding)
+        .replace(/\-/g, '+')
+        .replace(/_/g, '/');
+      const rawData = window.atob(base64);
+      const outputArray = new Uint8Array(rawData.length);
+      for (let i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+      }
+      return outputArray;
+    }
+
+    async function initServiceWorker() {
+      if (!('serviceWorker' in navigator)) return;
+      try {
+        const reg = await navigator.serviceWorker.register('./sw.js', { scope: './' });
+        globalSwRegistration = reg;
+        console.log('SET Service Worker kayıtlı:', reg.scope);
+
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          if (event.data && event.data.type === 'FOCUS_TASK' && event.data.taskId) {
+            viewTaskFromNotification(event.data.taskId);
+          }
+        });
+
+        if ('Notification' in window && Notification.permission === 'granted') {
+          syncWebPushSubscription(reg);
+        }
+      } catch (err) {
+        console.warn('SW Register warning:', err);
+      }
+    }
+
+    async function syncWebPushSubscription(reg) {
+      if (!reg || !reg.pushManager) return;
+      try {
+        const res = await fetch(`${API_BASE}/api/push/vapid_key`);
+        if (!res.ok) return;
+        const data = await res.json();
+        const vapidPublicKey = data.public_key;
+        if (!vapidPublicKey) return;
+
+        let sub = await reg.pushManager.getSubscription();
+        if (!sub) {
+          sub = await reg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(vapidPublicKey)
+          });
+        }
+
+        if (sub) {
+          const userName = currentUser ? currentUser.name : 'Genel Ekip';
+          await fetch(`${API_BASE}/api/push/subscribe`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_name: userName,
+              subscription: sub.toJSON()
+            })
+          });
+          console.log('Web Push cihaz aboneliği bağlandı:', userName);
+        }
+      } catch (err) {
+        console.warn('Push sync warning:', err);
+      }
+    }
+
+    async function testClosedAppPush() {
+      if ('Notification' in window && Notification.permission !== 'granted') {
+        await requestBrowserNotificationPermission(true);
+      }
+      if (globalSwRegistration) {
+        await syncWebPushSubscription(globalSwRegistration);
+      }
+
+      const userName = currentUser ? currentUser.name : 'Berke Saygılı';
+      try {
+        const res = await fetch(`${API_BASE}/api/push/test`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_name: userName })
+        });
+        const data = await res.json();
+        alert('🔔 Test push bildirimi gönderildi!\n\nSekmeyi simge durumuna küçültseniz veya kapatsanız dahi 1-2 saniye içinde telefonunuza/masaüstünüze üstten bildirim ve ses gelecektir.');
+      } catch(err) {
+        alert('Test push hatası: ' + err);
+      }
+    }
+
     // 2. BROWSER PUSH NOTIFICATION PERMISSION
     async function requestBrowserNotificationPermission(isManual = false) {
       if (!('Notification' in window)) {
@@ -8623,12 +8722,17 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       try {
         const perm = await Notification.requestPermission();
         updatePermBannerUI();
-        if (perm === 'granted' && isManual) {
-          playNotificationSound();
-          new Notification("🎉 Festival Bildirimleri Açık!", {
-            body: "Kişisel görevlerin ve genel duyuruların bu ekranda anlık bildirim olarak gözükecek.",
-            icon: "./SET WS LOGO.png"
-          });
+        if (perm === 'granted') {
+          if (globalSwRegistration) {
+            syncWebPushSubscription(globalSwRegistration);
+          }
+          if (isManual) {
+            playNotificationSound();
+            new Notification("🎉 Festival Bildirimleri Açık!", {
+              body: "Kişisel görevlerin ve genel duyuruların bu ekranda anlık bildirim olarak gözükecek.",
+              icon: "./SET WS LOGO.png"
+            });
+          }
         }
       } catch(err) {
         console.warn('Perm err:', err);
@@ -9076,6 +9180,7 @@ _(Göreve başlamak veya bittiğinde onaylamak için panele giriş yapabilirsin)
     }
 
 
+    initServiceWorker();
     loadData();
     startCountdown();
     updateMailServiceLabel();
@@ -9102,14 +9207,21 @@ _(Göreve başlamak veya bittiğinde onaylamak için panele giriş yapabilirsin)
     </div>
 
     <!-- PUSH PERMISSION PROMPT BANNER -->
-    <div id="notif-perm-banner" class="notif-perm-banner">
-      <div id="notif-perm-text">
-        <span style="font-size:1rem;">📱</span>
-        <span>Telefon & Tarayıcı Bildirimleri</span>
+    <div id="notif-perm-banner" class="notif-perm-banner" style="flex-direction:column; align-items:stretch; gap:8px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+        <div id="notif-perm-text">
+          <span style="font-size:1rem;">📱</span>
+          <span>Telefon & Tarayıcı Bildirimleri</span>
+        </div>
+        <button id="btn-request-perm" onclick="requestBrowserNotificationPermission(true)" class="btn-primary" style="font-size:0.72rem; padding:4px 10px; background:var(--accent-ochre); color:#000;">
+          Bildirimleri Aç
+        </button>
       </div>
-      <button id="btn-request-perm" onclick="requestBrowserNotificationPermission(true)" class="btn-primary" style="font-size:0.72rem; padding:4px 10px; background:var(--accent-ochre); color:#000;">
-        Bildirimleri Aç
-      </button>
+      <div style="display:flex; justify-content:flex-end;">
+        <button onclick="testClosedAppPush()" class="btn-secondary-sm" style="font-size:0.72rem; padding:4px 10px; background:rgba(201,138,44,0.15); border:1px solid var(--accent-ochre); color:var(--accent-ochre-light); border-radius:6px; cursor:pointer;" title="Uygulama veya sekme kapalıyken telefon / masaüstüne gelen bildirimi ve sesi test eder">
+          🔔 Kapalı Ekran Bildirimini Test Et
+        </button>
+      </div>
     </div>
 
     <!-- FILTER TABS -->

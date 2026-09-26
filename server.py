@@ -27,6 +27,78 @@ DATA_KROKI = os.path.join(BASE_DIR, 'kroki', 'kroki_data.json')
 HTML_EKIP = os.path.join(BASE_DIR, 'index.html')
 HTML_KROKI = os.path.join(BASE_DIR, 'kroki', 'index.html')
 
+
+# ============================================================
+# VAPID & WEB PUSH MOTORU (UYGULAMA / SEKME KAPALIYKEN BİLDİRİM)
+# ============================================================
+VAPID_FILE = os.path.join(BASE_DIR, 'vapid_keys.json')
+VAPID_PUBLIC_KEY = ''
+VAPID_PRIVATE_KEY = ''
+VAPID_EMAIL = 'mailto:berkesaygili@gmail.com'
+
+if os.path.isfile(VAPID_FILE):
+    try:
+        with open(VAPID_FILE, 'r', encoding='utf-8') as f:
+            vkeys = json.load(f)
+            VAPID_PUBLIC_KEY = vkeys.get('public_key', '')
+            VAPID_PRIVATE_KEY = vkeys.get('private_key', '')
+            VAPID_EMAIL = vkeys.get('email', 'mailto:berkesaygili@gmail.com')
+    except Exception as e:
+        print(f"VAPID load warning: {e}")
+
+def dispatch_background_web_push(target_assignee, title, body, task_id=''):
+    """Uygulama/tarayıcı kapalı olsa dahi telefon ve bilgisayara sesli Web Push bildirimi iletir."""
+    def _worker():
+        try:
+            from pywebpush import webpush, WebPushException
+        except ImportError:
+            return
+
+        if not VAPID_PRIVATE_KEY:
+            return
+
+        data = load_ekip_data()
+        subs = data.get('push_subscriptions', [])
+        if not subs:
+            return
+
+        target_lower = (target_assignee or '').lower().strip()
+        is_gen = ('genel' in target_lower) or (target_lower == 'all') or (not target_lower)
+
+        payload = {
+            'title': title,
+            'body': body,
+            'task_id': task_id,
+            'url': '/',
+            'timestamp': int(time.time() * 1000)
+        }
+
+        dead_subs = []
+        for s in subs:
+            sub_user = (s.get('user_name', '')).lower().strip()
+            should_send = is_gen or (target_lower in sub_user) or (sub_user in target_lower)
+            if should_send:
+                sub_info = s.get('subscription')
+                if not sub_info or not sub_info.get('endpoint'):
+                    continue
+                try:
+                    webpush(
+                        subscription_info=sub_info,
+                        data=json.dumps(payload, ensure_ascii=False),
+                        vapid_private_key=VAPID_PRIVATE_KEY,
+                        vapid_claims={"sub": VAPID_EMAIL},
+                        timeout=8
+                    )
+                except Exception as ex:
+                    if hasattr(ex, 'response') and ex.response is not None and ex.response.status_code in [404, 410]:
+                        dead_subs.append(sub_info.get('endpoint'))
+
+        if dead_subs:
+            data['push_subscriptions'] = [s for s in data.get('push_subscriptions', []) if s.get('subscription', {}).get('endpoint') not in dead_subs]
+            save_ekip_data(data)
+
+    threading.Thread(target=_worker, daemon=True).start()
+
 PORT = int(os.environ.get('PORT', 5050))
 LOCK_EKIP = threading.Lock()
 LOCK_KROKI = threading.Lock()
@@ -109,6 +181,25 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         path = parsed.path
+
+        if path == '/api/push/vapid_key':
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.end_headers()
+            self.wfile.write(json.dumps({'public_key': VAPID_PUBLIC_KEY}).encode('utf-8'))
+            return
+
+        if path == '/sw.js' or path == '/kroki/sw.js':
+            sw_path = os.path.join(BASE_DIR, 'sw.js')
+            if os.path.isfile(sw_path):
+                self.send_response(200)
+                self.send_header('Content-Type', 'application/javascript; charset=utf-8')
+                self.send_header('Service-Worker-Allowed', '/')
+                self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
+                self.end_headers()
+                with open(sw_path, 'rb') as f:
+                    self.wfile.write(f.read())
+                return
 
         # 1. Health & Heartbeat
         if path == '/health' or path == '/ping':
@@ -433,6 +524,12 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 data['notifications'] = data['notifications'][-100:]
 
             save_ekip_data(data)
+            dispatch_background_web_push(
+                target_assignee=assignee,
+                title=notif_title,
+                body=new_task.get('description', '') or f"Öncelik: {new_task.get('priority', 'Orta')} • Termin: {new_task.get('deadline', '')}",
+                task_id=new_task['id']
+            )
             self.send_json_response({'success': True, 'task': new_task, 'tasks': data['tasks'], 'notifications': data['notifications']})
             return
 
@@ -806,6 +903,35 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': True, 'artists': data['artists']})
             else:
                 self.send_json_response({'success': False, 'error': 'Sanatçı bulunamadı'}, 404)
+            return
+
+        elif path == '/api/push/subscribe':
+            user_name = req_data.get('user_name', 'Genel').strip()
+            subscription = req_data.get('subscription')
+            if subscription and subscription.get('endpoint'):
+                subs = data.setdefault('push_subscriptions', [])
+                subs = [s for s in subs if s.get('subscription', {}).get('endpoint') != subscription.get('endpoint')]
+                subs.append({
+                    'user_name': user_name,
+                    'subscription': subscription,
+                    'created_at': datetime.now().strftime('%d.%m.%Y %H:%M')
+                })
+                data['push_subscriptions'] = subs
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'message': 'Push bildirimi cihaz kaydı yapıldı.'})
+            else:
+                self.send_json_response({'success': False, 'error': 'Geçersiz abonelik verisi'}, 400)
+            return
+
+        elif path == '/api/push/test':
+            user_name = req_data.get('user_name', 'Berke Saygılı').strip()
+            dispatch_background_web_push(
+                target_assignee=user_name,
+                title='🔔 SET Test Bildirimi (Kapalı Ekran)',
+                body=f'Tebrikler {user_name}! Uygulama kapalı olsa dahi üstten bildirim ve ses sistemi aktif.',
+                task_id=''
+            )
+            self.send_json_response({'success': True, 'message': 'Test bildirimi arka planda gönderildi.'})
             return
 
         elif path == '/api/notifications/read':
