@@ -1395,6 +1395,31 @@
       white-space: nowrap;
     }
 
+  
+    /* ROLL UP / ROLL DOWN ARTIST PANEL */
+    .artist-rollup-container {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-bottom: 0;
+      transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease, margin-bottom 0.35s ease;
+      background: linear-gradient(135deg, rgba(26, 20, 38, 0.98), rgba(20, 18, 28, 0.98));
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 20px rgba(139, 92, 246, 0.15);
+    }
+    .artist-rollup-container.is-open {
+      max-height: 2000px;
+      opacity: 1;
+      margin-bottom: 24px;
+    }
+    .artist-rollup-content {
+      padding: 24px;
+    }
+    .rollup-sub-btn:hover {
+      background: rgba(139, 92, 246, 0.1) !important;
+    }
+
   </style>
 </head>
 <body>
@@ -1663,7 +1688,150 @@
             </div>
           </div>
         </div>
+      
+      <!-- INLINE ROLL DOWN / ROLL UP ARTIST ADDITION & EDIT PANEL -->
+      <div id="artist-rollup-panel" class="artist-rollup-container">
+        <div class="artist-rollup-content">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; padding-bottom:14px; border-bottom:1px solid rgba(139,92,246,0.3); flex-wrap:wrap; gap:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:1.6rem; background:rgba(139,92,246,0.2); padding:6px 10px; border-radius:10px;">🎭</span>
+              <div>
+                <h3 id="rollup-panel-title" style="margin:0; font-size:1.2rem; color:#FFF; font-weight:800;">Yeni Sanatçı & Sahne Performansı Ekle</h3>
+                <div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">6-7-8 Ekim festival programı için sanatçı, grup veya DJ bilgilerini doldurup sisteme kaydedin.</div>
+              </div>
+            </div>
+            <button type="button" onclick="closeArtistRollPanel()" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#FAF9F6; font-size:0.82rem; padding:7px 14px; border-radius:6px; cursor:pointer; display:inline-flex; align-items:center; gap:6px; transition:all 0.15s;" title="Formu Kapat (Roll Up)">
+              <span>▲ Paneli Kapat (Roll Up)</span>
+            </button>
+          </div>
+
+          <form id="artist-rollup-form" onsubmit="handleSaveArtistRollup(event)">
+            <input type="hidden" id="nra-id" value="">
+
+            <!-- SECTION 1: TEMEL BİLGİLER -->
+            <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:16px; margin-bottom:14px;">
+              <div style="font-size:0.8rem; font-weight:700; color:#c4b5fd; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+                <span>📌</span> Temel Sahne & Performans Bilgileri
+              </div>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px;">
+                <div class="form-group" style="margin:0;">
+                  <label>Sanatçı / Grup / DJ Adı *</label>
+                  <input type="text" id="nra-name" class="form-control" required placeholder="Örn: Madrigal, DJ Mahmut Orhan...">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Müzik Tarzı / Alanı</label>
+                  <input type="text" id="nra-genre" class="form-control" placeholder="Örn: Indie Rock, Deep House, Hip-Hop...">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Kategori *</label>
+                  <select id="nra-category" class="form-control" required>
+                    <option value="headliner_band">🎸 Ana Sahne & Canlı Grup</option>
+                    <option value="dj_electronic">🎧 DJ & Elektronik Performans</option>
+                    <option value="mc_hype">🎤 MC & Sahne Hype Şov</option>
+                    <option value="host_moderator">🎙️ Sunucu & Sahne Moderatörü</option>
+                    <option value="campus_talent">🎓 Kampüs & Konservatuvar Topluluğu</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Öngörülen Sahne Günü *</label>
+                  <select id="nra-day-key" class="form-control" required>
+                    <option value="day_1">🗓️ 6 Ekim (1. Gün - Açılış)</option>
+                    <option value="day_2">🗓️ 7 Ekim (2. Gün - Gençlik)</option>
+                    <option value="day_3">🗓️ 8 Ekim (3. Gün - Kapanış Galası)</option>
+                    <option value="all_days">🗓️ 6-7-8 Ekim (Tüm Günler)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 2: BÜTÇE, SAAT & İLETİŞİM -->
+            <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:16px; margin-bottom:14px;">
+              <div style="font-size:0.8rem; font-weight:700; color:#34d399; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:12px; display:flex; align-items:center; gap:6px;">
+                <span>💼</span> Bütçe, Saat & Menajerlik İrtibatı
+              </div>
+              <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px;">
+                <div class="form-group" style="margin:0;">
+                  <label>Tahmini Kaşe / Bütçe</label>
+                  <input type="text" id="nra-budget" class="form-control" placeholder="Örn: 250.000 - 350.000 ₺">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Sahne Saati Aralığı</label>
+                  <input type="text" id="nra-stage-time" class="form-control" placeholder="Örn: 21:00 - 22:30">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Görüşme Durumu</label>
+                  <select id="nra-status" class="form-control">
+                    <option value="pending">⏳ İletişime Geçilecek</option>
+                    <option value="in_progress">💬 Görüşülüyor / Teklifte</option>
+                    <option value="approved">✅ Kesinleşti / Sahne Onaylandı</option>
+                  </select>
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Bağlı Menajerlik / Ajans</label>
+                  <input type="text" id="nra-agency" class="form-control" placeholder="Örn: BKM, Hypers Music...">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>Menajer / Yetkili Adı</label>
+                  <input type="text" id="nra-contact" class="form-control" placeholder="Örn: Ahmet Bey (Menajer)">
+                </div>
+                <div class="form-group" style="margin:0;">
+                  <label>İletişim Telefonu</label>
+                  <input type="text" id="nra-phone" class="form-control" placeholder="0532 xxx xx xx">
+                </div>
+                <div class="form-group" style="margin:0; grid-column: 1 / -1;">
+                  <label>Menajerlik E-postası *</label>
+                  <input type="email" id="nra-email" class="form-control" required placeholder="menajerlik@sanatci.com">
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 3: ACCORDION SUB-PANEL: TEKNİK RİDER & ANALİZ NOTLARI (ROLL UP / ROLL DOWN) -->
+            <div style="background:rgba(139,92,246,0.06); border:1px solid rgba(139,92,246,0.25); border-radius:10px; margin-bottom:14px; overflow:hidden;">
+              <button type="button" onclick="toggleRiderSubAccordion()" class="rollup-sub-btn" style="width:100%; background:none; border:none; padding:12px 16px; display:flex; justify-content:space-between; align-items:center; cursor:pointer; color:#c4b5fd; font-weight:700; font-size:0.84rem;">
+                <span style="display:flex; align-items:center; gap:8px;">
+                  <span>🎛️</span> Teknik Rider, Backline & Festival Analizi Detayları
+                </span>
+                <span id="rider-sub-arrow" style="transition:transform 0.3s ease;">▼ (Genişlet)</span>
+              </button>
+              <div id="rider-sub-panel" style="max-height:0; opacity:0; overflow:hidden; transition:all 0.35s ease; padding:0 16px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; padding-bottom:14px; padding-top:6px;">
+                  <div class="form-group" style="margin:0;">
+                    <label>Sahne & Backline / Teknik Rider</label>
+                    <input type="text" id="nra-needs" class="form-control" placeholder="Örn: Canlı davul mikrofonlama, 2x DJ Pioneer CDJ-3000...">
+                  </div>
+                  <div class="form-group" style="margin:0;">
+                    <label>Kulis & Ağırlama (Hospitality)</label>
+                    <input type="text" id="nra-hospitality" class="form-control" placeholder="Örn: 8 kişilik kulis ikramı, 2 VIP araç transferi...">
+                  </div>
+                  <div class="form-group" style="margin:0; grid-column: 1 / -1;">
+                    <label>Festival Uyumu & Analiz Notları</label>
+                    <textarea id="nra-notes" class="form-control" rows="2" placeholder="Örn: Gençlik anketlerinde ilk 3'te, sahne enerjisi çok yüksek..."></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 4: MAIL SENT CHECKBOX -->
+            <div style="background:rgba(255,255,255,0.03); padding:10px 14px; border-radius:8px; border:1px solid var(--surface-border); margin-bottom:16px;">
+              <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin:0; font-weight:700;">
+                <input type="checkbox" id="nra-mail-sent" style="width:17px; height:17px; accent-color:#8B5CF6;">
+                <span style="font-size:0.86rem; color:#FAF9F6;">📨 Bu sanatçı / menajerliğe sahne davet e-postası iletildi olarak kaydet</span>
+              </label>
+            </div>
+
+            <!-- BUTTONS ROW -->
+            <div style="display:flex; justify-content:flex-end; gap:10px; align-items:center; flex-wrap:wrap;">
+              <button type="button" class="btn-secondary" onclick="closeArtistRollPanel()">
+                ▲ İptal & Kapat (Roll Up)
+              </button>
+              <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9); border:none; padding:10px 24px; font-weight:700; box-shadow:0 4px 14px rgba(139,92,246,0.4);">
+                💾 Sisteme Kaydet & Sahneye İşle
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
+</div>
 
       <!-- FILTER & SEARCH BAR -->
       <div style="background:var(--surface); border:1px solid var(--surface-border); border-radius:var(--radius); padding:16px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:14px;">
@@ -1897,7 +2065,7 @@
             <button class="btn-secondary" onclick="copyAllArtistEmails()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.35); color:#a78bfa;">
               📋 Tüm Menajer Maillerini Kopyala (BCC)
             </button>
-            <button class="btn-primary" id="btn-add-artist-portal" onclick="openAddArtistModal()" style="display:none; font-size:0.85rem; padding:8px 16px; background:linear-gradient(135deg, #8B5CF6, #6D28D9);">
+            <button class="btn-primary" id="btn-add-artist-portal" onclick="toggleArtistRollPanel()" style="display:none; font-size:0.85rem; padding:8px 16px; background:linear-gradient(135deg, #8B5CF6, #6D28D9);">
               ➕ Yeni Performans / Sanatçı Ekle
             </button>
           </div>
@@ -7610,7 +7778,7 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
             </button>
             ${canManageArtists() ? `
               <div style="display:inline-flex; gap:6px; margin-left:auto;">
-                <button class="btn-copy-mail" onclick="openEditArtistModal('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke / Ceren)">
+                <button class="btn-copy-mail" onclick="toggleArtistRollPanel('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke / Ceren)">
                   ✏️
                 </button>
                 <button class="btn-copy-mail" onclick="deleteArtist('${a.id}', '${a.name.replace(/'/g, "\\'")}')" style="color:#f87171; border-color:rgba(239,68,68,0.4);" title="Sil (Berke / Ceren)">
@@ -7854,6 +8022,222 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       }).catch(() => {
         prompt('Davet mektubunu kopyalayabilirsiniz:', body);
       });
+    }
+
+    
+    // ==========================================
+    // ARTIST ROLL UP / ROLL DOWN PANEL LOGIC
+    // ==========================================
+    let isArtistRollPanelOpen = false;
+    let isRiderSubAccordionOpen = false;
+
+    function toggleArtistRollPanel(artistId = null) {
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı ekleyebilir ve düzenleyebilir.');
+        return;
+      }
+
+      const panel = document.getElementById('artist-rollup-panel');
+      const btn = document.getElementById('btn-add-artist-portal');
+      if (!panel) return;
+
+      if (!isArtistRollPanelOpen || artistId) {
+        // Roll Down (Open)
+        isArtistRollPanelOpen = true;
+        panel.classList.add('is-open');
+
+        if (btn) {
+          btn.innerHTML = '▲ Sanatçı Formunu Kapat (Roll Up)';
+          btn.style.background = 'linear-gradient(135deg, #4B5563, #374151)';
+        }
+
+        if (artistId) {
+          // Populate for Edit
+          const a = (appData.artists || []).find(x => x.id === artistId);
+          if (a) {
+            document.getElementById('rollup-panel-title').innerText = `✏️ ${a.name} — Performansını Düzenle`;
+            document.getElementById('nra-id').value = a.id;
+            document.getElementById('nra-name').value = a.name || '';
+            document.getElementById('nra-genre').value = a.genre || '';
+            document.getElementById('nra-category').value = a.category || 'headliner_band';
+            document.getElementById('nra-day-key').value = a.proposed_day_key || 'day_1';
+            document.getElementById('nra-status').value = a.status || 'pending';
+            document.getElementById('nra-stage-time').value = a.stage_time || '';
+            document.getElementById('nra-budget').value = a.estimated_budget || '';
+            document.getElementById('nra-agency').value = a.agency || '';
+            document.getElementById('nra-contact').value = a.contact_name || '';
+            document.getElementById('nra-phone').value = a.phone || '';
+            document.getElementById('nra-email').value = a.email || '';
+            document.getElementById('nra-needs').value = a.stage_needs || '';
+            document.getElementById('nra-hospitality').value = a.hospitality_rider || '';
+            document.getElementById('nra-notes').value = a.notes || '';
+            document.getElementById('nra-mail-sent').checked = !!a.mail_sent;
+
+            if (a.stage_needs || a.hospitality_rider || a.notes) {
+              openRiderSubAccordion();
+            }
+          }
+        } else {
+          // Reset for New
+          document.getElementById('rollup-panel-title').innerText = '🎭 Yeni Sanatçı & Sahne Performansı Ekle';
+          document.getElementById('artist-rollup-form').reset();
+          document.getElementById('nra-id').value = '';
+          document.getElementById('nra-status').value = 'pending';
+          document.getElementById('nra-day-key').value = 'day_1';
+          document.getElementById('nra-category').value = 'headliner_band';
+        }
+
+        // Smooth scroll to roll-down panel
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        // Roll Up (Close)
+        closeArtistRollPanel();
+      }
+    }
+
+    function closeArtistRollPanel() {
+      const panel = document.getElementById('artist-rollup-panel');
+      const btn = document.getElementById('btn-add-artist-portal');
+      if (panel) {
+        panel.classList.remove('is-open');
+      }
+      isArtistRollPanelOpen = false;
+      if (btn) {
+        btn.innerHTML = '➕ Yeni Performans / Sanatçı Ekle ▼ (Aç)';
+        btn.style.background = 'linear-gradient(135deg, #8B5CF6, #6D28D9)';
+      }
+    }
+
+    function toggleRiderSubAccordion() {
+      const subPanel = document.getElementById('rider-sub-panel');
+      const arrow = document.getElementById('rider-sub-arrow');
+      if (!subPanel) return;
+
+      if (!isRiderSubAccordionOpen) {
+        openRiderSubAccordion();
+      } else {
+        closeRiderSubAccordion();
+      }
+    }
+
+    function openRiderSubAccordion() {
+      const subPanel = document.getElementById('rider-sub-panel');
+      const arrow = document.getElementById('rider-sub-arrow');
+      if (subPanel) {
+        subPanel.style.maxHeight = '400px';
+        subPanel.style.opacity = '1';
+        isRiderSubAccordionOpen = true;
+      }
+      if (arrow) {
+        arrow.innerText = '▲ (Daralt)';
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function closeRiderSubAccordion() {
+      const subPanel = document.getElementById('rider-sub-panel');
+      const arrow = document.getElementById('rider-sub-arrow');
+      if (subPanel) {
+        subPanel.style.maxHeight = '0';
+        subPanel.style.opacity = '0';
+        isRiderSubAccordionOpen = false;
+      }
+      if (arrow) {
+        arrow.innerText = '▼ (Genişlet)';
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    }
+
+    async function handleSaveArtistRollup(e) {
+      e.preventDefault();
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı kaydedebilir.');
+        return;
+      }
+
+      const id = document.getElementById('nra-id').value;
+      const isNew = !id;
+
+      const category = document.getElementById('nra-category').value;
+      let categoryTitle = '🎭 Sahne Performansı';
+      if (category === 'headliner_band') categoryTitle = '🎸 Ana Sahne & Canlı Grup';
+      else if (category === 'dj_electronic') categoryTitle = '🎧 DJ & Elektronik Performans';
+      else if (category === 'mc_hype') categoryTitle = '🎤 MC & Sahne Hype Şov';
+      else if (category === 'host_moderator') categoryTitle = '🎙️ Sunucu & Sahne Moderatörü';
+      else if (category === 'campus_talent') categoryTitle = '🎓 Kampüs & Konservatuvar Topluluğu';
+
+      const dayKey = document.getElementById('nra-day-key').value;
+      let proposedDay = '6 Ekim (1. Gün - Açılış)';
+      if (dayKey === 'day_2') proposedDay = '7 Ekim (2. Gün - Gençlik)';
+      else if (dayKey === 'day_3') proposedDay = '8 Ekim (3. Gün - Kapanış Galası)';
+      else if (dayKey === 'all_days') proposedDay = '6-7-8 Ekim (Tüm Günler)';
+
+      const artistObj = {
+        name: document.getElementById('nra-name').value.trim(),
+        genre: document.getElementById('nra-genre').value.trim(),
+        category: category,
+        category_title: categoryTitle,
+        proposed_day_key: dayKey,
+        proposed_day: proposedDay,
+        status: document.getElementById('nra-status').value,
+        stage_time: document.getElementById('nra-stage-time').value.trim(),
+        estimated_budget: document.getElementById('nra-budget').value.trim(),
+        agency: document.getElementById('nra-agency').value.trim(),
+        contact_name: document.getElementById('nra-contact').value.trim(),
+        phone: document.getElementById('nra-phone').value.trim(),
+        email: document.getElementById('nra-email').value.trim(),
+        stage_needs: document.getElementById('nra-needs').value.trim(),
+        hospitality_rider: document.getElementById('nra-hospitality').value.trim(),
+        notes: document.getElementById('nra-notes').value.trim(),
+        mail_sent: document.getElementById('nra-mail-sent').checked,
+        user_name: currentUser ? currentUser.name : 'Berke Saygılı'
+      };
+
+      if (!isNew) {
+        artistObj.id = id;
+        try {
+          const res = await fetch(`${API_BASE}/api/artists/update`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(artistObj)
+          });
+          const result = await res.json();
+          if (result && result.success && result.artists) {
+            appData.artists = result.artists;
+          } else {
+            const idx = (appData.artists || []).findIndex(a => a.id === id);
+            if (idx >= 0) appData.artists[idx] = { ...appData.artists[idx], ...artistObj };
+          }
+        } catch (err) {
+          const idx = (appData.artists || []).findIndex(a => a.id === id);
+          if (idx >= 0) appData.artists[idx] = { ...appData.artists[idx], ...artistObj };
+        }
+      } else {
+        try {
+          const res = await fetch(`${API_BASE}/api/artists/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(artistObj)
+          });
+          const result = await res.json();
+          if (result && result.success && result.artists) {
+            appData.artists = result.artists;
+          } else {
+            artistObj.id = `art_${Date.now()}`;
+            appData.artists = appData.artists || [];
+            appData.artists.push(artistObj);
+          }
+        } catch (err) {
+          artistObj.id = `art_${Date.now()}`;
+          appData.artists = appData.artists || [];
+          appData.artists.push(artistObj);
+        }
+      }
+
+      applyMailTrackingOverrides();
+      saveLocal();
+      closeArtistRollPanel();
+      renderArtists();
     }
 
     // ADD / EDIT ARTIST MODAL
