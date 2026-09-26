@@ -2882,10 +2882,11 @@
       "name": "Ceren Çakmak",
       "username": "ceren",
       "pin": "1007",
-      "role": "Saha İçi Koordinasyon & Hizmetler",
+      "role": "Saha İçi Koordinasyon & Sahne / Performans Sorumlusu",
       "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Saha İçi Koord",
-      "role_type": "member"
+      "badge": "Sanatçı & Performans Yetkili",
+      "role_type": "member",
+      "can_manage_artists": true
     },
     {
       "id": "tm_9",
@@ -4648,14 +4649,20 @@
         }
       }
 
+      // Apply local persistent mail overrides first
+      applyMailTrackingOverrides();
+
       // Also try server if available
       try {
-        const res = await fetch('/api/data', { headers: { 'ngrok-skip-browser-warning': 'true' } });
+        const apiUrl = (typeof API_BASE !== 'undefined' ? API_BASE : '') + '/api/data';
+        const res = await fetch(apiUrl, { headers: { 'ngrok-skip-browser-warning': 'true' } });
         if (res.ok) {
           const serverData = await res.json();
           if (serverData && serverData.tasks) {
             appData = serverData;
-            localStorage.setItem('set_fest_data', JSON.stringify(appData));
+            syncMailTrackingWithServer(serverData);
+            applyMailTrackingOverrides();
+            saveLocal();
           }
         }
       } catch (err) {}
@@ -4670,6 +4677,70 @@
         localStorage.setItem('set_fest_data', JSON.stringify(appData));
       } catch(e) {}
     }
+
+    // PERSISTENT MAIL TRACKING HELPERS (Prevents state loss on refresh)
+    function applyMailTrackingOverrides() {
+      try {
+        const partnerMap = JSON.parse(localStorage.getItem('set_fest_partner_mail_map') || '{}');
+        if (appData.partners && Array.isArray(appData.partners)) {
+          appData.partners.forEach(p => {
+            if (partnerMap[p.id] !== undefined) {
+              p.mail_sent = !!partnerMap[p.id].mail_sent;
+              if (partnerMap[p.id].mail_sent) {
+                p.mail_sent_by = partnerMap[p.id].mail_sent_by || p.mail_sent_by || 'Ekip';
+                p.mail_sent_at = partnerMap[p.id].mail_sent_at || p.mail_sent_at || 'Kayıtlı';
+              }
+            }
+          });
+        }
+
+        const artistMap = JSON.parse(localStorage.getItem('set_fest_artist_mail_map') || '{}');
+        if (appData.artists && Array.isArray(appData.artists)) {
+          appData.artists.forEach(a => {
+            if (artistMap[a.id] !== undefined) {
+              a.mail_sent = !!artistMap[a.id].mail_sent;
+              if (artistMap[a.id].mail_sent) {
+                a.mail_sent_by = artistMap[a.id].mail_sent_by || a.mail_sent_by || 'Ekip';
+                a.mail_sent_at = artistMap[a.id].mail_sent_at || a.mail_sent_at || 'Kayıtlı';
+              }
+            }
+          });
+        }
+      } catch (e) {}
+    }
+
+    function syncMailTrackingWithServer(serverData) {
+      try {
+        const partnerMap = JSON.parse(localStorage.getItem('set_fest_partner_mail_map') || '{}');
+        if (serverData && serverData.partners && Array.isArray(serverData.partners)) {
+          serverData.partners.forEach(p => {
+            if (p.mail_sent) {
+              partnerMap[p.id] = { mail_sent: true, mail_sent_by: p.mail_sent_by, mail_sent_at: p.mail_sent_at };
+            } else if (partnerMap[p.id] && partnerMap[p.id].mail_sent) {
+              p.mail_sent = true;
+              p.mail_sent_by = partnerMap[p.id].mail_sent_by || 'Ekip';
+              p.mail_sent_at = partnerMap[p.id].mail_sent_at || 'Kayıtlı';
+            }
+          });
+          localStorage.setItem('set_fest_partner_mail_map', JSON.stringify(partnerMap));
+        }
+
+        const artistMap = JSON.parse(localStorage.getItem('set_fest_artist_mail_map') || '{}');
+        if (serverData && serverData.artists && Array.isArray(serverData.artists)) {
+          serverData.artists.forEach(a => {
+            if (a.mail_sent) {
+              artistMap[a.id] = { mail_sent: true, mail_sent_by: a.mail_sent_by, mail_sent_at: a.mail_sent_at };
+            } else if (artistMap[a.id] && artistMap[a.id].mail_sent) {
+              a.mail_sent = true;
+              a.mail_sent_by = artistMap[a.id].mail_sent_by || 'Ekip';
+              a.mail_sent_at = artistMap[a.id].mail_sent_at || 'Kayıtlı';
+            }
+          });
+          localStorage.setItem('set_fest_artist_mail_map', JSON.stringify(artistMap));
+        }
+      } catch (e) {}
+    }
+
 
     function initAuth() {
       const saved = localStorage.getItem('set_fest_user');
@@ -5018,6 +5089,14 @@
       return currentUser && (currentUser.username === 'berke' || currentUser.role_type === 'admin');
     }
 
+    function canManageArtists() {
+      if (!currentUser) return false;
+      const u = (currentUser.username || '').toLowerCase();
+      const n = (currentUser.name || '').toLowerCase();
+      return u === 'berke' || u === 'ceren' || n.includes('berke') || n.includes('ceren') || currentUser.role_type === 'admin' || currentUser.can_manage_artists === true;
+    }
+
+
     let currentAssignMode = 'single';
     function setAssignMode(mode) {
       currentAssignMode = mode;
@@ -5093,7 +5172,7 @@
       }
       const btnAddArtistPortal = document.getElementById('btn-add-artist-portal');
       if (btnAddArtistPortal) {
-        btnAddArtistPortal.style.display = isAdmin() ? 'inline-flex' : 'none';
+        btnAddArtistPortal.style.display = canManageArtists() ? 'inline-flex' : 'none';
       }
       const btnAddCosmeticMain = document.getElementById('btn-add-cosmetic-main');
       if (btnAddCosmeticMain) {
@@ -6717,7 +6796,7 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
               <label class="mail-tracking-label" onclick="event.stopPropagation();">
                 <input type="checkbox" class="mail-sent-checkbox" ${isMailSent ? 'checked' : ''} onchange="togglePartnerMailSent('${p.id}', this.checked)">
                 <span style="font-weight:700; font-size:0.86rem; color:${isMailSent ? '#4ade80' : 'var(--text-muted)'}; display:flex; align-items:center; gap:6px;">
-                  ${isMailSent ? '✅ Mail İletildi' : '⏳ Mail Gönderilmedi (Bekliyor)'}
+                  ${isMailSent ? '✅ Mail Gönderildi' : '⏳ Mail Gönderilmedi (İşaretle)'}
                 </span>
               </label>
               ${isMailSent 
@@ -6771,13 +6850,15 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     async function togglePartnerMailSent(partnerId, isSent) {
       const userName = currentUser ? currentUser.name : 'Berke Saygılı';
       const p = (appData.partners || []).find(x => x.id === partnerId);
+      const now = new Date();
+      const pad = n => n < 10 ? '0' + n : n;
+      const timeStr = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
       if (p) {
         p.mail_sent = !!isSent;
         if (isSent) {
           p.mail_sent_by = userName;
-          const now = new Date();
-          const pad = n => n < 10 ? '0' + n : n;
-          p.mail_sent_at = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+          p.mail_sent_at = timeStr;
           if (p.status === 'pending' || p.status === 'İletişime Geçilecek') {
             p.status = 'Teklif Gönderildi';
           }
@@ -6785,21 +6866,33 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
           p.mail_sent_by = '';
           p.mail_sent_at = '';
         }
-        saveLocal();
-        renderPartners();
       }
 
+      // 1. Immediately persist to dedicated localStorage registry
+      try {
+        const partnerMap = JSON.parse(localStorage.getItem('set_fest_partner_mail_map') || '{}');
+        partnerMap[partnerId] = { mail_sent: !!isSent, mail_sent_by: isSent ? userName : '', mail_sent_at: isSent ? timeStr : '' };
+        localStorage.setItem('set_fest_partner_mail_map', JSON.stringify(partnerMap));
+      } catch (e) {}
+
+      saveLocal();
+      renderPartners();
+
+      // 2. Persist to server
       try {
         const res = await fetch(`${API_BASE}/api/partners/toggle_mail`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: partnerId, mail_sent: !!isSent, user_name: userName })
         });
-        const result = await res.json();
-        if (result && result.success && result.partners) {
-          appData.partners = result.partners;
-          saveLocal();
-          renderPartners();
+        if (res.ok) {
+          const result = await res.json();
+          if (result && result.success && result.partners) {
+            appData.partners = result.partners;
+            applyMailTrackingOverrides();
+            saveLocal();
+            renderPartners();
+          }
         }
       } catch (err) {
         console.error('Mail toggle API error:', err);
@@ -7158,6 +7251,8 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
           if (serverData && serverData.tasks && serverJson !== lastPolledJson) {
             lastPolledJson = serverJson;
             appData = serverData;
+            syncMailTrackingWithServer(serverData);
+            applyMailTrackingOverrides();
             saveLocal();
             renderAll();
           }
@@ -7479,7 +7574,7 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
               <label class="mail-tracking-label" onclick="event.stopPropagation();">
                 <input type="checkbox" class="mail-sent-checkbox" ${isMailSent ? 'checked' : ''} onchange="toggleArtistMailSent('${a.id}', this.checked)">
                 <span style="font-weight:700; font-size:0.86rem; color:${isMailSent ? '#4ade80' : 'var(--text-muted)'}; display:flex; align-items:center; gap:6px;">
-                  ${isMailSent ? '✅ Davet Maili İletildi' : '⏳ Mail Gönderilmedi (Bekliyor)'}
+                  ${isMailSent ? '✅ Mail Gönderildi' : '⏳ Mail Gönderilmedi (İşaretle)'}
                 </span>
               </label>
               ${isMailSent 
@@ -7513,12 +7608,12 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
             <button class="btn-copy-mail" onclick="openArtistInvitationModal('${a.id}')" title="Bu sanatçıya özel resmi sahne davet mektubu taslağını görüntüle">
               📄 Sahne Daveti
             </button>
-            ${isAdmin() ? `
+            ${canManageArtists() ? `
               <div style="display:inline-flex; gap:6px; margin-left:auto;">
-                <button class="btn-copy-mail" onclick="openEditArtistModal('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke)">
+                <button class="btn-copy-mail" onclick="openEditArtistModal('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke / Ceren)">
                   ✏️
                 </button>
-                <button class="btn-copy-mail" onclick="deleteArtist('${a.id}', '${a.name.replace(/'/g, "\\'")}')" style="color:#f87171; border-color:rgba(239,68,68,0.4);" title="Sil (Berke)">
+                <button class="btn-copy-mail" onclick="deleteArtist('${a.id}', '${a.name.replace(/'/g, "\\'")}')" style="color:#f87171; border-color:rgba(239,68,68,0.4);" title="Sil (Berke / Ceren)">
                   🗑️
                 </button>
               </div>
@@ -7534,13 +7629,15 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     async function toggleArtistMailSent(artistId, isSent) {
       const userName = currentUser ? currentUser.name : 'Berke Saygılı';
       const a = (appData.artists || []).find(x => x.id === artistId);
+      const now = new Date();
+      const pad = n => n < 10 ? '0' + n : n;
+      const timeStr = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
       if (a) {
         a.mail_sent = !!isSent;
         if (isSent) {
           a.mail_sent_by = userName;
-          const now = new Date();
-          const pad = n => n < 10 ? '0' + n : n;
-          a.mail_sent_at = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+          a.mail_sent_at = timeStr;
           if (a.status === 'pending') {
             a.status = 'in_progress';
           }
@@ -7548,21 +7645,33 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
           a.mail_sent_by = '';
           a.mail_sent_at = '';
         }
-        saveLocal();
-        renderArtists();
       }
 
+      // 1. Immediately persist to dedicated localStorage registry
+      try {
+        const artistMap = JSON.parse(localStorage.getItem('set_fest_artist_mail_map') || '{}');
+        artistMap[artistId] = { mail_sent: !!isSent, mail_sent_by: isSent ? userName : '', mail_sent_at: isSent ? timeStr : '' };
+        localStorage.setItem('set_fest_artist_mail_map', JSON.stringify(artistMap));
+      } catch (e) {}
+
+      saveLocal();
+      renderArtists();
+
+      // 2. Persist to server
       try {
         const res = await fetch(`${API_BASE}/api/artists/toggle_mail`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ id: artistId, mail_sent: !!isSent, user_name: userName })
         });
-        const result = await res.json();
-        if (result && result.success && result.artists) {
-          appData.artists = result.artists;
-          saveLocal();
-          renderArtists();
+        if (res.ok) {
+          const result = await res.json();
+          if (result && result.success && result.artists) {
+            appData.artists = result.artists;
+            applyMailTrackingOverrides();
+            saveLocal();
+            renderArtists();
+          }
         }
       } catch (err) {
         console.error('Artist mail toggle API error:', err);
@@ -7749,6 +7858,10 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
 
     // ADD / EDIT ARTIST MODAL
     function openAddArtistModal() {
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı ve performans ekleyebilir.');
+        return;
+      }
       document.getElementById('artist-modal-title').innerText = '🎭 Yeni Sanatçı / Performans Ekle';
       document.getElementById('artist-form').reset();
       document.getElementById('na-id').value = '';
@@ -7759,6 +7872,10 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     }
 
     function openEditArtistModal(artistId) {
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı ve performans düzenleyebilir.');
+        return;
+      }
       const a = (appData.artists || []).find(x => x.id === artistId);
       if (!a) return;
 
@@ -7789,6 +7906,10 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
 
     async function handleSaveArtist(e) {
       e.preventDefault();
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı kaydedebilir.');
+        return;
+      }
       const id = document.getElementById('na-id').value;
       const isNew = !id;
 
@@ -7874,8 +7995,8 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     }
 
     async function deleteArtist(artistId, artistName) {
-      if (!isAdmin()) {
-        alert('Yetkisiz işlem! Yalnızca Berke Saygılı sanatçı silebilir.');
+      if (!canManageArtists()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı silebilir.');
         return;
       }
       if (!confirm(`"${artistName}" sanatçısını listeden silmek istediğinize emin misiniz?`)) return;

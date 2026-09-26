@@ -697,6 +697,10 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
 
         elif path == '/api/artists/delete':
             art_id = req_data.get('id')
+            user_name = str(req_data.get('user_name', '')).strip().lower()
+            if user_name and not ('berke' in user_name or 'ceren' in user_name):
+                self.send_json_response({'success': False, 'error': 'Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı silebilir.'}, 403)
+                return
             data['artists'] = [a for a in data.get('artists', []) if a.get('id') != art_id]
             save_ekip_data(data)
             self.send_json_response({'success': True, 'artists': data['artists']})

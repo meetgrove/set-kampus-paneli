@@ -110,10 +110,11 @@
       "name": "Ceren Çakmak",
       "username": "ceren",
       "pin": "1007",
-      "role": "Saha İçi Koordinasyon & Hizmetler",
+      "role": "Saha İçi Koordinasyon & Sahne / Performans Sorumlusu",
       "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Saha İçi Koord",
-      "role_type": "member"
+      "badge": "Sanatçı & Performans Yetkili",
+      "role_type": "member",
+      "can_manage_artists": true
     },
     {
       "id": "tm_9",
