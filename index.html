@@ -1643,25 +1643,32 @@
         </div>
 
         <!-- QUICK STATS CHIPS -->
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08);">
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:12px; margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08);">
           <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
-            <div style="font-size:1.6rem; color:var(--accent-ochre);">🏢</div>
+            <div style="font-size:1.6rem; color:var(--accent-ochre);">🤝</div>
             <div>
-              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-total">16</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-total">120</div>
               <div style="font-size:0.75rem; color:var(--text-muted);">Toplam Kayıtlı Partner</div>
+            </div>
+          </div>
+          <div style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#818cf8;">🏢</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#818cf8;" id="partner-stat-corp">67 Kurumsal</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Kurumsal & Teknoloji</div>
             </div>
           </div>
           <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
             <div style="font-size:1.6rem; color:#22c55e;">🛋️</div>
             <div>
-              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-equip">4 Firma</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-equip">3 Firma</div>
               <div style="font-size:0.75rem; color:var(--text-muted);">Armut, Varil & Alan Tedariği</div>
             </div>
           </div>
           <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
             <div style="font-size:1.6rem; color:#f59e0b;">☕</div>
             <div>
-              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-food">4 Marka</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="partner-stat-food">13 Marka</div>
               <div style="font-size:0.75rem; color:var(--text-muted);">Kahve, İçecek & Gıda Stantları</div>
             </div>
           </div>
@@ -1675,7 +1682,7 @@
           <div style="background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
             <div style="font-size:1.6rem; color:#4ade80;">📨</div>
             <div>
-              <div style="font-size:1.3rem; font-weight:800; color:#4ade80;" id="partner-stat-sent">0 / 16</div>
+              <div style="font-size:1.3rem; font-weight:800; color:#4ade80;" id="partner-stat-sent">0 / 120</div>
               <div style="font-size:0.75rem; color:#86efac;">Mail İletilen Kurumlar</div>
             </div>
           </div>
@@ -1717,12 +1724,13 @@
 
         <!-- CATEGORY CHIPS -->
         <div class="filters-group" style="margin:0; overflow-x:auto;">
-          <button class="filter-chip active" onclick="filterPartnerCategory('ALL', this)">🏢 Tümü (<span id="partner-chip-all-count">16</span>)</button>
-          <button class="filter-chip" onclick="filterPartnerCategory('equipment', this)">🛋️ Armut & Varil & Ekipman</button>
-          <button class="filter-chip" onclick="filterPartnerCategory('coffee_food', this)">☕ Kahve, Gıda & Stant</button>
-          <button class="filter-chip" onclick="filterPartnerCategory('energy_sponsor', this)">⚡ Enerji & İçecek</button>
-          <button class="filter-chip" onclick="filterPartnerCategory('institution', this)">🏛️ Belediye & Kamu Kurumları</button>
+          <button class="filter-chip active" onclick="filterPartnerCategory('ALL', this)">🤝 Tümü (<span id="partner-chip-all-count">120</span>)</button>
+          <button class="filter-chip" onclick="filterPartnerCategory('corporate_sponsor', this)">🏢 Kurumsal & Teknoloji</button>
           <button class="filter-chip" onclick="filterPartnerCategory('fintech_student', this)">💳 Banka & Gençlik Kartları</button>
+          <button class="filter-chip" onclick="filterPartnerCategory('energy_sponsor', this)">⚡ Enerji & İçecek</button>
+          <button class="filter-chip" onclick="filterPartnerCategory('coffee_food', this)">☕ Kahve, Gıda & Stant</button>
+          <button class="filter-chip" onclick="filterPartnerCategory('institution', this)">🏛️ Belediye & Kamu Kurumları</button>
+          <button class="filter-chip" onclick="filterPartnerCategory('equipment', this)">🛋️ Armut & Varil & Ekipman</button>
           <button class="filter-chip" onclick="filterPartnerCategory('sports_gaming', this)">🏃 Spor & Aktiviteler</button>
         </div>
       </div>
@@ -2166,6 +2174,7 @@
           <div class="form-group">
             <label>Kategori *</label>
             <select id="np-category" class="form-control" required>
+              <option value="corporate_sponsor">🏢 Kurumsal & Teknoloji Sponsoru</option>
               <option value="equipment">🛋️ Ekipman (Armut, Varil, Çadır)</option>
               <option value="coffee_food">☕ Kahve, Gıda & Stant</option>
               <option value="energy_sponsor">⚡ Enerji & İçecek Sponsoru</option>
@@ -5272,6 +5281,7 @@
 
     function getPartnerCategoryBadge(cat) {
       switch(cat) {
+        case 'corporate_sponsor': return '<span style="background:rgba(99,102,241,0.15); color:#818cf8; border:1px solid rgba(99,102,241,0.3); padding:3px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">🏢 Kurumsal & Teknoloji</span>';
         case 'equipment': return '<span style="background:rgba(34,197,94,0.15); color:#4ade80; border:1px solid rgba(34,197,94,0.3); padding:3px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">🛋️ Alan & Ekipman</span>';
         case 'coffee_food': return '<span style="background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.3); padding:3px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">☕ Kahve & Gıda Standı</span>';
         case 'energy_sponsor': return '<span style="background:rgba(239,68,68,0.15); color:#f87171; border:1px solid rgba(239,68,68,0.3); padding:3px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">⚡ Gençlik & Enerji</span>';
@@ -5339,10 +5349,13 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       const statTotal = document.getElementById('partner-stat-total');
       if (statTotal) statTotal.innerText = totalCount;
 
+      const corpCount = partners.filter(p => p.category === 'corporate_sponsor').length;
       const equipCount = partners.filter(p => p.category === 'equipment').length;
       const foodCount = partners.filter(p => p.category === 'coffee_food').length;
       const govCount = partners.filter(p => p.category === 'institution').length;
 
+      const statCorp = document.getElementById('partner-stat-corp');
+      if (statCorp) statCorp.innerText = `${corpCount} Kurumsal`;
       const statEquip = document.getElementById('partner-stat-equip');
       if (statEquip) statEquip.innerText = `${equipCount} Firma`;
       const statFood = document.getElementById('partner-stat-food');
