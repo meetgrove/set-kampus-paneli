@@ -391,12 +391,14 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'error': 'Görev başlığı gereklidir'}, 400)
                 return
 
+            assignee = req_data.get('assignee', 'Genel Ekip').strip()
+            creator_name = req_data.get('user_name', 'Berke Saygılı')
             new_task = {
                 'id': f"tsk_{int(time.time() * 1000)}",
                 'title': title,
                 'description': req_data.get('description', '').strip(),
-                'assignee': req_data.get('assignee', 'Genel Saha'),
-                'category': req_data.get('category', 'Saha İçi Operasyon & Tamamlayıcı Lojistik'),
+                'assignee': assignee,
+                'category': req_data.get('category', 'Saha & Altyapı'),
                 'priority': req_data.get('priority', 'Orta'),
                 'status': 'yapilacak',
                 'deadline': req_data.get('deadline', datetime.now().strftime('%Y-%m-%d')),
@@ -404,11 +406,34 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 'claimed_at': '',
                 'completed_by': '',
                 'completed_at': '',
-                'updated_by': f"{req_data.get('user_name', 'Berke')} (Oluşturdu)"
+                'updated_by': f"{creator_name} (Oluşturdu)"
             }
             data.setdefault('tasks', []).append(new_task)
+
+            # Auto-create Real-time Notification for Assignee or General
+            is_gen = ('genel' in assignee.lower()) or (not assignee)
+            notif_title = f"📋 Sana Yeni Görev Atandı: {title}" if not is_gen else f"📢 Yeni Genel Görev: {title}"
+            notif = {
+                'id': f"notif_{int(time.time() * 1000)}",
+                'type': 'task_assigned',
+                'target_assignee': assignee,
+                'is_general': is_gen,
+                'title': notif_title,
+                'task_id': new_task['id'],
+                'task_title': title,
+                'description': new_task.get('description', ''),
+                'priority': new_task.get('priority', 'Orta'),
+                'deadline': new_task.get('deadline', ''),
+                'created_by': creator_name,
+                'created_at': datetime.now().strftime('%d.%m.%Y %H:%M'),
+                'read_by': [creator_name]
+            }
+            data.setdefault('notifications', []).append(notif)
+            if len(data['notifications']) > 100:
+                data['notifications'] = data['notifications'][-100:]
+
             save_ekip_data(data)
-            self.send_json_response({'success': True, 'tasks': data['tasks']})
+            self.send_json_response({'success': True, 'task': new_task, 'tasks': data['tasks'], 'notifications': data['notifications']})
             return
 
         elif path == '/api/tasks/delete':
@@ -497,6 +522,7 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
             if not title or not content:
                 self.send_json_response({'success': False, 'error': 'Başlık ve içerik gereklidir'}, 400)
                 return
+            creator_name = req_data.get('user_name', 'Berke Saygılı')
             new_ann = {
                 'id': f"ann_{int(time.time() * 1000)}",
                 'title': title,
@@ -504,8 +530,29 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 'date': req_data.get('date', datetime.now().strftime('%H:%M (Bugün)'))
             }
             data.setdefault('announcements', []).insert(0, new_ann)
+
+            # Broadcast Notification to ALL accounts
+            notif = {
+                'id': f"notif_{int(time.time() * 1000)}",
+                'type': 'announcement',
+                'target_assignee': 'ALL',
+                'is_general': True,
+                'title': f"📢 Yeni Canlı Duyuru: {title}",
+                'task_id': '',
+                'task_title': title,
+                'description': content,
+                'priority': 'Yüksek',
+                'deadline': '',
+                'created_by': creator_name,
+                'created_at': datetime.now().strftime('%d.%m.%Y %H:%M'),
+                'read_by': [creator_name]
+            }
+            data.setdefault('notifications', []).append(notif)
+            if len(data['notifications']) > 100:
+                data['notifications'] = data['notifications'][-100:]
+
             save_ekip_data(data)
-            self.send_json_response({'success': True, 'announcements': data['announcements']})
+            self.send_json_response({'success': True, 'announcements': data['announcements'], 'notifications': data['notifications']})
             return
 
         elif path == '/api/announcements/delete':
@@ -637,6 +684,36 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
             self.send_json_response({'success': True, 'partners': data['partners']})
             return
 
+        elif path == '/api/partners/toggle_mail':
+            part_id = req_data.get('id')
+            user_name = req_data.get('user_name', 'Berke Saygılı').strip()
+            is_sent = req_data.get('mail_sent')
+
+            found = False
+            for p in data.get('partners', []):
+                if p.get('id') == part_id:
+                    if is_sent is not None:
+                        p['mail_sent'] = bool(is_sent)
+                    else:
+                        p['mail_sent'] = not p.get('mail_sent', False)
+
+                    if p['mail_sent']:
+                        p['mail_sent_by'] = user_name or 'Ekip'
+                        p['mail_sent_at'] = datetime.now().strftime('%d.%m.%Y %H:%M')
+                        if p.get('status') in ['pending', 'İletişime Geçilecek', '']:
+                            p['status'] = 'Teklif Gönderildi'
+                    else:
+                        p['mail_sent_by'] = ''
+                        p['mail_sent_at'] = ''
+                    found = True
+                    break
+            if found:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'partners': data['partners']})
+            else:
+                self.send_json_response({'success': False, 'error': 'Marka / Partner bulunamadı'}, 404)
+            return
+
         elif path == '/api/artists/update':
             artist_id = req_data.get('id')
             found = False
@@ -729,6 +806,30 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': True, 'artists': data['artists']})
             else:
                 self.send_json_response({'success': False, 'error': 'Sanatçı bulunamadı'}, 404)
+            return
+
+        elif path == '/api/notifications/read':
+            user_name = req_data.get('user_name', '').strip()
+            notif_id = req_data.get('id')
+            mark_all = bool(req_data.get('all', False))
+            for n in data.get('notifications', []):
+                if mark_all or n.get('id') == notif_id:
+                    if user_name and user_name not in n.setdefault('read_by', []):
+                        n['read_by'].append(user_name)
+            save_ekip_data(data)
+            self.send_json_response({'success': True, 'notifications': data.get('notifications', [])})
+            return
+
+        elif path == '/api/notifications/clear':
+            user_name = req_data.get('user_name', '').strip()
+            if user_name.lower() == 'berke':
+                data['notifications'] = []
+            else:
+                for n in data.get('notifications', []):
+                    if user_name and user_name not in n.setdefault('read_by', []):
+                        n['read_by'].append(user_name)
+            save_ekip_data(data)
+            self.send_json_response({'success': True, 'notifications': data.get('notifications', [])})
             return
 
         self.send_json_response({'error': 'Gecersiz Endpoint'}, 404)

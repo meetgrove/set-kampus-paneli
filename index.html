@@ -1442,6 +1442,293 @@
       background: rgba(139, 92, 246, 0.1) !important;
     }
 
+  
+    /* ============================================================
+       CANLI FESTİVAL BİLDİRİM SİSTEMİ & BİLDİRİM MERKEZİ STYLES
+       ============================================================ */
+    .header-right-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-notification-bell {
+      position: relative;
+      background: var(--surface);
+      border: 1.5px solid rgba(201, 138, 44, 0.45);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.25rem;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+      outline: none;
+    }
+    .btn-notification-bell:hover {
+      background: rgba(201, 138, 44, 0.2);
+      border-color: var(--accent-ochre);
+      transform: scale(1.06);
+    }
+    .btn-notification-bell.has-unread {
+      animation: notif-bell-shake 3s infinite;
+      border-color: #EF4444;
+      box-shadow: 0 0 15px rgba(239, 68, 68, 0.35);
+    }
+    @keyframes notif-bell-shake {
+      0%, 85%, 100% { transform: rotate(0deg); }
+      87% { transform: rotate(-12deg); }
+      89% { transform: rotate(12deg); }
+      91% { transform: rotate(-8deg); }
+      93% { transform: rotate(8deg); }
+      95% { transform: rotate(-4deg); }
+      97% { transform: rotate(0deg); }
+    }
+    .notif-badge-pill {
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      background: #EF4444;
+      color: #FFF;
+      font-size: 0.72rem;
+      font-weight: 800;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5px;
+      border: 2px solid var(--bg-dark);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      line-height: 1;
+    }
+
+    /* BİLDİRİM MERKEZİ ÇEKMECESİ (DRAWER) */
+    .notif-drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      z-index: 9998;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .notif-drawer-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+    .notif-drawer {
+      position: fixed;
+      top: 0;
+      right: -480px;
+      width: 450px;
+      max-width: 94vw;
+      height: 100vh;
+      background: #141514;
+      border-left: 1.5px solid rgba(201, 138, 44, 0.35);
+      box-shadow: -10px 0 40px rgba(0,0,0,0.8);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .notif-drawer.active {
+      right: 0;
+    }
+    .notif-drawer-header {
+      padding: 16px 20px;
+      background: rgba(22, 23, 22, 0.98);
+      border-bottom: 1px solid var(--surface-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .notif-drawer-title {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .notif-perm-banner {
+      background: linear-gradient(90deg, rgba(201,138,44,0.15), rgba(34,197,94,0.1));
+      border-bottom: 1px solid rgba(201,138,44,0.25);
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .notif-filter-tabs {
+      display: flex;
+      padding: 8px 14px;
+      gap: 6px;
+      background: #181918;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .notif-tab-btn {
+      flex: 1;
+      padding: 7px 8px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--text-muted);
+      font-size: 0.77rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .notif-tab-btn.active {
+      background: rgba(201,138,44,0.18);
+      color: var(--accent-ochre-light);
+      border-color: rgba(201,138,44,0.4);
+    }
+    .notif-list-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .notif-card {
+      background: #1B1C1B;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 13px 15px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+    .notif-card.unread {
+      background: linear-gradient(135deg, rgba(201,138,44,0.12), #1E1F1E);
+      border-color: rgba(201,138,44,0.45);
+      box-shadow: 0 2px 12px rgba(201,138,44,0.1);
+    }
+    .notif-card.for-me {
+      border-left: 4px solid var(--accent-ochre);
+    }
+    .notif-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .notif-card-type-chip {
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .notif-chip-assigned {
+      background: rgba(201,138,44,0.25);
+      color: var(--accent-ochre-light);
+      border: 1px solid rgba(201,138,44,0.4);
+    }
+    .notif-chip-announcement {
+      background: rgba(139,92,246,0.25);
+      color: #C4B5FD;
+      border: 1px solid rgba(139,92,246,0.4);
+    }
+    .notif-chip-update {
+      background: rgba(59,130,246,0.25);
+      color: #93C5FD;
+      border: 1px solid rgba(59,130,246,0.4);
+    }
+    .notif-card-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+    .notif-card-desc {
+      font-size: 0.81rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .notif-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    /* FLOATING REALTIME TOAST */
+    .floating-toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      pointer-events: none;
+      max-width: 420px;
+      width: calc(100vw - 48px);
+    }
+    .floating-toast {
+      background: rgba(24, 25, 24, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid var(--accent-ochre);
+      border-radius: 14px;
+      padding: 15px 18px;
+      box-shadow: 0 12px 36px rgba(0,0,0,0.7), 0 0 24px rgba(201,138,44,0.25);
+      pointer-events: auto;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .floating-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* WHATSAPP TASK DISPATCH BUTTON */
+    .btn-whatsapp-task {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #FFF;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 0.77rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(37,211,102,0.25);
+      transition: all 0.2s ease;
+    }
+    .btn-whatsapp-task:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(37,211,102,0.4);
+    }
+
   </style>
 </head>
 <body>
@@ -1469,8 +1756,14 @@
         </div>
       </div>
 
-      <div id="user-header-area">
-        <!-- Dynamically Populated with Logged-in User Profile or Login Button -->
+      <div class="header-right-actions">
+        <button id="btn-notification-bell" class="btn-notification-bell" onclick="toggleNotificationCenter()" title="Bildirim Merkezi">
+          <span class="notif-bell-icon">🔔</span>
+          <span id="notif-badge-pill" class="notif-badge-pill" style="display:none;">0</span>
+        </button>
+        <div id="user-header-area">
+          <!-- Dynamically Populated with Logged-in User Profile or Login Button -->
+        </div>
       </div>
     </div>
   </header>
@@ -5435,6 +5728,9 @@
     }
 
     function renderAll() {
+      if (appData && appData.notifications) {
+        checkNewNotifications(appData.notifications);
+      }
       renderAdminUI();
       renderStats();
       renderTasks();
@@ -5584,6 +5880,17 @@
                 <span style="${isMine ? 'color:var(--accent-ochre-light); font-weight:700;' : ''}">${task.assignee}</span>
               </div>
               <div class="task-deadline">📅 ${task.deadline}</div>
+            </div>
+
+            <!-- WHATSAPP 1-CLICK DISPATCH BUTTON -->
+            <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+              <button type="button" 
+                class="btn-whatsapp-task"
+                onclick="sendTaskViaWhatsApp('${task.id}')"
+                title="${task.assignee ? task.assignee + ' kişisinin telefonuna WhatsApp ile ilet' : 'WhatsApp ile görevi paylaş'}">
+                <span style="font-size:0.95rem;">📱</span>
+                <span>WhatsApp'tan Bildir</span>
+              </button>
             </div>
 
             <!-- İKİ KUTUCUK AKSİYON ALANI: GÖREV ALINDI & YAPILDI -->
@@ -5827,6 +6134,7 @@
         const result = await res.json();
         if (result && result.success) {
           appData.tasks = result.tasks;
+          if (result.notifications) appData.notifications = result.notifications;
         } else {
           taskObj.id = `tsk_${Date.now()}`;
           taskObj.status = 'yapilacak';
@@ -5845,6 +6153,13 @@
       document.getElementById('add-task-form').reset();
       setAssignMode('single');
       renderAll();
+
+      showFloatingToast({
+        type: 'task_assigned',
+        title: '📋 Görev Canlı İletildi!',
+        description: `${taskObj.assignee || 'Genel Ekip'} için görev oluşturuldu ve bildirim sistemi devrede. İsterseniz karttaki 📱 WhatsApp butonu ile telefonuna da iletebilirsiniz.`,
+        created_at: 'Şimdi'
+      }, false);
     }
 
     // TASK EDIT MODAL (BERKE / ADMIN ONLY)
@@ -6333,7 +6648,8 @@
       const annObj = {
         title: document.getElementById('nann-title').value.trim(),
         content: document.getElementById('nann-content').value.trim(),
-        date: new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }) + ' (Bugün)'
+        date: new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' }) + ' (Bugün)',
+        user_name: currentUser ? currentUser.name : 'Berke Saygılı'
       };
 
       try {
@@ -6345,6 +6661,7 @@
         const result = await res.json();
         if (result && result.success) {
           appData.announcements = result.announcements;
+          if (result.notifications) appData.notifications = result.notifications;
         } else {
           annObj.id = `ann_${Date.now()}`;
           appData.announcements.unshift(annObj);
@@ -6359,6 +6676,13 @@
       document.getElementById('add-ann-form').reset();
       renderAdminUI();
       renderAnnouncements();
+
+      showFloatingToast({
+        type: 'announcement',
+        title: '📢 Canlı Duyuru Yayınlandı!',
+        description: 'Tüm festival paneli kullanıcılarına sesli ve tarayıcı bildirimi iletildi.',
+        created_at: 'Bugün'
+      }, false);
     }
 
     async function deleteAnnouncement(annId) {
@@ -7488,6 +7812,9 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
             saveLocal();
             renderAll();
           }
+          if (serverData && serverData.notifications) {
+            checkNewNotifications(serverData.notifications);
+          }
         }
       } catch (err) {}
 
@@ -8476,5 +8803,49 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     updateMailServiceLabel();
     setInterval(pollServerData, 4000);
   </script>
+
+  <!-- REAL-TIME FLOATING TOAST NOTIFICATION CONTAINER -->
+  <div id="floating-toast-container" class="floating-toast-container"></div>
+
+  <!-- NOTIFICATION CENTER OVERLAY & DRAWER -->
+  <div id="notif-drawer-overlay" class="notif-drawer-overlay" onclick="closeNotificationCenter()"></div>
+  <div id="notif-drawer" class="notif-drawer">
+    <div class="notif-drawer-header">
+      <div class="notif-drawer-title">
+        <span>🔔</span>
+        <span>Festival Bildirim Merkezi</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="btn-secondary-sm" onclick="markAllNotificationsAsRead()" style="font-size:0.75rem; padding:4px 10px;">
+          ✓ Tümünü Oku
+        </button>
+        <button class="modal-close" onclick="closeNotificationCenter()" style="font-size:1.2rem; cursor:pointer;">&times;</button>
+      </div>
+    </div>
+
+    <!-- PUSH PERMISSION PROMPT BANNER -->
+    <div id="notif-perm-banner" class="notif-perm-banner">
+      <div id="notif-perm-text">
+        <span style="font-size:1rem;">📱</span>
+        <span>Telefon & Tarayıcı Bildirimleri</span>
+      </div>
+      <button id="btn-request-perm" onclick="requestBrowserNotificationPermission(true)" class="btn-primary" style="font-size:0.72rem; padding:4px 10px; background:var(--accent-ochre); color:#000;">
+        Bildirimleri Aç
+      </button>
+    </div>
+
+    <!-- FILTER TABS -->
+    <div class="notif-filter-tabs">
+      <button class="notif-tab-btn active" id="tab-notif-all" onclick="filterNotifTab('ALL')">Tümü (<span id="cnt-notif-all">0</span>)</button>
+      <button class="notif-tab-btn" id="tab-notif-me" onclick="filterNotifTab('ME')">Sana Özel (<span id="cnt-notif-me">0</span>)</button>
+      <button class="notif-tab-btn" id="tab-notif-gen" onclick="filterNotifTab('GEN')">Genel & Duyuru (<span id="cnt-notif-gen">0</span>)</button>
+    </div>
+
+    <!-- NOTIFICATION LIST -->
+    <div id="notif-list-body" class="notif-list-body">
+      <!-- Populated via renderNotificationDrawer() -->
+    </div>
+  </div>
+
 </body>
 </html>

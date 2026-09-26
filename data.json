@@ -3790,5 +3790,22 @@
       "mail_sent_by": "Ceren Çakmak",
       "mail_sent_at": "25.09.2026 16:00"
     }
+  ],
+  "notifications": [
+    {
+      "id": "notif_welcome",
+      "type": "announcement",
+      "target_assignee": "ALL",
+      "is_general": true,
+      "title": "🎉 Festival Bildirim Sistemi Devrede!",
+      "task_id": "",
+      "task_title": "SET Kampüse Hoş Geldin Fest",
+      "description": "Kişiye özel atanan tüm görevler ve genel festival güncellemeleri artık anlık sesli ve tarayıcı bildirimi olarak iletilecektir.",
+      "priority": "Kritik",
+      "deadline": "2026-10-06",
+      "created_by": "Berke Saygılı",
+      "created_at": "26.09.2026 20:20",
+      "read_by": []
+    }
   ]
 }
