@@ -1072,9 +1072,9 @@
       "city": "Tekirdağ / Çorlu",
       "status": "Görüşülüyor",
       "notes": "Öğrenci kulüplerine %40 indirimli paket sunuyorlar. Festival boyunca kırılma/yıpranma sigortası dahil.",
-      "mail_sent": false,
-      "mail_sent_by": "",
-      "mail_sent_at": ""
+      "mail_sent": true,
+      "mail_sent_by": "Berke Saygılı",
+      "mail_sent_at": "26.09.2026 19:41"
     },
     {
       "id": "part_2",
