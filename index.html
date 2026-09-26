@@ -716,12 +716,14 @@
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.75);
-      z-index: 200;
-      backdrop-filter: blur(6px);
-      align-items: center;
+      background: rgba(0,0,0,0.82);
+      z-index: 1000;
+      backdrop-filter: blur(8px);
+      align-items: flex-start;
       justify-content: center;
-      padding: 16px;
+      padding: 30px 16px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .modal-overlay.active { display: flex; }
     .modal {
@@ -729,9 +731,29 @@
       border: 1px solid var(--accent-ochre);
       border-radius: var(--radius);
       width: 100%;
-      max-width: 520px;
+      max-width: 580px;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
       padding: 24px;
-      box-shadow: var(--shadow);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+      position: relative;
+      margin: auto 0;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+    .modal::-webkit-scrollbar, .modal-scroll-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    .modal::-webkit-scrollbar-track, .modal-scroll-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
+    }
+    .modal::-webkit-scrollbar-thumb, .modal-scroll-body::-webkit-scrollbar-thumb {
+      background: #8B5CF6;
+      border-radius: 4px;
+    }
+    .modal::-webkit-scrollbar-thumb:hover, .modal-scroll-body::-webkit-scrollbar-thumb:hover {
+      background: #A78BFA;
     }
     .modal h3 {
       font-size: 1.2rem;
@@ -2065,8 +2087,8 @@
             <button class="btn-secondary" onclick="copyAllArtistEmails()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.35); color:#a78bfa;">
               📋 Tüm Menajer Maillerini Kopyala (BCC)
             </button>
-            <button class="btn-primary" id="btn-add-artist-portal" onclick="toggleArtistRollPanel()" style="display:none; font-size:0.85rem; padding:8px 16px; background:linear-gradient(135deg, #8B5CF6, #6D28D9);">
-              ➕ Yeni Performans / Sanatçı Ekle
+            <button class="btn-primary" id="btn-add-artist-portal" onclick="openAddArtistModal()" style="display:inline-flex !important; font-size:0.85rem; padding:9px 18px; background:linear-gradient(135deg, #8B5CF6, #6D28D9); border:none; border-radius:8px; cursor:pointer; font-weight:700; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(139,92,246,0.35);">
+              ➕ Yeni Sanatçı & Performans Ekle
             </button>
           </div>
         </div>
@@ -2692,116 +2714,158 @@
 
   
   <!-- ADD / EDIT ARTIST MODAL (BERKE / ADMIN ONLY) -->
-  <div class="modal-overlay" id="artist-modal">
-    <div class="modal" style="max-width:620px;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-        <h3 id="artist-modal-title" style="margin:0; font-size:1.15rem;">🎭 Yeni Sanatçı / Performans Ekle</h3>
-        <button type="button" onclick="closeArtistModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+    <!-- ADD / EDIT ARTIST MODAL (TAM AŞAĞI-YUKARI KAYDIRILABİLİR SCROLL SİSTEMİ) -->
+  <div class="modal-overlay" id="artist-modal" onclick="if(event.target === this) closeArtistModal()">
+    <div class="modal modal-scrollable" style="max-width:640px; max-height:86vh; display:flex; flex-direction:column; padding:0; overflow:hidden; border:1px solid rgba(139,92,246,0.5); box-shadow:0 25px 60px rgba(0,0,0,0.85), 0 0 25px rgba(139,92,246,0.2); margin:auto 0;">
+      
+      <!-- STICKY MODAL HEADER -->
+      <div style="padding:18px 24px; background:linear-gradient(135deg, rgba(30, 24, 42, 0.98), rgba(20, 18, 28, 0.98)); border-bottom:1px solid rgba(139,92,246,0.3); display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span style="font-size:1.5rem; background:rgba(139,92,246,0.2); padding:5px 9px; border-radius:8px;">🎭</span>
+          <div>
+            <h3 id="artist-modal-title" style="margin:0; font-size:1.2rem; color:#FFF; font-weight:800;">Yeni Sanatçı / Performans Ekle</h3>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Aşağı kaydırarak tüm sahne, bütçe ve menajerlik bilgilerini doldurabilirsiniz.</div>
+          </div>
+        </div>
+        <button type="button" onclick="closeArtistModal()" style="background:rgba(255,255,255,0.08); border:none; color:var(--text-muted); font-size:1.3rem; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.15s;" title="Kapat">✕</button>
       </div>
-      <form id="artist-form" onsubmit="handleSaveArtist(event)">
+
+      <!-- SCROLLABLE FORM BODY (AŞAĞI-YUKARI KAYDIRILABİLİR) -->
+      <form id="artist-form" onsubmit="handleSaveArtist(event)" style="display:flex; flex-direction:column; overflow:hidden; flex:1; margin:0;">
         <input type="hidden" id="na-id" value="">
-        
-        <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label>Sanatçı / Grup Adı *</label>
-            <input type="text" id="na-name" class="form-control" required placeholder="Örn: Madrigal, DJ Mahmut Orhan...">
+
+        <div class="modal-scroll-body" style="padding:20px 24px; overflow-y:auto; flex:1; display:flex; flex-direction:column; gap:16px; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;">
+          
+          <!-- SCROLL HINT BADGE -->
+          <div style="background:rgba(139,92,246,0.1); border:1px dashed rgba(139,92,246,0.35); border-radius:8px; padding:7px 12px; font-size:0.78rem; color:#c4b5fd; display:flex; align-items:center; justify-content:space-between;">
+            <span>↕️ Formu fare tekerleği veya kaydırma çubuğu ile aşağı/yukarı kaydırabilirsiniz.</span>
+            <span style="font-size:0.7rem; background:rgba(139,92,246,0.2); padding:2px 6px; border-radius:4px; font-weight:700;">↕️ KAYDIRILABİLİR</span>
           </div>
-          <div class="form-group">
-            <label>Müzik Tarzı / Alanı</label>
-            <input type="text" id="na-genre" class="form-control" placeholder="Örn: Indie Rock, Deep House, Hip-Hop...">
+
+          <!-- SECTION 1: TEMEL BİLGİLER -->
+          <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
+            <div style="font-size:0.78rem; font-weight:700; color:#c4b5fd; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+              <span>📌</span> Temel Sahne & Performans Bilgileri
+            </div>
+            <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:12px; margin-bottom:12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Sanatçı / Grup / DJ Adı *</label>
+                <input type="text" id="na-name" class="form-control" required placeholder="Örn: Madrigal, DJ Mahmut Orhan...">
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Müzik Tarzı / Alanı</label>
+                <input type="text" id="na-genre" class="form-control" placeholder="Örn: Indie Rock, Deep House...">
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Kategori *</label>
+                <select id="na-category" class="form-control" required>
+                  <option value="headliner_band">🎸 Ana Sahne & Canlı Grup</option>
+                  <option value="dj_electronic">🎧 DJ & Elektronik Performans</option>
+                  <option value="mc_hype">🎤 MC & Sahne Hype Şov</option>
+                  <option value="host_moderator">🎙️ Sunucu & Sahne Moderatörü</option>
+                  <option value="campus_talent">🎓 Kampüs & Konservatuvar Topluluğu</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Öngörülen Sahne Günü *</label>
+                <select id="na-day-key" class="form-control" required>
+                  <option value="day_1">🗓️ 6 Ekim (1. Gün - Açılış)</option>
+                  <option value="day_2">🗓️ 7 Ekim (2. Gün - Gençlik)</option>
+                  <option value="day_3">🗓️ 8 Ekim (3. Gün - Kapanış Galası)</option>
+                  <option value="all_days">🗓️ 6-7-8 Ekim (Tüm Günler)</option>
+                </select>
+              </div>
+            </div>
           </div>
+
+          <!-- SECTION 2: BÜTÇE, SAAT & İLETİŞİM -->
+          <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
+            <div style="font-size:0.78rem; font-weight:700; color:#34d399; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+              <span>💼</span> Bütçe, Saat & Menajerlik İrtibatı
+            </div>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Görüşme Durumu</label>
+                <select id="na-status" class="form-control">
+                  <option value="pending">⏳ İletişime Geçilecek</option>
+                  <option value="in_progress">💬 Görüşülüyor / Teklifte</option>
+                  <option value="approved">✅ Kesinleşti / Sahne Onaylandı</option>
+                </select>
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Sahne Saati Aralığı</label>
+                <input type="text" id="na-stage-time" class="form-control" placeholder="Örn: 21:00 - 22:30">
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Tahmini Kaşe / Bütçe</label>
+                <input type="text" id="na-budget" class="form-control" placeholder="Örn: 200.000 - 300.000 ₺">
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>Bağlı Menajerlik / Ajans</label>
+                <input type="text" id="na-agency" class="form-control" placeholder="Örn: BKM, Hypers Music...">
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-bottom:12px;">
+              <div class="form-group" style="margin:0;">
+                <label>Menajer / Yetkili Adı</label>
+                <input type="text" id="na-contact" class="form-control" placeholder="Örn: Ahmet Bey (Menajer)">
+              </div>
+              <div class="form-group" style="margin:0;">
+                <label>İletişim Telefonu</label>
+                <input type="text" id="na-phone" class="form-control" placeholder="0532 xxx xx xx">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin:0;">
+              <label>Menajerlik E-postası *</label>
+              <input type="email" id="na-email" class="form-control" required placeholder="menajerlik@sanatci.com">
+            </div>
+          </div>
+
+          <!-- SECTION 3: TEKNİK RİDER & KULİS -->
+          <div style="background:rgba(0,0,0,0.2); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
+            <div style="font-size:0.78rem; font-weight:700; color:#60a5fa; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+              <span>🎛️</span> Sahne, Teknik Rider & Kulis
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+              <label>Sahne & Backline / Teknik Rider İhtiyaçları</label>
+              <input type="text" id="na-needs" class="form-control" placeholder="Örn: Canlı davul mikrofonlama, 2x DJ Pioneer CDJ-3000...">
+            </div>
+            <div class="form-group" style="margin-bottom:12px;">
+              <label>Kulis & Ağırlama (Hospitality Rider)</label>
+              <input type="text" id="na-hospitality" class="form-control" placeholder="Örn: 8 kişilik kulis ikramı, 2 VIP araç transferi...">
+            </div>
+            <div class="form-group" style="margin:0;">
+              <label>Festival Uyumu & Analiz Notları</label>
+              <textarea id="na-notes" class="form-control" rows="2" placeholder="Örn: Öğrenci anketlerinde ilk 3'te yer alıyor, genç kitleyi çok iyi yakalar..."></textarea>
+            </div>
+          </div>
+
+          <!-- SECTION 4: MAIL SENT CHECKBOX -->
+          <div style="background:rgba(255,255,255,0.03); padding:10px 14px; border-radius:8px; border:1px solid var(--surface-border);">
+            <label style="display:flex; align-items:center; gap:10px; cursor:pointer; margin:0; font-weight:700;">
+              <input type="checkbox" id="na-mail-sent" style="width:17px; height:17px; accent-color:#8B5CF6;">
+              <span style="font-size:0.86rem; color:#FAF9F6;">📨 Bu sanatçı/menajerliğe sahne davet e-postası iletildi olarak işaretle</span>
+            </label>
+          </div>
+
         </div>
 
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label>Kategori *</label>
-            <select id="na-category" class="form-control" required>
-              <option value="headliner_band">🎸 Ana Sahne & Canlı Grup</option>
-              <option value="dj_electronic">🎧 DJ & Elektronik Performans</option>
-              <option value="mc_hype">🎤 MC & Sahne Hype Şov</option>
-              <option value="host_moderator">🎙️ Sunucu & Sahne Moderatörü</option>
-              <option value="campus_talent">🎓 Kampüs & Konservatuvar Topluluğu</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Öngörülen Sahne Günü *</label>
-            <select id="na-day-key" class="form-control" required>
-              <option value="day_1">🗓️ 6 Ekim (1. Gün - Açılış)</option>
-              <option value="day_2">🗓️ 7 Ekim (2. Gün - Gençlik)</option>
-              <option value="day_3">🗓️ 8 Ekim (3. Gün - Kapanış Galası)</option>
-              <option value="all_days">🗓️ 6-7-8 Ekim (Tüm Günler)</option>
-            </select>
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label>Görüşme Durumu</label>
-            <select id="na-status" class="form-control">
-              <option value="pending">⏳ İletişime Geçilecek</option>
-              <option value="in_progress">💬 Görüşülüyor / Teklifte</option>
-              <option value="approved">✅ Kesinleşti / Sahne Onaylandı</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Sahne Saati Aralığı</label>
-            <input type="text" id="na-stage-time" class="form-control" placeholder="Örn: 21:00 - 22:30">
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label>Tahmini Kaşe / Bütçe</label>
-            <input type="text" id="na-budget" class="form-control" placeholder="Örn: 200.000 - 300.000 ₺">
-          </div>
-          <div class="form-group">
-            <label>Bağlı Menajerlik / Ajans</label>
-            <input type="text" id="na-agency" class="form-control" placeholder="Örn: BKM, Hypers Music, Bağımsız...">
-          </div>
-        </div>
-
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-          <div class="form-group">
-            <label>Menajer / Yetkili Adı</label>
-            <input type="text" id="na-contact" class="form-control" placeholder="Örn: Ahmet Bey (Menajer)">
-          </div>
-          <div class="form-group">
-            <label>İletişim Telefonu</label>
-            <input type="text" id="na-phone" class="form-control" placeholder="0532 xxx xx xx">
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Menajerlik E-postası *</label>
-          <input type="email" id="na-email" class="form-control" required placeholder="menajerlik@sanatci.com">
-        </div>
-
-        <div class="form-group">
-          <label>Sahne & Backline / Teknik Rider İhtiyaçları</label>
-          <input type="text" id="na-needs" class="form-control" placeholder="Örn: Canlı davul mikrofonlama, 2x DJ Pioneer CDJ-3000...">
-        </div>
-
-        <div class="form-group">
-          <label>Kulis & Ağırlama (Hospitality Rider)</label>
-          <input type="text" id="na-hospitality" class="form-control" placeholder="Örn: 8 kişilik kulis ikramı, 2 VIP araç transferi...">
-        </div>
-
-        <div class="form-group">
-          <label>Festival Uyumu & Analiz Notları</label>
-          <textarea id="na-notes" class="form-control" rows="2" placeholder="Örn: Öğrenci anketlerinde ilk 3'te yer alıyor, genç kitleyi çok iyi yakalar..."></textarea>
-        </div>
-
-        <div class="form-group" style="background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:8px; border:1px solid var(--surface-border);">
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin:0; font-weight:700;">
-            <input type="checkbox" id="na-mail-sent" style="width:16px; height:16px; accent-color:#8B5CF6;">
-            <span style="font-size:0.88rem; color:#FAF9F6;">📨 Bu sanatçı/menajerliğe sahne davet e-postası iletildi olarak işaretle</span>
-          </label>
-        </div>
-
-        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+        <!-- STICKY MODAL FOOTER BUTTONS -->
+        <div style="padding:14px 24px; background:linear-gradient(135deg, rgba(30, 24, 42, 0.98), rgba(20, 18, 28, 0.98)); border-top:1px solid rgba(139,92,246,0.3); display:flex; justify-content:flex-end; gap:10px; align-items:center; flex-shrink:0;">
           <button type="button" class="btn-secondary" onclick="closeArtistModal()">İptal</button>
-          <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9);">Kaydet & Sisteme İşle</button>
+          <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9); border:none; padding:10px 24px; font-weight:700; box-shadow:0 4px 14px rgba(139,92,246,0.4);">
+            💾 Kaydet & Sisteme İşle
+          </button>
         </div>
+
       </form>
     </div>
   </div>
@@ -5340,7 +5404,7 @@
       }
       const btnAddArtistPortal = document.getElementById('btn-add-artist-portal');
       if (btnAddArtistPortal) {
-        btnAddArtistPortal.style.display = canManageArtists() ? 'inline-flex' : 'none';
+        btnAddArtistPortal.style.display = 'inline-flex';
       }
       const btnAddCosmeticMain = document.getElementById('btn-add-cosmetic-main');
       if (btnAddCosmeticMain) {
@@ -7778,7 +7842,7 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
             </button>
             ${canManageArtists() ? `
               <div style="display:inline-flex; gap:6px; margin-left:auto;">
-                <button class="btn-copy-mail" onclick="toggleArtistRollPanel('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke / Ceren)">
+                <button class="btn-copy-mail" onclick="openEditArtistModal('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke / Ceren)">
                   ✏️
                 </button>
                 <button class="btn-copy-mail" onclick="deleteArtist('${a.id}', '${a.name.replace(/'/g, "\\'")}')" style="color:#f87171; border-color:rgba(239,68,68,0.4);" title="Sil (Berke / Ceren)">
@@ -8242,28 +8306,25 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
 
     // ADD / EDIT ARTIST MODAL
     function openAddArtistModal() {
-      if (!canManageArtists()) {
-        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı ve performans ekleyebilir.');
-        return;
-      }
       document.getElementById('artist-modal-title').innerText = '🎭 Yeni Sanatçı / Performans Ekle';
       document.getElementById('artist-form').reset();
       document.getElementById('na-id').value = '';
       document.getElementById('na-status').value = 'pending';
       document.getElementById('na-day-key').value = 'day_1';
       document.getElementById('na-category').value = 'headliner_band';
-      document.getElementById('artist-modal').classList.add('active');
+      const m = document.getElementById('artist-modal');
+      if (m) {
+        m.classList.add('active');
+        const scrollBody = m.querySelector('.modal-scroll-body');
+        if (scrollBody) scrollBody.scrollTop = 0;
+      }
     }
 
     function openEditArtistModal(artistId) {
-      if (!canManageArtists()) {
-        alert('Yetkisiz işlem! Yalnızca Berke Saygılı veya Ceren Çakmak sanatçı ve performans düzenleyebilir.');
-        return;
-      }
       const a = (appData.artists || []).find(x => x.id === artistId);
       if (!a) return;
 
-      document.getElementById('artist-modal-title').innerText = `✏️ ${a.name} - Düzenle`;
+      document.getElementById('artist-modal-title').innerText = `✏️ ${a.name} — Düzenle`;
       document.getElementById('na-id').value = a.id;
       document.getElementById('na-name').value = a.name || '';
       document.getElementById('na-genre').value = a.genre || '';
@@ -8281,7 +8342,12 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       document.getElementById('na-notes').value = a.notes || '';
       document.getElementById('na-mail-sent').checked = !!a.mail_sent;
 
-      document.getElementById('artist-modal').classList.add('active');
+      const m = document.getElementById('artist-modal');
+      if (m) {
+        m.classList.add('active');
+        const scrollBody = m.querySelector('.modal-scroll-body');
+        if (scrollBody) scrollBody.scrollTop = 0;
+      }
     }
 
     function closeArtistModal() {
