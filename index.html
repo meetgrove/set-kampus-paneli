@@ -1630,6 +1630,9 @@
             </p>
           </div>
           <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn-secondary" id="btn-mail-service-settings" onclick="openMailServicePicker()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(239,68,68,0.12); border-color:rgba(239,68,68,0.35); color:#fca5a5; cursor:pointer;" title="Tarayıcıda kullanılan e-posta sağlayıcısını ayarla (Gmail, Outlook, Yandex)">
+              🌐 Mail Servisi: <span id="current-mail-service-label" style="font-weight:700;">Gmail (Web)</span> ⚙️
+            </button>
             <button class="btn-secondary" onclick="openPartnerInvitationModal()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(255,255,255,0.08); border-color:var(--surface-border); color:#FAF9F6;">
               📄 Standart Sponsorluk Davet Mektubu
             </button>
@@ -2271,13 +2274,88 @@
 
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:16px;">
         <span id="copy-status-text" style="font-size:0.82rem; color:#4ade80; display:none; font-weight:600;">✓ Kopyalandı!</span>
-        <div style="display:flex; gap:10px; margin-left:auto;">
+        <div style="display:flex; gap:10px; margin-left:auto; align-items:center;">
           <button type="button" class="btn-secondary" onclick="copyPartnerInvitationText()">📋 Tüm Metni Kopyala</button>
-          <a id="p-invite-mailto-btn" href="#" class="btn-primary" style="background:#2563EB; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">✉️ Mail Programında Aç</a>
+          <button type="button" id="p-invite-mailto-btn" onclick="sendPartnerEmailFromModal()" class="btn-primary" style="background:#2563EB; border:none; display:inline-flex; align-items:center; gap:6px; cursor:pointer; font-weight:700;">
+            ✉️ Tarayıcıda Mail Gönder
+          </button>
+          <button type="button" class="btn-secondary" onclick="openMailServicePicker(activeInvitationPartner ? activeInvitationPartner.id : null)" style="padding:6px 10px; cursor:pointer;" title="Mail servisini değiştir (Gmail / Outlook / Yandex)">
+            ⚙️
+          </button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- MAIL SERVICE SELECTOR MODAL -->
+  <div class="modal-overlay" id="mail-service-modal">
+    <div class="modal" style="max-width:480px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="margin:0; font-size:1.15rem; display:flex; align-items:center; gap:8px;">
+          <span>🌐</span> Tarayıcıda E-Posta Gönder
+        </h3>
+        <button type="button" onclick="closeMailServiceModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.5; margin-bottom:16px;">
+        Tarayıcınızda (Chrome, Safari vb.) oturumu açık olan e-posta hesabınızı seçin. Tıkladığınızda yeni sekmede alıcı, konu ve davet mektubu taslağı hazır açılacaktır:
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button type="button" onclick="selectMailService('gmail')" class="mail-provider-btn" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.35); color:#FFF; cursor:pointer; text-align:left; transition:all 0.2s;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:1.5rem;">🔴</span>
+            <div>
+              <div style="font-weight:700; font-size:0.95rem; color:#fca5a5;">Gmail (Google Web)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">set.nku@gmail.com veya açık Google hesabınız</div>
+            </div>
+          </div>
+          <span style="font-size:0.8rem; background:rgba(239,68,68,0.25); color:#fca5a5; padding:4px 8px; border-radius:6px; font-weight:700;">Önerilen</span>
+        </button>
+
+        <button type="button" onclick="selectMailService('outlook')" class="mail-provider-btn" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; background:rgba(37,99,235,0.1); border:1px solid rgba(37,99,235,0.35); color:#FFF; cursor:pointer; text-align:left; transition:all 0.2s;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:1.5rem;">🔵</span>
+            <div>
+              <div style="font-weight:700; font-size:0.95rem; color:#93c5fa;">Outlook / Hotmail / Office 365</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">outlook.live.com veya kurumsal Microsoft hesabı</div>
+            </div>
+          </div>
+          <span style="font-size:0.8rem; color:#93c5fa;">➔</span>
+        </button>
+
+        <button type="button" onclick="selectMailService('yandex')" class="mail-provider-btn" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; background:rgba(234,179,8,0.1); border:1px solid rgba(234,179,8,0.35); color:#FFF; cursor:pointer; text-align:left; transition:all 0.2s;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:1.5rem;">🟡</span>
+            <div>
+              <div style="font-weight:700; font-size:0.95rem; color:#fde047;">Yandex Mail</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">mail.yandex.com.tr hesabı</div>
+            </div>
+          </div>
+          <span style="font-size:0.8rem; color:#fde047;">➔</span>
+        </button>
+
+        <button type="button" onclick="selectMailService('mailto')" class="mail-provider-btn" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-radius:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:#FFF; cursor:pointer; text-align:left; transition:all 0.2s;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:1.5rem;">💻</span>
+            <div>
+              <div style="font-weight:700; font-size:0.95rem; color:#FAF9F6;">Cihaz Mail Uygulaması (Varsayılan)</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Apple Mail, Outlook Desktop, Thunderbird vb.</div>
+            </div>
+          </div>
+          <span style="font-size:0.8rem; color:var(--text-muted);">➔</span>
+        </button>
+      </div>
+
+      <div style="margin-top:16px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between;">
+        <label style="display:flex; align-items:center; gap:8px; font-size:0.82rem; color:var(--text-muted); cursor:pointer;">
+          <input type="checkbox" id="chk-remember-mail-service" checked>
+          <span>Bu seçimimi hatırla (Bir sonraki tıklamada doğrudan aç)</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  
   
   <script>
     const EMBEDDED_DEFAULT_DATA = {
@@ -5483,9 +5561,14 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
           </div>
 
           <div class="partner-actions">
-            <a href="${mailtoHref}" class="btn-mail-action" onclick="handleMailSentClick('${p.id}')" title="Doğrudan hazır taslak ile e-posta gönder ve gönderildi işaretle">
-              ✉️ Mail Gönder
-            </a>
+            <div style="display:inline-flex; border-radius:6px; overflow:hidden; box-shadow:0 2px 6px rgba(37,99,235,0.25);">
+              <button type="button" class="btn-mail-action" onclick="handleSendPartnerEmail('${p.id}')" title="Tarayıcıda açık olan e-posta hesabınız ile doğrudan gönder" style="border-radius:6px 0 0 6px; border-right:1px solid rgba(255,255,255,0.25); margin:0; cursor:pointer;">
+                ✉️ Mail Gönder
+              </button>
+              <button type="button" class="btn-mail-action" onclick="openMailServicePicker('${p.id}')" title="Mail servisini seç (Gmail / Outlook / Yandex)" style="border-radius:0 6px 6px 0; padding:7px 9px; margin:0; background:#1d4ed8; cursor:pointer;">
+                ▾
+              </button>
+            </div>
             <button class="btn-copy-mail" onclick="copyPartnerEmail('${p.email}', this)" title="E-posta adresini kopyala">
               📋 Kopyala
             </button>
@@ -5548,13 +5631,95 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       }
     }
 
-    function handleMailSentClick(partnerId) {
-      const p = (appData.partners || []).find(x => x.id === partnerId);
-      if (p && !p.mail_sent) {
-        setTimeout(() => {
-          togglePartnerMailSent(partnerId, true);
-        }, 500);
+    let pendingMailPartnerId = null;
+
+    function getPreferredMailService() {
+      return localStorage.getItem('set_preferred_mail_service') || 'gmail';
+    }
+
+    function updateMailServiceLabel() {
+      const s = getPreferredMailService();
+      const labelEl = document.getElementById('current-mail-service-label');
+      if (labelEl) {
+        if (s === 'gmail') labelEl.innerText = 'Gmail (Web)';
+        else if (s === 'outlook') labelEl.innerText = 'Outlook (Web)';
+        else if (s === 'yandex') labelEl.innerText = 'Yandex (Web)';
+        else labelEl.innerText = 'Sistem Uygulaması';
       }
+    }
+
+    function openMailServicePicker(partnerId = null) {
+      pendingMailPartnerId = partnerId;
+      const modal = document.getElementById('mail-service-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeMailServiceModal() {
+      const modal = document.getElementById('mail-service-modal');
+      if (modal) modal.classList.remove('active');
+      pendingMailPartnerId = null;
+    }
+
+    function selectMailService(service) {
+      const chk = document.getElementById('chk-remember-mail-service');
+      if (chk && chk.checked) {
+        localStorage.setItem('set_preferred_mail_service', service);
+      }
+      updateMailServiceLabel();
+
+      const partnerId = pendingMailPartnerId;
+      closeMailServiceModal();
+
+      if (partnerId) {
+        executeSendPartnerEmail(partnerId, service);
+      }
+    }
+
+    function executeSendPartnerEmailWithContent(partnerId, service, customSubj = null, customBody = null) {
+      const p = (appData.partners || []).find(x => x.id === partnerId);
+      if (!p) return;
+
+      const targetEmail = (p.email || '').replace(/;/g, ',').trim();
+      const subject = customSubj || `SET Kampüse Hoş Geldin Festivali (6-8 Ekim 2026) - Sponsorluk & Katılım Daveti`;
+      const body = customBody || generateSponsorMailBody(p);
+
+      const encodedTo = encodeURIComponent(targetEmail);
+      const encodedSub = encodeURIComponent(subject);
+      const encodedBody = encodeURIComponent(body);
+
+      let url = '';
+      if (service === 'gmail') {
+        url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodedTo}&su=${encodedSub}&body=${encodedBody}`;
+      } else if (service === 'outlook') {
+        url = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodedTo}&subject=${encodedSub}&body=${encodedBody}`;
+      } else if (service === 'yandex') {
+        url = `https://mail.yandex.com.tr/compose?to=${encodedTo}&subject=${encodedSub}&body=${encodedBody}`;
+      } else {
+        url = `mailto:${targetEmail}?subject=${encodedSub}&body=${encodedBody}`;
+      }
+
+      window.open(url, '_blank');
+
+      if (!p.mail_sent) {
+        togglePartnerMailSent(partnerId, true);
+      }
+    }
+
+    function executeSendPartnerEmail(partnerId, service) {
+      executeSendPartnerEmailWithContent(partnerId, service);
+    }
+
+    function handleSendPartnerEmail(partnerId) {
+      const service = getPreferredMailService();
+      executeSendPartnerEmail(partnerId, service);
+    }
+
+    function sendPartnerEmailFromModal() {
+      if (!activeInvitationPartner) return;
+      const customSubj = document.getElementById('p-invite-subject') ? document.getElementById('p-invite-subject').value : null;
+      const customBody = document.getElementById('p-invite-body') ? document.getElementById('p-invite-body').value : null;
+      const service = getPreferredMailService();
+      executeSendPartnerEmailWithContent(activeInvitationPartner.id, service, customSubj, customBody);
     }
 
 
@@ -5742,8 +5907,9 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
       document.getElementById('p-invite-body').value = body;
 
       const mailtoBtn = document.getElementById('p-invite-mailto-btn');
-      const targetEmail = p ? p.email : '';
-      mailtoBtn.href = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (mailtoBtn) {
+        mailtoBtn.title = `Tarayıcıda (${getPreferredMailService()}) doğrudan gönder`;
+      }
 
       document.getElementById('partner-invitation-modal').classList.add('active');
     }
@@ -5846,6 +6012,7 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     // INIT
     loadData();
     startCountdown();
+    updateMailServiceLabel();
     setInterval(pollServerData, 4000);
   </script>
 </body>
