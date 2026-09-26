@@ -637,6 +637,96 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
             self.send_json_response({'success': True, 'partners': data['partners']})
             return
 
+        elif path == '/api/artists/update':
+            artist_id = req_data.get('id')
+            found = False
+            for a in data.get('artists', []):
+                if a['id'] == artist_id:
+                    for key in ['name', 'category', 'category_title', 'genre', 'proposed_day',
+                                'proposed_day_key', 'status', 'status_title', 'contact_name',
+                                'agency', 'email', 'phone', 'estimated_budget', 'stage_time',
+                                'stage_needs', 'hospitality_rider', 'notes', 'mail_sent',
+                                'mail_sent_by', 'mail_sent_at']:
+                        if key in req_data:
+                            a[key] = req_data[key]
+                    a['updated_by'] = req_data.get('user_name', 'Berke')
+                    a['updated_at'] = datetime.now().strftime('%d.%m.%Y %H:%M')
+                    found = True
+                    break
+            if found:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'artists': data.get('artists', [])})
+            else:
+                self.send_json_response({'success': False, 'error': 'Sanatçı bulunamadı'}, 404)
+            return
+
+        elif path == '/api/artists/add':
+            name = req_data.get('name', '').strip()
+            if not name:
+                self.send_json_response({'success': False, 'error': 'Sanatçı / Grup adı zorunludur'}, 400)
+                return
+
+            new_artist = {
+                'id': f"art_{int(time.time() * 1000)}",
+                'name': name,
+                'category': req_data.get('category', 'headliner_band'),
+                'category_title': req_data.get('category_title', '🎸 Ana Sahne & Canlı Grup'),
+                'genre': req_data.get('genre', 'Canlı Müzik'),
+                'proposed_day': req_data.get('proposed_day', '6 Ekim (1. Gün - Açılış)'),
+                'proposed_day_key': req_data.get('proposed_day_key', 'day_1'),
+                'status': req_data.get('status', 'pending'),
+                'contact_name': req_data.get('contact_name', 'Menajer'),
+                'agency': req_data.get('agency', 'Bağımsız / Ajans'),
+                'email': req_data.get('email', '').strip(),
+                'phone': req_data.get('phone', '').strip(),
+                'estimated_budget': req_data.get('estimated_budget', 'Görüşülecek'),
+                'stage_time': req_data.get('stage_time', '20:00 - 21:30'),
+                'stage_needs': req_data.get('stage_needs', 'Sahne & Ses Sistemi'),
+                'hospitality_rider': req_data.get('hospitality_rider', 'Kulis ikramı'),
+                'notes': req_data.get('notes', '').strip(),
+                'mail_sent': bool(req_data.get('mail_sent', False)),
+                'mail_sent_by': req_data.get('mail_sent_by', ''),
+                'mail_sent_at': req_data.get('mail_sent_at', ''),
+                'created_by': req_data.get('user_name', 'Berke'),
+                'updated_at': datetime.now().strftime('%d.%m.%Y %H:%M')
+            }
+            data.setdefault('artists', []).append(new_artist)
+            save_ekip_data(data)
+            self.send_json_response({'success': True, 'artists': data['artists']})
+            return
+
+        elif path == '/api/artists/delete':
+            art_id = req_data.get('id')
+            data['artists'] = [a for a in data.get('artists', []) if a.get('id') != art_id]
+            save_ekip_data(data)
+            self.send_json_response({'success': True, 'artists': data['artists']})
+            return
+
+        elif path == '/api/artists/toggle_mail':
+            art_id = req_data.get('id')
+            is_sent = bool(req_data.get('mail_sent', False))
+            user_name = req_data.get('user_name', 'Berke Saygılı')
+            found = False
+            for a in data.get('artists', []):
+                if a['id'] == art_id:
+                    a['mail_sent'] = is_sent
+                    if is_sent:
+                        a['mail_sent_by'] = user_name
+                        a['mail_sent_at'] = datetime.now().strftime('%d.%m.%Y %H:%M')
+                        if a.get('status') == 'pending':
+                            a['status'] = 'in_progress'
+                    else:
+                        a['mail_sent_by'] = ''
+                        a['mail_sent_at'] = ''
+                    found = True
+                    break
+            if found:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'artists': data['artists']})
+            else:
+                self.send_json_response({'success': False, 'error': 'Sanatçı bulunamadı'}, 404)
+            return
+
         self.send_json_response({'error': 'Gecersiz Endpoint'}, 404)
 
 def keep_alive_worker():

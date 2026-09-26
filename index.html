@@ -1272,6 +1272,129 @@
       .tasks-grid { grid-template-columns: 1fr; }
       .user-profile-badge { width: 100%; justify-content: space-between; }
     }
+  
+    /* ARTISTS & STAGE PORTAL */
+    .tab-btn-artist {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.05));
+      border: 1px solid rgba(139, 92, 246, 0.5) !important;
+      color: #FAF9F6 !important;
+    }
+    .tab-btn-artist:hover, .tab-btn-artist.active {
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED) !important;
+      color: #FFF !important;
+      font-weight: 700;
+    }
+    .tab-btn-artist .tab-badge {
+      background: #8B5CF6;
+      color: #FFF;
+    }
+    .tab-btn-artist.active .tab-badge {
+      background: #FFF;
+      color: #7C3AED;
+    }
+
+    .artists-header-box {
+      background: linear-gradient(135deg, rgba(23, 24, 23, 0.95), rgba(30, 24, 40, 0.95));
+      border: 1px solid rgba(139, 92, 246, 0.35);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: hidden;
+    }
+    .artists-header-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, #8B5CF6, #EC4899);
+    }
+    .artist-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+    .artist-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(139, 92, 246, 0.6);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+    }
+    .artist-card.confirmed {
+      border-color: rgba(34, 197, 94, 0.5) !important;
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.05), var(--surface));
+    }
+    .artist-card.mail-sent {
+      box-shadow: 0 4px 18px rgba(139, 92, 246, 0.15);
+    }
+    .artist-day-badge {
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 0.73rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .day-badge-day_1 { background: rgba(139, 92, 246, 0.18); color: #c4b5fd; border: 1px solid rgba(139, 92, 246, 0.4); }
+    .day-badge-day_2 { background: rgba(59, 130, 246, 0.18); color: #93c5fd; border: 1px solid rgba(59, 130, 246, 0.4); }
+    .day-badge-day_3 { background: rgba(236, 72, 153, 0.18); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); }
+    .day-badge-all_days { background: rgba(245, 158, 11, 0.18); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.4); }
+
+    .artist-budget-badge {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .artist-stage-time-badge {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #FAF9F6;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .artist-rider-box {
+      background: rgba(139, 92, 246, 0.07);
+      border-left: 3px solid #8B5CF6;
+      padding: 9px 12px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.83rem;
+      color: #FAF9F6;
+      line-height: 1.4;
+    }
+    .artist-status-badge {
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
   </style>
 </head>
 <body>
@@ -1392,6 +1515,9 @@
         <button onclick="switchTab('inventory')" class="btn-primary" style="background:linear-gradient(135deg, #10B981, #059669); color:#fff; font-size:0.85rem; padding:9px 18px; border:none; border-radius:8px; cursor:pointer; font-weight:700; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(16,185,129,0.3);">
           🎨 Saha Kozmetik & İçerik Takibi (24 Kalem) ➔
         </button>
+                <button onclick="switchTab('artists')" class="btn-primary" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9); color:#fff; font-size:0.85rem; padding:9px 18px; border:none; border-radius:8px; cursor:pointer; font-weight:700; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(139,92,246,0.35);">
+          🎭 Sahne, Sanatçı & DJ Portalı (33 Aday) ➔
+        </button>
         <a id="top-kroki-link" href="./kroki/" target="_blank" style="background:rgba(37,99,235,0.15); border:1px solid rgba(37,99,235,0.4); color:#60a5fa; text-decoration:none; font-size:0.85rem; padding:9px 14px; border-radius:8px; font-weight:600; display:inline-flex; align-items:center; gap:6px;">
           🗺️ Festival Alan Krokisi (Canlı) ↗
         </a>
@@ -1441,6 +1567,10 @@
       <button class="tab-btn tab-btn-sponsor" onclick="switchTab('partners')" id="tab-btn-partners">
         🤝 Sponsor & Marka Rehberi <span class="tab-badge" id="partners-count-badge">16</span>
       </button>
+      <button class="tab-btn tab-btn-artist" onclick="switchTab('artists')" id="tab-btn-artists">
+        🎭 Sahne & Sanatçı Portalı <span class="tab-badge" id="artists-count-badge">33</span>
+      </button>
+
     </div>
 
     <!-- TAB 1: TASKS -->
@@ -1743,6 +1873,153 @@
         <!-- Rendered via JS -->
       </div>
     </div>
+    <!-- TAB 7: SAHNE, SANATÇI, DJ & SUNUCU PORTALI -->
+    <div class="tab-pane" id="pane-artists">
+      <!-- HEADER BOX -->
+      <div class="artists-header-box">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+          <div>
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+              <span style="font-size:1.8rem;">🎭</span>
+              <h2 style="font-size:1.4rem; color:#FFF; margin:0;">6-7-8 Ekim Festival Sahne, Sanatçı, DJ, MC & Sunucu Portalı</h2>
+            </div>
+            <p style="font-size:0.88rem; color:var(--text-muted); max-width:850px; line-height:1.5; margin:0;">
+              SET Kampüse Hoş Geldin Fest için analiz edilen 33 canlı grup, alternatif rock ekibi, DJ, MC, sunucu ve üniversite topluluğunun sahne günü (6-7-8 Ekim), tahmini kaşe, teknik rider ve menajerlik irtibat rehberi. Tek tıkla tarayıcınızdaki e-posta ile resmi sahne davet mektubu gönderebilirsiniz.
+            </p>
+          </div>
+          <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <button class="btn-secondary" onclick="openMailServicePicker()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(139,92,246,0.15); border-color:rgba(139,92,246,0.4); color:#c4b5fd; cursor:pointer;" title="Tarayıcıda kullanılan e-posta sağlayıcısını ayarla">
+              🌐 Mail Servisi: <span id="current-mail-service-label-artists" style="font-weight:700;">Gmail (Web)</span> ⚙️
+            </button>
+            <button class="btn-secondary" onclick="openArtistInvitationModal()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(255,255,255,0.08); border-color:var(--surface-border); color:#FAF9F6;">
+              📄 Standart Sahne Davet Mektubu
+            </button>
+            <button class="btn-secondary" onclick="copyAllArtistEmails()" style="display:inline-flex; align-items:center; gap:6px; font-size:0.85rem; padding:8px 14px; background:rgba(139,92,246,0.12); border-color:rgba(139,92,246,0.35); color:#a78bfa;">
+              📋 Tüm Menajer Maillerini Kopyala (BCC)
+            </button>
+            <button class="btn-primary" id="btn-add-artist-portal" onclick="openAddArtistModal()" style="display:none; font-size:0.85rem; padding:8px 16px; background:linear-gradient(135deg, #8B5CF6, #6D28D9);">
+              ➕ Yeni Performans / Sanatçı Ekle
+            </button>
+          </div>
+        </div>
+
+        <!-- QUICK STATS CHIPS -->
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px; margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08);">
+          <div style="background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#a78bfa;">🎭</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#FFF;" id="artist-stat-total">33</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Toplam Sahne Adayı</div>
+            </div>
+          </div>
+          <div style="background:rgba(236,72,153,0.1); border:1px solid rgba(236,72,153,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#f472b6;">🎸</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#f472b6;" id="artist-stat-headliner">14 Grup</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Canlı Grup & Headliner</div>
+            </div>
+          </div>
+          <div style="background:rgba(99,102,241,0.1); border:1px solid rgba(99,102,241,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#818cf8;">🎧</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#818cf8;" id="artist-stat-dj">8 DJ</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Elektronik & Club DJ</div>
+            </div>
+          </div>
+          <div style="background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#fbbf24;">🎤</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#fbbf24;" id="artist-stat-mc">3 MC</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Sahne Hype & Rap</div>
+            </div>
+          </div>
+          <div style="background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#60a5fa;">🎙️</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#60a5fa;" id="artist-stat-host">4 Sunucu</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">Moderatör & Radyocu</div>
+            </div>
+          </div>
+          <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#34d399;">🎓</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#34d399;" id="artist-stat-campus">4 Ekip</div>
+              <div style="font-size:0.75rem; color:var(--text-muted);">NKÜ Kampüs Toplulukları</div>
+            </div>
+          </div>
+          <div style="background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.35); border-radius:10px; padding:12px; display:flex; align-items:center; gap:12px;">
+            <div style="font-size:1.6rem; color:#4ade80;">📨</div>
+            <div>
+              <div style="font-size:1.3rem; font-weight:800; color:#4ade80;" id="artist-stat-sent">0 / 33</div>
+              <div style="font-size:0.75rem; color:#86efac;">Mail İletilen Menajerlik</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER & SEARCH BAR -->
+      <div style="background:var(--surface); border:1px solid var(--surface-border); border-radius:var(--radius); padding:16px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:14px;">
+        <!-- MAIL STATUS QUICK FILTERS -->
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.06);">
+          <span style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.5px; display:flex; align-items:center; gap:5px;">
+            <span>📨</span> E-Posta Takip Durumu:
+          </span>
+          <button class="filter-chip artist-mail-filter-chip active" id="chip-artist-mail-all" onclick="filterArtistMailSent('ALL', this)" style="border-radius:20px; padding:5px 14px; font-size:0.82rem;">
+            Tümü (<span id="artist-count-total-inline">33</span>)
+          </button>
+          <button class="filter-chip artist-mail-filter-chip" id="chip-artist-mail-sent" onclick="filterArtistMailSent('SENT', this)" style="border-radius:20px; padding:5px 14px; font-size:0.82rem; border-color:rgba(34,197,94,0.4); color:#4ade80;">
+            ✅ Mail İletilenler (<span id="artist-count-sent-inline">0</span>)
+          </button>
+          <button class="filter-chip artist-mail-filter-chip" id="chip-artist-mail-pending" onclick="filterArtistMailSent('PENDING', this)" style="border-radius:20px; padding:5px 14px; font-size:0.82rem; border-color:rgba(234,179,8,0.4); color:#facc15;">
+            ⏳ Mail Bekleyenler (<span id="artist-count-pending-inline">33</span>)
+          </button>
+        </div>
+
+        <!-- SEARCH & DAY & STATUS FILTERS -->
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;">
+          <div style="flex:1; min-width:280px; position:relative;">
+            <input type="text" id="artist-search-input" oninput="searchArtists(this.value)" placeholder="🔍 Sanatçı adı, menajer, müzik tarzı, ajans, gün veya kaşe ara..." class="form-control" style="padding-left:14px; font-size:0.9rem; background:rgba(0,0,0,0.25);">
+          </div>
+          <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <div style="display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--text-muted);">
+              <span>🗓️ Gün:</span>
+              <select id="artist-day-filter" onchange="filterArtistDay(this.value)" class="form-control" style="width:auto; padding:6px 10px; font-size:0.82rem; background:rgba(0,0,0,0.25);">
+                <option value="ALL">Tüm Günler (33)</option>
+                <option value="day_1">6 Ekim (1. Gün - Açılış)</option>
+                <option value="day_2">7 Ekim (2. Gün - Gençlik)</option>
+                <option value="day_3">8 Ekim (3. Gün - Kapanış Galası)</option>
+                <option value="all_days">6-7-8 Ekim (Tüm Günler)</option>
+              </select>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; font-size:0.82rem; color:var(--text-muted);">
+              <span>Durum:</span>
+              <select id="artist-status-filter" onchange="filterArtistStatus(this.value)" class="form-control" style="width:auto; padding:6px 10px; font-size:0.82rem; background:rgba(0,0,0,0.25);">
+                <option value="ALL">Tüm Durumlar</option>
+                <option value="approved">✅ Kesinleşti / Sahne Onaylandı</option>
+                <option value="in_progress">💬 Görüşülüyor / Teklifte</option>
+                <option value="pending">⏳ İletişime Geçilecek</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORY CHIPS -->
+        <div class="filters-group" style="margin:0; overflow-x:auto;">
+          <button class="filter-chip active" onclick="filterArtistCategory('ALL', this)">🎭 Tümü (<span id="artist-chip-all-count">33</span>)</button>
+          <button class="filter-chip" onclick="filterArtistCategory('headliner_band', this)">🎸 Headliner & Canlı Grup (14)</button>
+          <button class="filter-chip" onclick="filterArtistCategory('dj_electronic', this)">🎧 DJ & Elektronik (8)</button>
+          <button class="filter-chip" onclick="filterArtistCategory('mc_hype', this)">🎤 MC & Sahne Hype (3)</button>
+          <button class="filter-chip" onclick="filterArtistCategory('host_moderator', this)">🎙️ Sunucu & Moderatör (4)</button>
+          <button class="filter-chip" onclick="filterArtistCategory('campus_talent', this)">🎓 Kampüs Toplulukları (4)</button>
+        </div>
+      </div>
+
+      <!-- ARTISTS GRID -->
+      <div id="artists-container" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(360px, 1fr)); gap:20px;">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
 
   </div>
 
@@ -2242,6 +2519,161 @@
           <button type="submit" class="btn-primary" id="btn-save-partner">Kaydet & Sisteme İşle</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  
+  <!-- ADD / EDIT ARTIST MODAL (BERKE / ADMIN ONLY) -->
+  <div class="modal-overlay" id="artist-modal">
+    <div class="modal" style="max-width:620px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 id="artist-modal-title" style="margin:0; font-size:1.15rem;">🎭 Yeni Sanatçı / Performans Ekle</h3>
+        <button type="button" onclick="closeArtistModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+      <form id="artist-form" onsubmit="handleSaveArtist(event)">
+        <input type="hidden" id="na-id" value="">
+        
+        <div style="display:grid; grid-template-columns: 1.2fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Sanatçı / Grup Adı *</label>
+            <input type="text" id="na-name" class="form-control" required placeholder="Örn: Madrigal, DJ Mahmut Orhan...">
+          </div>
+          <div class="form-group">
+            <label>Müzik Tarzı / Alanı</label>
+            <input type="text" id="na-genre" class="form-control" placeholder="Örn: Indie Rock, Deep House, Hip-Hop...">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Kategori *</label>
+            <select id="na-category" class="form-control" required>
+              <option value="headliner_band">🎸 Ana Sahne & Canlı Grup</option>
+              <option value="dj_electronic">🎧 DJ & Elektronik Performans</option>
+              <option value="mc_hype">🎤 MC & Sahne Hype Şov</option>
+              <option value="host_moderator">🎙️ Sunucu & Sahne Moderatörü</option>
+              <option value="campus_talent">🎓 Kampüs & Konservatuvar Topluluğu</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Öngörülen Sahne Günü *</label>
+            <select id="na-day-key" class="form-control" required>
+              <option value="day_1">🗓️ 6 Ekim (1. Gün - Açılış)</option>
+              <option value="day_2">🗓️ 7 Ekim (2. Gün - Gençlik)</option>
+              <option value="day_3">🗓️ 8 Ekim (3. Gün - Kapanış Galası)</option>
+              <option value="all_days">🗓️ 6-7-8 Ekim (Tüm Günler)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Görüşme Durumu</label>
+            <select id="na-status" class="form-control">
+              <option value="pending">⏳ İletişime Geçilecek</option>
+              <option value="in_progress">💬 Görüşülüyor / Teklifte</option>
+              <option value="approved">✅ Kesinleşti / Sahne Onaylandı</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Sahne Saati Aralığı</label>
+            <input type="text" id="na-stage-time" class="form-control" placeholder="Örn: 21:00 - 22:30">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Tahmini Kaşe / Bütçe</label>
+            <input type="text" id="na-budget" class="form-control" placeholder="Örn: 200.000 - 300.000 ₺">
+          </div>
+          <div class="form-group">
+            <label>Bağlı Menajerlik / Ajans</label>
+            <input type="text" id="na-agency" class="form-control" placeholder="Örn: BKM, Hypers Music, Bağımsız...">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label>Menajer / Yetkili Adı</label>
+            <input type="text" id="na-contact" class="form-control" placeholder="Örn: Ahmet Bey (Menajer)">
+          </div>
+          <div class="form-group">
+            <label>İletişim Telefonu</label>
+            <input type="text" id="na-phone" class="form-control" placeholder="0532 xxx xx xx">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Menajerlik E-postası *</label>
+          <input type="email" id="na-email" class="form-control" required placeholder="menajerlik@sanatci.com">
+        </div>
+
+        <div class="form-group">
+          <label>Sahne & Backline / Teknik Rider İhtiyaçları</label>
+          <input type="text" id="na-needs" class="form-control" placeholder="Örn: Canlı davul mikrofonlama, 2x DJ Pioneer CDJ-3000...">
+        </div>
+
+        <div class="form-group">
+          <label>Kulis & Ağırlama (Hospitality Rider)</label>
+          <input type="text" id="na-hospitality" class="form-control" placeholder="Örn: 8 kişilik kulis ikramı, 2 VIP araç transferi...">
+        </div>
+
+        <div class="form-group">
+          <label>Festival Uyumu & Analiz Notları</label>
+          <textarea id="na-notes" class="form-control" rows="2" placeholder="Örn: Öğrenci anketlerinde ilk 3'te yer alıyor, genç kitleyi çok iyi yakalar..."></textarea>
+        </div>
+
+        <div class="form-group" style="background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:8px; border:1px solid var(--surface-border);">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; margin:0; font-weight:700;">
+            <input type="checkbox" id="na-mail-sent" style="width:16px; height:16px; accent-color:#8B5CF6;">
+            <span style="font-size:0.88rem; color:#FAF9F6;">📨 Bu sanatçı/menajerliğe sahne davet e-postası iletildi olarak işaretle</span>
+          </label>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:16px;">
+          <button type="button" class="btn-secondary" onclick="closeArtistModal()">İptal</button>
+          <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9);">Kaydet & Sisteme İşle</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ARTIST INVITATION LETTER MODAL -->
+  <div class="modal-overlay" id="artist-invitation-modal">
+    <div class="modal" style="max-width:680px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="display:flex; align-items:center; gap:8px; margin:0; font-size:1.15rem;">
+          <span>🎭</span> <span id="a-invite-title">Resmi Sahne & Konser Davet Mektubu</span>
+        </h3>
+        <button type="button" onclick="closeArtistInvitationModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;">✕</button>
+      </div>
+
+      <div style="font-size:0.83rem; color:var(--text-muted); margin-bottom:12px;">
+        Aşağıdaki davet mektubu ilgili sanatçı, grup veya DJ'e özel olarak sahne günü, saat ve teknik detaylarla otomatik düzenlenmiştir. Tek tıkla tarayıcınızdaki aktif e-posta servisinde açabilir veya metni kopyalayabilirsiniz.
+      </div>
+
+      <div class="form-group">
+        <label style="font-size:0.8rem; color:var(--text-muted);">E-posta Konusu:</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="a-invite-subject" class="form-control" style="font-size:0.85rem;" readonly>
+          <button type="button" class="btn-secondary" onclick="copyArtistSubjectText()" style="white-space:nowrap; padding:6px 12px; font-size:0.8rem;">📋 Kopyala</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label style="font-size:0.8rem; color:var(--text-muted);">Mektup / Teklif İçeriği:</label>
+        <textarea id="a-invite-body" class="form-control" rows="11" style="font-size:0.82rem; line-height:1.45; font-family:monospace;"></textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-top:16px;">
+        <span id="a-copy-status-text" style="font-size:0.82rem; color:#4ade80; display:none;">✓ Metin panoya kopyalandı!</span>
+        <div style="display:flex; gap:10px; margin-left:auto;">
+          <button type="button" class="btn-secondary" onclick="copyArtistInvitationText()">📋 Metni Kopyala</button>
+          <button type="button" class="btn-primary" id="a-invite-mailto-btn" onclick="sendArtistEmailFromModal()" style="background:linear-gradient(135deg, #8B5CF6, #6D28D9); border:none;">
+            🚀 Tarayıcıda Aç & Gönder ➔
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -3422,6 +3854,735 @@
     "notes": "Festival oyunları için ödül ve 500 adet festival tişörtü baskısı bütçesi sağlayabilirler."
   }
 ]
+,
+  "artists": [
+  {
+    "id": "art_1",
+    "name": "Dedublüman",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Alternatif Rock & Akustik Klarnet",
+    "proposed_day": "6 Ekim (1. Gün - Açılış Konseri)",
+    "proposed_day_key": "day_1",
+    "status": "in_progress",
+    "contact_name": "Mustafa Bey (Menajerlik)",
+    "agency": "BKM & Bağımsız Menajerlik",
+    "email": "menajerlik@dedubluman.com",
+    "phone": "0532 500 12 34",
+    "estimated_budget": "300.000 - 400.000 ₺",
+    "stage_time": "21:15 - 23:00",
+    "stage_needs": "Tam Canlı Backline (Davul, Bas, Elektro Gitar, Klarnet mikrofonlama, 4x Sahne Monitörü & In-Ear)",
+    "hospitality_rider": "12 kişilik kulis ikramı, 2 VIP araç transferi, sahne arkası çay/kahve ve atıştırmalık",
+    "notes": "Öğrenci anketlerinde açık ara en çok istenen grup. 'Gamzedeyim Deva Bulmam' ve 'Belki' ile festival açılış gecesinde devasa kitle toplar.",
+    "mail_sent": true,
+    "mail_sent_by": "Berke Saygılı",
+    "mail_sent_at": "26.09.2026 14:30"
+  },
+  {
+    "id": "art_2",
+    "name": "Madrigal",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Indie Pop & Alternatif Rock",
+    "proposed_day": "7 Ekim (2. Gün - Gençlik Konseri)",
+    "proposed_day_key": "day_2",
+    "status": "in_progress",
+    "contact_name": "Kaan Alıcı (Menajer)",
+    "agency": "OnAir Medya & Menajerlik",
+    "email": "madrigal.official@gmail.com",
+    "phone": "0533 620 45 78",
+    "estimated_budget": "350.000 - 450.000 ₺",
+    "stage_time": "21:30 - 23:15",
+    "stage_needs": "Geniş Sahne, LED Ekran Görselleri, Synth ve Akustik/Elektro Davul Seti Girişleri, 5x In-Ear",
+    "hospitality_rider": "10 kişilik kulis ikramı, festival alanı güvenlik eşliği, 2 binek transfer aracı",
+    "notes": "'Seni Dert Etmeler' ve 'Dip' şarkıları tüm üniversite gençliğinin marşı. 7 Ekim Çarşamba akşamı için ideal.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_3",
+    "name": "Dolu Kadehi Ters Tut (DKTT)",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Bağımsız Rock & Sahne Performansı",
+    "proposed_day": "8 Ekim (3. Gün - Kapanış Galası)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Can Ozan / İpek Hanım (Tur Menajeri)",
+    "agency": "DKTT Independent Management",
+    "email": "booking@dolukadehiterstut.com",
+    "phone": "0542 310 88 90",
+    "estimated_budget": "400.000 - 550.000 ₺",
+    "stage_time": "21:30 - 23:30",
+    "stage_needs": "Yüksek Enerjili Işık Şovu (Moving Heads, Haze sis makinesi), Tam Canlı Orkestra Setupı, Profesyonel Ses Mühendisi",
+    "hospitality_rider": "14 kişilik kulis, sıcak/soğuk yemek servisi, vegan menü seçenekleri, geniş kulis çadırı",
+    "notes": "Festival kapanış gecesini unutulmaz kılacak enerji. Sahne etkileşimi ve kitle coşkusu en yüksek bağımsız grup.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_4",
+    "name": "Yaşlı Amca",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Alternatif Rock & Garage",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "in_progress",
+    "contact_name": "Artun Ertürk (Menajerlik)",
+    "agency": "DMC & Ada Müzik İletişim",
+    "email": "iletisim@yasliamca.com",
+    "phone": "0535 770 19 23",
+    "estimated_budget": "200.000 - 280.000 ₺",
+    "stage_time": "19:45 - 21:00",
+    "stage_needs": "Gitar Amfileri (Fender/Marshall), Davul Seti (Yamaha/Pearl), 4 Vokal Mikrofonu (Shure SM58)",
+    "hospitality_rider": "8 kişilik kulis alanı, meşrubat & enerji içeceği desteği, meyve sepeti",
+    "notes": "'Yakamoz Güzeli' ve 'Giderdi Hoşuma' ile sahnede tam bir gençlik rock fırtınası estiriyorlar. Dedublüman öncesi süper coşku yaratır.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_5",
+    "name": "Mavi Gri",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Pop-Rock & Romantik Alternatif",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Akif Alkan (Menajer)",
+    "agency": "Avrupa Müzik & Menajerlik",
+    "email": "mavigri.official@gmail.com",
+    "phone": "0536 980 44 11",
+    "estimated_budget": "180.000 - 260.000 ₺",
+    "stage_time": "19:45 - 21:15",
+    "stage_needs": "Klavye/Synth standı, akustik ve elektro gitar D.I. Box bağlantıları, kablosuz vokal mikrofonu",
+    "hospitality_rider": "8 kişilik kulis alanı, sandviç ve sıcak içecek servisi",
+    "notes": "'Altüst Olmuşum' ve 'Dünyanın En Güzel Kızı' ile üniversite kampüslerinde koro gibi söyletiyorlar.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_6",
+    "name": "Fatma Turgut",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Türkçe Rock & Pop-Rock",
+    "proposed_day": "8 Ekim (3. Gün)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Zuhal Koç (Kişisel Menajer)",
+    "agency": "FT Production & Koç Menajerlik",
+    "email": "zuhalkoc@gmail.com",
+    "phone": "0532 214 77 65",
+    "estimated_budget": "350.000 - 450.000 ₺",
+    "stage_time": "20:00 - 21:30",
+    "stage_needs": "Güçlü Sahne PA Sistemi, Profesyonel Kablosuz Mikrofon (Sennheiser/Shure KSM9), Özel Işık Tasarımı",
+    "hospitality_rider": "12 kişilik kulis, ayna & soyunma alanı, VIP araç karşılama",
+    "notes": "Eski Model şarkıları ve solo hitleri ile 7'den 70'e herkesi zıplatacak festival karizması.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_7",
+    "name": "Emir Can İğrek",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Pop, Akustik & Şehir Şarkıları",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Tolga Akış / Menajerlik Ekibi",
+    "agency": "Hypers Music & Management",
+    "email": "booking@hypers.co",
+    "phone": "0212 280 50 60",
+    "estimated_budget": "450.000 - 600.000 ₺",
+    "stage_time": "21:30 - 23:15",
+    "stage_needs": "Dev LED Ekran, Özel Video Görselleri, Akustik Gitar Line-Out, Tam Canlı Sahne Orkestrası",
+    "hospitality_rider": "15 kişilik kulis ekibi, otel konaklama ve saha içi güvenlik koridoru",
+    "notes": "'Ali Cabbar', 'Kor', 'Nalan', 'Beyaz Skandalım' ile festival alanını dolduracak en büyük gençlik yıldızlarından biri.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_8",
+    "name": "Pinhani",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Nostaljik & Modern Türkçe Rock",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "pending",
+    "contact_name": "Sinan Kaynakçı (Grup İletişim)",
+    "agency": "Pinhani Bağımsız Prodüksiyon",
+    "email": "iletisim@pinhani.com",
+    "phone": "0533 480 33 22",
+    "estimated_budget": "350.000 - 450.000 ₺",
+    "stage_time": "21:00 - 23:00",
+    "stage_needs": "Nefesli Enstrüman Mikrofonları, Akustik Piyano/Klavye, Canlı Davul & Bas Seti",
+    "hospitality_rider": "10 kişilik mütevazı kulis alanı, sıcak bitki çayları, sağlıklı atıştırmalıklar",
+    "notes": "'Dünyadan Uzak', 'Beni Sen İnandır', 'Kavak Yelleri'... Kampüste herkesin hep bir ağızdan söyleyeceği birleşme konseri.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_9",
+    "name": "KÖFN",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Synth-Pop & Elektronik Dans",
+    "proposed_day": "8 Ekim (3. Gün)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Salman Tin / Menajerlik",
+    "agency": "Hypers Music",
+    "email": "booking@hypers.co",
+    "phone": "0212 280 50 61",
+    "estimated_budget": "300.000 - 400.000 ₺",
+    "stage_time": "20:00 - 21:15",
+    "stage_needs": "Elektronik Padler, Synthesizer Setupı, Hareketli LED Görselleri, Sis ve Lazer Efektleri",
+    "hospitality_rider": "8 kişilik kulis alanı, meşrubat ve enerji içecekleri",
+    "notes": "'Bi Tek Ben Anlarım' ve 'Al Aramızdan' şarkılarıyla festival final gecesi enerjisini zirveye taşır.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_10",
+    "name": "Can Bonomo",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Balkan Rock, Alaturka & Enerjik Pop",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Ece Çelebi (Menajer)",
+    "agency": "Sun Menajerlik & Prodüksiyon",
+    "email": "info@canbonomo.com",
+    "phone": "0532 670 90 12",
+    "estimated_budget": "350.000 - 450.000 ₺",
+    "stage_time": "21:30 - 23:00",
+    "stage_needs": "Geniş Sahne Alanı (Sürekli Dans ve Zıplama), Kablosuz Mikrofon, Trompet/Saksafon Mikrofonlaması, Dinamik Sahne Işıkları",
+    "hospitality_rider": "12 kişilik kulis, özel catering, enerji içeceği desteği",
+    "notes": "Türkiye'de festival sahnesi en canlı, en hareketli sanatçılardan biri. Trakya'nın enerjisiyle birebir örtüşüyor.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_11",
+    "name": "Canozan",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Indie Folk & Akustik Pop",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "in_progress",
+    "contact_name": "Ozan Bey (İletişim)",
+    "agency": "Bağımsız Menajerlik",
+    "email": "canozan.info@gmail.com",
+    "phone": "0544 550 12 89",
+    "estimated_budget": "150.000 - 220.000 ₺",
+    "stage_time": "18:30 - 19:45",
+    "stage_needs": "Akustik Gitar Line-Out, Klavye, Sahne Monitörü, Sıcak Sahne Aydınlatması",
+    "hospitality_rider": "6 kişilik kulis alanı, hafif atıştırmalıklar",
+    "notes": "'Toprak Yağmura', 'Ön Koltuk', 'Ağlama Ben Ağlarım' ile gün batımında festival alanında büyüleyici bir chill atmosfer kurar.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_12",
+    "name": "Soft Analog",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Synthwave, Indie Pop & Retro Disco",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "pending",
+    "contact_name": "İdil & Ömer (Grup Temsilcisi)",
+    "agency": "BBI Music Co.",
+    "email": "info@softanalog.com",
+    "phone": "0537 410 77 33",
+    "estimated_budget": "120.000 - 180.000 ₺",
+    "stage_time": "17:30 - 18:30",
+    "stage_needs": "Synthesizer & Sequencer bağlantıları, bas gitar, elektronik davul tetikleyicileri, retro disko ışıklandırma",
+    "hospitality_rider": "6 kişilik kulis, atıştırmalık & meşrubat",
+    "notes": "Gençlerin son dönemde çok sevdiği modern disko-synth ekibi. Açılış gününde stant alanını dans ettirir.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_13",
+    "name": "Yüksek Sadakat",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Klasik Türkçe Rock",
+    "proposed_day": "8 Ekim (3. Gün)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Kutlu Özmakinacı",
+    "agency": "DMC & Menajerlik",
+    "email": "info@yukseksadakat.com",
+    "phone": "0532 312 40 50",
+    "estimated_budget": "250.000 - 350.000 ₺",
+    "stage_time": "20:00 - 21:30",
+    "stage_needs": "Tam Canlı Rock Backline (Amfiler, Davul, 5x Monitör)",
+    "hospitality_rider": "10 kişilik kulis alanı, akşam yemeği servisi",
+    "notes": "'Belki Üstümüzden Bir Kuş Geçer', 'Döneceksin Diye Söz Ver'. Üniversitelilerin ezbere bildiği rock marşları.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_14",
+    "name": "Suzan Kardeş & Balkan Orkestrası",
+    "category": "headliner_band",
+    "category_title": "🎸 Ana Sahne & Canlı Grup",
+    "genre": "Balkan, Rumeli & Trakya Coşkusu",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Suzan Hanım Menajerlik",
+    "agency": "Suzan Kardeş Prodüksiyon",
+    "email": "iletisim@suzankardes.com",
+    "phone": "0532 444 88 00",
+    "estimated_budget": "220.000 - 300.000 ₺",
+    "stage_time": "18:00 - 19:30",
+    "stage_needs": "Trompet, Klarnet, Akordeon, Davul ve Darbuka mikrofonlamaları, 10 kanal sahne girişi",
+    "hospitality_rider": "14 kişilik orkestra kulisi, geleneksel ikramlar, su ve meşrubat",
+    "notes": "Tekirdağ ve Trakya ruhunu üniversiteyle buluşturacak en eğlenceli proje. Halaylar, balkan ritimleri ve tam bir panayır havası.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_15",
+    "name": "Deeperise",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Deep House, Melodic & Festival Hits",
+    "proposed_day": "6 Ekim (1. Gün - Gece Kapanışı)",
+    "proposed_day_key": "day_1",
+    "status": "in_progress",
+    "contact_name": "Mesut Uğurlu (Menajer)",
+    "agency": "Universal Music Turkey & Deeperise Prod.",
+    "email": "booking@deeperiseproduction.com",
+    "phone": "0533 550 67 89",
+    "estimated_budget": "120.000 - 180.000 ₺",
+    "stage_time": "23:00 - 00:30",
+    "stage_needs": "2x Pioneer CDJ-3000, 1x Pioneer DJM-900NXS2 Mixer, Güçlü DJ Monitörü, Sahne CO2 & Sis Efekti",
+    "hospitality_rider": "4 kişilik kulis, Red Bull & atıştırmalıklar, VIP transfer",
+    "notes": "'Raf', 'Move On', 'Gecmiş Değişmez'. Festivalin ilk gün kapanışını tam bir açık hava kulübüne dönüştürür.",
+    "mail_sent": true,
+    "mail_sent_by": "Efe Kağan Yağcı",
+    "mail_sent_at": "26.09.2026 15:10"
+  },
+  {
+    "id": "art_16",
+    "name": "Mahmut Orhan",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Deep House, Indie Dance & Global Hits",
+    "proposed_day": "8 Ekim (3. Gün - Büyük After Party)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Batu Ertürk (Global Booking)",
+    "agency": "Ultra Records & Sibourne Music",
+    "email": "booking@mahmutorhan.com",
+    "phone": "0532 777 99 00",
+    "estimated_budget": "600.000 - 850.000 ₺ (Sponsor Desteği Gerektirir)",
+    "stage_time": "23:30 - 01:00",
+    "stage_needs": "Festival Ana Ses Sistemi (L-Acoustics/d&b), Yüksek Çözünürlüklü LED Duvar, Lazer ve Işık Senkronizasyonu, Özel DJ Masası",
+    "hospitality_rider": "6 kişilik VIP kulis, havalimanı/otel VIP araç, profesyonel ses mühendisi",
+    "notes": "Dünya çapında headliner. Eğer Red Bull veya büyük kurumsal sponsorlar bütçeye katkı sağlarsa Trakya tarihinin en büyük festival konseri olur.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_17",
+    "name": "Arem Özgüç & Arman Aydın",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Festival Trap, EDM & Hype Remixes",
+    "proposed_day": "7 Ekim (2. Gün - Gece Kapanışı)",
+    "proposed_day_key": "day_2",
+    "status": "in_progress",
+    "contact_name": "Arem & Arman Menajerlik",
+    "agency": "Warner Music Turkey",
+    "email": "booking@aremarman.com",
+    "phone": "0535 910 22 45",
+    "estimated_budget": "150.000 - 220.000 ₺",
+    "stage_time": "23:15 - 00:45",
+    "stage_needs": "Pioneer NXS2 DJ Seti, Bas Kabinleri (Subwoofer gücü kritik), Sahne Ateş & CO2 makineleri, 2x Kablosuz Mikrofon (Hype)",
+    "hospitality_rider": "6 kişilik kulis, bol enerji içeceği ve spor içecekleri, transfer",
+    "notes": "'Rampapapam', 'Damlaya Damlaya'. Üniversitelileri zıplatma konusunda Türkiye'deki 1 numaralı ikili.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_18",
+    "name": "Doğuş Çabakçor",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Commercial House & Pop Mashup",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "pending",
+    "contact_name": "Çabakçor Media Booking",
+    "agency": "Cabakcor Media",
+    "email": "booking@cabakcor.com",
+    "phone": "0533 400 90 80",
+    "estimated_budget": "100.000 - 160.000 ₺",
+    "stage_time": "16:30 - 18:00",
+    "stage_needs": "Pioneer DJ Setup, Monitör Hoparlör, Mikrofon",
+    "hospitality_rider": "4 kişilik kulis, atıştırmalıklar",
+    "notes": "Özellikle üniversite gençliği ve sosyal medya kitlesi çok yüksek. Gündüzden akşama geçişte alanı çok iyi ısıtır.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_19",
+    "name": "DJ Burak Yeter",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Electro Pop & Uluslararası Hit Parçalar",
+    "proposed_day": "8 Ekim (3. Gün)",
+    "proposed_day_key": "day_3",
+    "status": "pending",
+    "contact_name": "Connection Records Booking",
+    "agency": "Spinnin' Records & Connection",
+    "email": "booking@burakyeter.com",
+    "phone": "0532 890 12 34",
+    "estimated_budget": "250.000 - 350.000 ₺",
+    "stage_time": "22:30 - 00:00",
+    "stage_needs": "Pioneer CDJ-3000, Yüksek Bass Gücü, Işık Senkronizasyonu",
+    "hospitality_rider": "5 kişilik kulis, VIP araç",
+    "notes": "'Tuesday' parçasıyla küresel tanınırlığı olan dev isim.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_20",
+    "name": "DJ Ece Toprak",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "90'lar & 2000'ler Türkçe Pop Festival Seti",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "approved",
+    "contact_name": "Ece Hanım (Direkt)",
+    "agency": "Bağımsız",
+    "email": "booking@ecetoprak.com",
+    "phone": "0545 330 67 12",
+    "estimated_budget": "40.000 - 65.000 ₺",
+    "stage_time": "17:30 - 19:30",
+    "stage_needs": "Pioneer XDJ-XZ veya CDJ-2000 Nexus Seti, 1x Telsiz Mikrofon",
+    "hospitality_rider": "3 kişilik kulis, çay/kahve, su ve sandviç",
+    "notes": "Öğrenci kulüplerinin 90'lar partilerinde en çok eğlendiği DJ. Kesinleştirildi, bütçesi çok uygun ve kalabalığı şarkılara eşlik ettiriyor.",
+    "mail_sent": true,
+    "mail_sent_by": "Berke Saygılı",
+    "mail_sent_at": "25.09.2026 18:00"
+  },
+  {
+    "id": "art_21",
+    "name": "DJ Hakan Akkuş",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "Melodic House & Sunset Vibes",
+    "proposed_day": "6 Ekim (1. Gün)",
+    "proposed_day_key": "day_1",
+    "status": "pending",
+    "contact_name": "Hakan Akkuş Management",
+    "agency": "Ghetto Records",
+    "email": "booking@hakanakkus.com",
+    "phone": "0538 290 88 11",
+    "estimated_budget": "50.000 - 80.000 ₺",
+    "stage_time": "16:00 - 17:30",
+    "stage_needs": "Pioneer DJ Setup, Monitör",
+    "hospitality_rider": "3 kişilik kulis alanı",
+    "notes": "'I Can't Be' parçası milyonlar dinlenen yerli prodüktör. İlk gün stantlar gezerken dinletilecek nefis bir gün batımı müziği.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_22",
+    "name": "DJ Yiğit Özdemir (Gençlik & Kampüs DJ'i)",
+    "category": "dj_electronic",
+    "category_title": "🎧 DJ & Elektronik Performans",
+    "genre": "TikTok Viral, Türkçe Hip-Hop & Bass House",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "approved",
+    "contact_name": "Yiğit Özdemir",
+    "agency": "Üniversite Turneleri DJ'i",
+    "email": "yigitozdemir.dj@gmail.com",
+    "phone": "0539 612 80 44",
+    "estimated_budget": "30.000 - 45.000 ₺",
+    "stage_time": "15:00 - 17:00",
+    "stage_needs": "Standart Pioneer DJ Controller veya CDJ, 1 Mikrofon",
+    "hospitality_rider": "Sıcak/soğuk içecekler, kulis alanı",
+    "notes": "Öğrenci dilini çok iyi biliyor. Turnuvalar ve oyunlar sürerken alanı canlı tutacak tempo DJ'i.",
+    "mail_sent": true,
+    "mail_sent_by": "Mecit Çalık",
+    "mail_sent_at": "26.09.2026 11:20"
+  },
+  {
+    "id": "art_23",
+    "name": "MC Kaan (Festival Hype Master)",
+    "category": "mc_hype",
+    "category_title": "🎤 MC & Sahne Hype Şov",
+    "genre": "Açık Hava Festival Sunumu, Kalabalık Yönetimi & Sahne Şovları",
+    "proposed_day": "6-7-8 Ekim (3 Gün Kesintisiz Sahne)",
+    "proposed_day_key": "all_days",
+    "status": "in_progress",
+    "contact_name": "Kaan Yıldız (MC Kaan)",
+    "agency": "Hype Event Management",
+    "email": "mckaan.official@gmail.com",
+    "phone": "0535 440 22 19",
+    "estimated_budget": "50.000 - 75.000 ₺ (3 Gün Paket)",
+    "stage_time": "Tüm Günler (Sahne Araları & Yarışmalar)",
+    "stage_needs": "2x Kablosuz Telsiz Mikrofon (Yüksek Menzilli), Sahneye Çıkış Rahatlığı, DJ ile Doğrudan İletişim Hattı",
+    "hospitality_rider": "Festival ekibiyle ortak yemek ve su temini, dinlenme çadırı",
+    "notes": "Konserler ve DJ setleri arasındaki boşluklarda sahnede yarışmalar düzenler, armut minder çekilişlerini anons eder, kalabalığı zıplatır.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_24",
+    "name": "MC Burak (Red Bull & Extreme Fest MC)",
+    "category": "mc_hype",
+    "category_title": "🎤 MC & Sahne Hype Şov",
+    "genre": "Gençlik & Spor Festivalleri Enerji Sunumu",
+    "proposed_day": "7-8 Ekim (2. ve 3. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Burak Can",
+    "agency": "Extreme Spor Festivalleri Koordinasyonu",
+    "email": "mcburak.hype@gmail.com",
+    "phone": "0541 220 89 77",
+    "estimated_budget": "35.000 - 50.000 ₺",
+    "stage_time": "Saha Oyunları & Konser Araları",
+    "stage_needs": "Telsiz Mikrofon, Yaka Mikrofonu Seçeneği",
+    "hospitality_rider": "Kulis ikramı, festival tişörtü",
+    "notes": "Beer-pong, jenga ve bilek güreşi turnuvalarının finallerini spiker gibi anlatarak devasa seyirci toplar.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_25",
+    "name": "Trakya Hip-Hop & Freestyle Kapışma Ekibi",
+    "category": "mc_hype",
+    "category_title": "🎤 MC & Sahne Hype Şov",
+    "genre": "Freestyle Rap & Beatbox Battle",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "approved",
+    "contact_name": "Semih (Beatbox Sorumlusu)",
+    "agency": "NKÜ Öğrenci İnisiyatifi",
+    "email": "nkuhiphop@gmail.com",
+    "phone": "0554 987 11 23",
+    "estimated_budget": "10.000 - 15.000 ₺ (Sembolik Ekip Desteği / Plaket)",
+    "stage_time": "17:00 - 18:00",
+    "stage_needs": "4x Kablolu Dinamik Mikrofon (Beatbox için Shure SM58), Bas Hoparlör Desteği",
+    "hospitality_rider": "Öğrenci kulis alanı, festival yemek fişleri",
+    "notes": "Öğrencilerin bizzat sahneye çıkıp rap ve beatbox yeteneklerini sergileyeceği 1 saatlik aşırı eğlenceli yarışma alanı.",
+    "mail_sent": true,
+    "mail_sent_by": "Mert Akmeşe",
+    "mail_sent_at": "26.09.2026 12:40"
+  },
+  {
+    "id": "art_26",
+    "name": "Ceyhun Yılmaz",
+    "category": "host_moderator",
+    "category_title": "🎙️ Sunucu & Sahne Moderatörü",
+    "genre": "Radyo Şovmeni, Stand-up & Festival Açılış Moderatörü",
+    "proposed_day": "6 Ekim (1. Gün - Resmi Açılış & Gala)",
+    "proposed_day_key": "day_1",
+    "status": "in_progress",
+    "contact_name": "Serkan Bey (Menajer)",
+    "agency": "Ceyhun Yılmaz Medya",
+    "email": "info@ceyhunyilmaz.com",
+    "phone": "0532 210 50 40",
+    "estimated_budget": "120.000 - 180.000 ₺",
+    "stage_time": "13:00 - 15:30 (Açılış Protokolü & Stand-up)",
+    "stage_needs": "Telsiz Mikrofon, Sahne Kürsüsü (Opsiyonel), Monitör Hoparlör",
+    "hospitality_rider": "VIP Kulis, 2 kişilik transfer aracı, otel konaklaması",
+    "notes": "Rektörlük ve protokol konuşmalarını gençlik festivaline uygun, esprili ve dinamik bir dile çevirebilecek Türkiye'deki en tecrübeli isim.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_27",
+    "name": "Geveze (Jozi Zalma)",
+    "category": "host_moderator",
+    "category_title": "🎙️ Sunucu & Sahne Moderatörü",
+    "genre": "Mizahi Sahne Sunumu & İnteraktif Öğrenci Söyleşisi",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "pending",
+    "contact_name": "Zalma Medya Booking",
+    "agency": "Power FM & Geveze Prodüksiyon",
+    "email": "booking@geveze.org",
+    "phone": "0533 340 77 88",
+    "estimated_budget": "100.000 - 150.000 ₺",
+    "stage_time": "14:00 - 16:00",
+    "stage_needs": "2x Telsiz Mikrofon, Sahne Bar Sandalyesi, Arka Fon Müziği",
+    "hospitality_rider": "VIP Kulis, özel transfer",
+    "notes": "Yıllarca üniversite festivallerinde efsane söyleşiler yaptı. Öğrencilerle interaktif skeçler ve yarışmalar sunar.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_28",
+    "name": "Doğancan Özadlı",
+    "category": "host_moderator",
+    "category_title": "🎙️ Sunucu & Sahne Moderatörü",
+    "genre": "Gençlik Radyo Sunucusu & İnteraktif Sahne Yarışmaları",
+    "proposed_day": "8 Ekim (3. Gün - Kapanış)",
+    "proposed_day_key": "day_3",
+    "status": "in_progress",
+    "contact_name": "Doğancan Özadlı (Direkt)",
+    "agency": "Süper FM Medya",
+    "email": "dogancan@superfm.com.tr",
+    "phone": "0542 810 99 22",
+    "estimated_budget": "60.000 - 90.000 ₺",
+    "stage_time": "16:00 - 18:30 (Ödül Töreni & Yarışmalar)",
+    "stage_needs": "Telsiz Mikrofon, Ses Efektleri Tetikleyicisi",
+    "hospitality_rider": "Kulis ikramı, transfer",
+    "notes": "Sponsor hediye çekilişleri, kulüp başkanları ödül töreni ve kapanış takdimleri için enerjisi harika.",
+    "mail_sent": false,
+    "mail_sent_by": "",
+    "mail_sent_at": ""
+  },
+  {
+    "id": "art_29",
+    "name": "NKÜ İletişim & Radyo Kulübü Sunucu Ekibi",
+    "category": "host_moderator",
+    "category_title": "🎙️ Sunucu & Sahne Moderatörü",
+    "genre": "Öğrenci Sunucular & Kulüp Tanıtım Moderatörleri",
+    "proposed_day": "6-7-8 Ekim (Gündüz Saatleri)",
+    "proposed_day_key": "all_days",
+    "status": "approved",
+    "contact_name": "Elifnur (Radyo Kulübü Başkanı)",
+    "agency": "Tekirdağ NKÜ Radyosu",
+    "email": "radyo.nku@gmail.com",
+    "phone": "0543 789 01 23",
+    "estimated_budget": "0 ₺ (Öğrenci Kulüp Desteği & Başarı Plaketi)",
+    "stage_time": "11:00 - 15:00 (Her Gün Gündüz Kuşağı)",
+    "stage_needs": "2x Telsiz Mikrofon, Sahne Akış Kağıtları, Kulaklık Monitörü",
+    "hospitality_rider": "Ekip yemek ve su desteği, koordinasyon tişörtü",
+    "notes": "Öğrenci topluluklarının stant tanıtımlarını sahneden tek tek röportaj yaparak duyuracak ana sunucu ekibi. Kesinleşti.",
+    "mail_sent": true,
+    "mail_sent_by": "Berke Saygılı",
+    "mail_sent_at": "24.09.2026 17:00"
+  },
+  {
+    "id": "art_30",
+    "name": "NKÜ Müzik Topluluğu Ana Grubu (Grup Kampüs)",
+    "category": "campus_talent",
+    "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
+    "genre": "Türkçe Rock & Pop-Rock Cover Ekibi",
+    "proposed_day": "6 Ekim (1. Gün - Açılış Ön Grubu)",
+    "proposed_day_key": "day_1",
+    "status": "approved",
+    "contact_name": "Berke / Müzik Topluluğu Temsilcisi",
+    "agency": "Tekirdağ NKÜ Müzik Kulübü",
+    "email": "set.nku@gmail.com",
+    "phone": "0534 666 13 17",
+    "estimated_budget": "0 ₺ (Topluluk Performansı / Sahne Desteği)",
+    "stage_time": "18:00 - 19:15",
+    "stage_needs": "Ana Sahne Canlı Setupı (Mevcut Backline)",
+    "hospitality_rider": "Öğrenci kulis çadırı, yemek ve içecek",
+    "notes": "Üniversitenin kendi müzik topluluğu öğrencileri. Dedublüman öncesinde harika bir coşku yaratacak repertuvara sahipler. Kesinleşti.",
+    "mail_sent": true,
+    "mail_sent_by": "Berke Saygılı",
+    "mail_sent_at": "24.09.2026 12:00"
+  },
+  {
+    "id": "art_31",
+    "name": "NKÜ Konservatuvar Oda Orkestrası",
+    "category": "campus_talent",
+    "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
+    "genre": "Klasik, Film Müzikleri & Senfonik Gençlik Düzenlemeleri",
+    "proposed_day": "6 Ekim (1. Gün - Resmi Açılış Töreni)",
+    "proposed_day_key": "day_1",
+    "status": "approved",
+    "contact_name": "Öğr. Gör. Arda Bey (Orkestra Şefi)",
+    "agency": "NKÜ Türk Müziği Devlet Konservatuvarı",
+    "email": "konservatuvar@nku.edu.tr",
+    "phone": "0282 250 20 00",
+    "estimated_budget": "0 ₺ (Üniversite İçi Resmi Görevlendirme)",
+    "stage_time": "12:00 - 13:00",
+    "stage_needs": "15x Sandalye, Nota Sehpaları, Kondenser Sahne Mikrofonları",
+    "hospitality_rider": "Protokol salonu kullanımı, çay/kahve servisi",
+    "notes": "Festivalin açılış seremonisinde İstiklal Marşı, gençlik marşları ve enstrümantal karşılama müziği sağlayacak prestij ekibi.",
+    "mail_sent": true,
+    "mail_sent_by": "Berke Saygılı",
+    "mail_sent_at": "23.09.2026 16:30"
+  },
+  {
+    "id": "art_32",
+    "name": "Grup Trakya Rock (NKÜ Rock Kulübü Grubu)",
+    "category": "campus_talent",
+    "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
+    "genre": "Hard Rock, Grunge & Anadolu Rock Coverları",
+    "proposed_day": "7 Ekim (2. Gün)",
+    "proposed_day_key": "day_2",
+    "status": "approved",
+    "contact_name": "Barış (Solist)",
+    "agency": "NKÜ Rock Topluluğu",
+    "email": "nku.rock@gmail.com",
+    "phone": "0538 412 99 77",
+    "estimated_budget": "0 ₺ (Kulüp Desteği / Plaket)",
+    "stage_time": "18:00 - 19:15",
+    "stage_needs": "Davul, 2 Gitar Amfisi, 1 Bas Amfisi, 2 Vokal Mikrofonu",
+    "hospitality_rider": "Öğrenci kulis alanı, atıştırmalıklar",
+    "notes": "Barış Manço, Erkin Koray, Duman ve Mor ve Ötesi coverları ile 2. gün akşamını fırtına gibi başlatacaklar.",
+    "mail_sent": true,
+    "mail_sent_by": "Efe Kağan Yağcı",
+    "mail_sent_at": "26.09.2026 14:00"
+  },
+  {
+    "id": "art_33",
+    "name": "Akustik Sokak Müzisyenleri Çim Alan Grubu",
+    "category": "campus_talent",
+    "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
+    "genre": "Akustik Gitar, Çello, Yan Flüt & Cajon (Chill Out)",
+    "proposed_day": "6-7-8 Ekim (Gün Boyu Chill Alanı)",
+    "proposed_day_key": "all_days",
+    "status": "approved",
+    "contact_name": "Damla & Kerem",
+    "agency": "Bağımsız Öğrenci Müzisyenler",
+    "email": "akustik.nku@gmail.com",
+    "phone": "0531 223 45 67",
+    "estimated_budget": "15.000 ₺ (3 Gün Harçlık & Akustik Ekipman)",
+    "stage_time": "13:00 - 17:00 (Armut & Varil Alanında Dinletiler)",
+    "stage_needs": "Küçük Seyyar Akülü Amfi, Halı, 4 Armut Minder",
+    "hospitality_rider": "Sürekli soğuk meşrubat ve sandviç",
+    "notes": "Ana sahneden bağımsız olarak festival çimlerinde, armut koltukların ortasında dinlenen öğrencilere akustik büyü yaşatacak sokak müzisyenleri.",
+    "mail_sent": true,
+    "mail_sent_by": "Ceren Çakmak",
+    "mail_sent_at": "25.09.2026 16:00"
+  }
+]
 };
   </script>
 <script>
@@ -3434,7 +4595,8 @@
       schedule: [],
       contacts: [],
       announcements: [],
-      partners: []
+      partners: [],
+      artists: []
     };
 
     let currentUser = null;
@@ -3480,6 +4642,9 @@
         }
         if (!appData.partners || !Array.isArray(appData.partners) || appData.partners.length === 0) {
           appData.partners = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.partners || []));
+        }
+        if (!appData.artists || !Array.isArray(appData.artists) || appData.artists.length < (EMBEDDED_DEFAULT_DATA.artists || []).length) {
+          appData.artists = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.artists || []));
         }
       }
 
@@ -3926,6 +5091,10 @@
       if (btnAddPartnerPortal) {
         btnAddPartnerPortal.style.display = isAdmin() ? 'inline-flex' : 'none';
       }
+      const btnAddArtistPortal = document.getElementById('btn-add-artist-portal');
+      if (btnAddArtistPortal) {
+        btnAddArtistPortal.style.display = isAdmin() ? 'inline-flex' : 'none';
+      }
       const btnAddCosmeticMain = document.getElementById('btn-add-cosmetic-main');
       if (btnAddCosmeticMain) {
         btnAddCosmeticMain.style.display = isAdmin() ? 'inline-flex' : 'none';
@@ -3963,6 +5132,7 @@
       renderContacts();
       renderAnnouncements();
       renderPartners();
+      renderArtists();
     }
 
     // STATS
@@ -3997,6 +5167,8 @@
       }
       const partBadge = document.getElementById('partners-count-badge');
       if (partBadge && appData.partners) partBadge.innerText = appData.partners.length;
+      const artBadge = document.getElementById('artists-count-badge');
+      if (artBadge && appData.artists) artBadge.innerText = appData.artists.length;
     }
 
     // TAB SWITCHER
@@ -4011,6 +5183,9 @@
 
       if (tabId === 'partners') {
         renderPartners();
+      }
+      if (tabId === 'artists') {
+        renderArtists();
       }
       if (tabId === 'inventory') {
         renderInventory();
@@ -6010,6 +7185,721 @@ Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
     }
 
     // INIT
+    
+    // ==========================================
+    // ARTISTS, STAGE & PERFORMANCE LOGIC (6-7-8 EKİM)
+    // ==========================================
+    let currentArtistCategory = 'ALL';
+    let currentArtistDay = 'ALL';
+    let currentArtistStatus = 'ALL';
+    let currentArtistMailSentFilter = 'ALL';
+    let currentArtistSearch = '';
+    let activeInvitationArtist = null;
+
+    function filterArtistCategory(cat, btn) {
+      currentArtistCategory = cat;
+      document.querySelectorAll('#pane-artists .filters-group .filter-chip').forEach(c => c.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderArtists();
+    }
+
+    function filterArtistDay(dayKey) {
+      currentArtistDay = dayKey;
+      renderArtists();
+    }
+
+    function filterArtistStatus(status) {
+      currentArtistStatus = status;
+      renderArtists();
+    }
+
+    function filterArtistMailSent(type, btn) {
+      currentArtistMailSentFilter = type;
+      document.querySelectorAll('.artist-mail-filter-chip').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderArtists();
+    }
+
+    function searchArtists(query) {
+      currentArtistSearch = (query || '').toLowerCase().trim();
+      renderArtists();
+    }
+
+    function getArtistCategoryBadge(cat) {
+      switch(cat) {
+        case 'headliner_band':
+          return '<span style="background:rgba(236,72,153,0.15); color:#f472b6; border:1px solid rgba(236,72,153,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎸 Canlı Grup & Headliner</span>';
+        case 'dj_electronic':
+          return '<span style="background:rgba(99,102,241,0.15); color:#818cf8; border:1px solid rgba(99,102,241,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎧 DJ & Elektronik</span>';
+        case 'mc_hype':
+          return '<span style="background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎤 MC & Sahne Hype</span>';
+        case 'host_moderator':
+          return '<span style="background:rgba(59,130,246,0.15); color:#60a5fa; border:1px solid rgba(59,130,246,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎙️ Sunucu & Moderatör</span>';
+        case 'campus_talent':
+          return '<span style="background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎓 Kampüs Topluluğu</span>';
+        default:
+          return '<span style="background:rgba(139,92,246,0.15); color:#c4b5fd; border:1px solid rgba(139,92,246,0.35); padding:3px 9px; border-radius:12px; font-size:0.75rem; font-weight:700;">🎭 Sahne Performansı</span>';
+      }
+    }
+
+    function getArtistDayBadge(dayKey, dayText) {
+      const text = dayText || (dayKey === 'day_1' ? '6 Ekim' : dayKey === 'day_2' ? '7 Ekim' : dayKey === 'day_3' ? '8 Ekim' : '6-8 Ekim');
+      const cls = dayKey === 'day_1' ? 'day-badge-day_1' : dayKey === 'day_2' ? 'day-badge-day_2' : dayKey === 'day_3' ? 'day-badge-day_3' : 'day-badge-all_days';
+      return `<span class="artist-day-badge ${cls}">🗓️ ${text}</span>`;
+    }
+
+    function getArtistStatusBadge(status) {
+      const s = (status || '').toLowerCase();
+      if (s === 'approved' || s.includes('kesin') || s.includes('onay')) {
+        return '<span class="artist-status-badge status-approved">✅ Sahne Kesinleşti</span>';
+      } else if (s === 'in_progress' || s.includes('görüş') || s.includes('teklif')) {
+        return '<span class="artist-status-badge status-in_progress">💬 Görüşülüyor</span>';
+      } else {
+        return '<span class="artist-status-badge status-pending">⏳ İletişime Geçilecek</span>';
+      }
+    }
+
+    function generateArtistMailBody(artist) {
+      const aName = artist ? artist.name : 'Değerli Sanatçı / Menajerlik Yetkilisi';
+      const agency = (artist && artist.agency) ? ` (${artist.agency})` : '';
+      const day = (artist && artist.proposed_day) ? artist.proposed_day : '6 - 7 - 8 Ekim 2026';
+      const role = (artist && artist.category_title) ? artist.category_title : 'Sahne Performansı';
+      const stageTime = (artist && artist.stage_time) ? artist.stage_time : 'Görüşmeye göre (Akşam Konser Kuşağı)';
+
+      return `Sayın ${aName} ve Menajerlik Ekibi${agency},
+
+Tekirdağ Namık Kemal Üniversitesi bünyesinde, 6 - 7 - 8 Ekim 2026 tarihlerinde NKÜ Değirmenaltı Yerleşkesi Spor Kompleksi Açık Festival Alanında gerçekleştireceğimiz "SET Kampüse Hoş Geldin Fest" (Üniversite Topluluk Tanıtım Günleri & Gençlik Festivali) kapsamında sizleri festival ana sahnemizde görmekten büyük onur duyarız.
+
+Festivalimiz; yaklaşık 25.000 üniversite öğrencisi, akademisyen ve gencin katılımıyla Trakya bölgesinin en dinamik üniversite gençlik buluşması niteliğindedir.
+
+Öğrenci anketlerimizde ve müzik topluluklarımız nezdinde yoğun ilgi ve talep gören ${aName} ekibini, festivalimizin planlanan sahne takviminde (${day}) ${role} kapsamında aramızda ağırlamak istemekteyiz.
+
+Performans Detayları ve Talep Özeti:
+- Öngörülen Sahne Günü: ${day}
+- Sahne Süresi / Saat Aralığı: ${stageTime}
+- Konum: NKÜ Spor Kompleksi Festival Alanı - Ana Sahne (Tekirdağ / Süleymanpaşa)
+- Teknik & Ses / Işık / LED Ekran: Profesyonel festival sahne prodüksiyonu ve teknik rider tam uyumlu olarak karşılanacaktır.
+- Ulaşım & Kulis İkramları: Ekibinize özel transfer ve kulis ikramı temin edilecektir.
+
+Bu doğrultuda, ${day} için sanatçımızın müsaitlik durumunu, kaşe teklifinizi ve teknik/kulis rider gereksinimlerinizi tarafımıza iletmenizi rica ederiz.
+
+Geri dönüşlerinizi heyecanla bekler, çalışmalarınızda başarılar dileriz.
+
+Saygılarımızla,
+Berke Saygılı
+SET Festival Koordinatörü & Başkan
+Tekirdağ Namık Kemal Üniversitesi Topluluklar Koordinasyonu
+İletişim: 0534 666 13 17 | set.nku@gmail.com`;
+    }
+
+    function renderArtists() {
+      const container = document.getElementById('artists-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const artists = appData.artists || [];
+
+      // Update counters
+      const totalCount = artists.length;
+      const sentCount = artists.filter(a => a.mail_sent).length;
+      const pendingCount = totalCount - sentCount;
+
+      const totalBadge = document.getElementById('artists-count-badge');
+      if (totalBadge) totalBadge.innerText = totalCount;
+      const chipAll = document.getElementById('artist-chip-all-count');
+      if (chipAll) chipAll.innerText = totalCount;
+      const statTotal = document.getElementById('artist-stat-total');
+      if (statTotal) statTotal.innerText = totalCount;
+
+      const headlinerCount = artists.filter(a => a.category === 'headliner_band').length;
+      const djCount = artists.filter(a => a.category === 'dj_electronic').length;
+      const mcCount = artists.filter(a => a.category === 'mc_hype').length;
+      const hostCount = artists.filter(a => a.category === 'host_moderator').length;
+      const campusCount = artists.filter(a => a.category === 'campus_talent').length;
+
+      const statHeadliner = document.getElementById('artist-stat-headliner');
+      if (statHeadliner) statHeadliner.innerText = `${headlinerCount} Grup`;
+      const statDj = document.getElementById('artist-stat-dj');
+      if (statDj) statDj.innerText = `${djCount} DJ`;
+      const statMc = document.getElementById('artist-stat-mc');
+      if (statMc) statMc.innerText = `${mcCount} MC`;
+      const statHost = document.getElementById('artist-stat-host');
+      if (statHost) statHost.innerText = `${hostCount} Sunucu`;
+      const statCampus = document.getElementById('artist-stat-campus');
+      if (statCampus) statCampus.innerText = `${campusCount} Ekip`;
+
+      const statSent = document.getElementById('artist-stat-sent');
+      if (statSent) statSent.innerText = `${sentCount} / ${totalCount}`;
+
+      const countInlineSent = document.getElementById('artist-count-sent-inline');
+      if (countInlineSent) countInlineSent.innerText = sentCount;
+      const countInlinePending = document.getElementById('artist-count-pending-inline');
+      if (countInlinePending) countInlinePending.innerText = pendingCount;
+      const countInlineTotal = document.getElementById('artist-count-total-inline');
+      if (countInlineTotal) countInlineTotal.innerText = totalCount;
+
+      const mailLabelArtists = document.getElementById('current-mail-service-label-artists');
+      if (mailLabelArtists) {
+        const s = getPreferredMailService();
+        mailLabelArtists.innerText = s === 'gmail' ? 'Gmail (Web)' : s === 'outlook' ? 'Outlook (Web)' : s === 'yandex' ? 'Yandex (Web)' : 'Sistem Uygulaması';
+      }
+
+      // Filter
+      let filtered = artists.filter(a => {
+        if (currentArtistMailSentFilter === 'SENT' && !a.mail_sent) return false;
+        if (currentArtistMailSentFilter === 'PENDING' && a.mail_sent) return false;
+
+        if (currentArtistCategory !== 'ALL' && a.category !== currentArtistCategory) return false;
+        
+        if (currentArtistDay !== 'ALL') {
+          if (currentArtistDay === 'all_days') {
+            if (a.proposed_day_key !== 'all_days') return false;
+          } else {
+            if (a.proposed_day_key !== currentArtistDay && a.proposed_day_key !== 'all_days') return false;
+          }
+        }
+
+        if (currentArtistStatus !== 'ALL') {
+          const s = (a.status || '').toLowerCase();
+          if (currentArtistStatus === 'approved' && !s.includes('approved') && !s.includes('onay') && !s.includes('kesin')) return false;
+          if (currentArtistStatus === 'in_progress' && !s.includes('in_progress') && !s.includes('görüş') && !s.includes('teklif')) return false;
+          if (currentArtistStatus === 'pending' && !s.includes('pending') && !s.includes('iletişim')) return false;
+        }
+
+        if (currentArtistSearch) {
+          const hay = `${a.name} ${a.genre || ''} ${a.agency || ''} ${a.contact_name || ''} ${a.email || ''} ${a.proposed_day || ''} ${a.estimated_budget || ''} ${a.notes || ''} ${a.stage_needs || ''}`.toLowerCase();
+          if (!hay.includes(currentArtistSearch)) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align:center; padding:50px 20px; color:var(--text-muted); background:var(--surface); border:1px dashed var(--surface-border); border-radius:var(--radius);">
+            <div style="font-size:2rem; margin-bottom:10px;">🔍</div>
+            <div style="font-weight:700; color:#FFF; margin-bottom:4px;">Eşleşen Sahne Adayı Bulunamadı</div>
+            <div style="font-size:0.85rem;">Filtreleri veya arama kriterinizi değiştirerek tekrar deneyebilirsiniz.</div>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(a => {
+        const isMailSent = !!a.mail_sent;
+        const isApproved = (a.status || '').toLowerCase().includes('approved') || (a.status || '').toLowerCase().includes('kesin');
+        const card = document.createElement('div');
+        card.className = `artist-card ${isApproved ? 'confirmed' : ''} ${isMailSent ? 'mail-sent' : ''}`;
+
+        const subjectEnc = encodeURIComponent(`SET Kampüse Hoş Geldin Fest (6-8 Ekim 2026) - Sahne Performansı & Konser Daveti - ${a.name}`);
+        const bodyEnc = encodeURIComponent(generateArtistMailBody(a));
+        const mailtoHref = `mailto:${a.email}?subject=${subjectEnc}&body=${bodyEnc}`;
+
+        card.innerHTML = `
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <div>${getArtistCategoryBadge(a.category)}</div>
+            <div>${getArtistStatusBadge(a.status)}</div>
+          </div>
+
+          <div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; gap:8px;">
+              <h3 style="font-size:1.25rem; color:#FFF; font-weight:800; margin:0;">${a.name}</h3>
+              ${a.agency ? `<span style="font-size:0.75rem; color:var(--text-muted); background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:4px; white-space:nowrap;">🏢 ${a.agency}</span>` : ''}
+            </div>
+            ${a.genre ? `<div style="font-size:0.8rem; color:#c4b5fd; margin-top:3px; font-weight:600;">🎵 ${a.genre}</div>` : ''}
+          </div>
+
+          <!-- DAY & SCHEDULE ROW -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; flex-wrap:wrap; background:rgba(0,0,0,0.2); padding:8px 10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04);">
+            <div>${getArtistDayBadge(a.proposed_day_key, a.proposed_day)}</div>
+            <div class="artist-stage-time-badge">⏰ ${a.stage_time || 'Sahne Saati Belirlenecek'}</div>
+          </div>
+
+          <!-- BUDGET & KAŞE -->
+          <div style="display:flex; align-items:center; justify-content:space-between; gap:8px;">
+            <div class="artist-budget-badge">💰 Tahmini Kaşe: ${a.estimated_budget || 'Görüşülecek'}</div>
+          </div>
+
+          <!-- TECHNICAL RIDER & STAGE NEEDS -->
+          <div class="artist-rider-box">
+            <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.5px; color:#c4b5fd; font-weight:700; margin-bottom:2px;">🎛️ Sahne & Backline Rider:</div>
+            <div>${a.stage_needs || 'Sahne ses & ışık sistemi'}</div>
+          </div>
+
+          ${a.hospitality_rider ? `
+          <div style="font-size:0.78rem; color:var(--text-muted); background:rgba(0,0,0,0.22); padding:7px 10px; border-radius:6px; line-height:1.4;">
+            ☕ <strong>Kulis & Ağırlama:</strong> ${a.hospitality_rider}
+          </div>` : ''}
+
+          <!-- CONTACT INFO -->
+          <div style="display:flex; flex-direction:column; gap:5px; font-size:0.83rem; background:rgba(255,255,255,0.02); padding:9px 11px; border-radius:8px; border:1px solid rgba(255,255,255,0.05);">
+            <div class="contact-row">
+              <span>👤</span>
+              <span><strong>İrtibat:</strong> ${a.contact_name || 'Menajerlik'}</span>
+            </div>
+            <div class="contact-row">
+              <span>✉️</span>
+              <span><strong>E-posta:</strong> <a href="${mailtoHref}" class="email-link">${a.email}</a></span>
+            </div>
+            ${a.phone ? `
+            <div class="contact-row">
+              <span>📞</span>
+              <span><strong>Telefon:</strong> <a href="tel:${a.phone}" class="email-link">${a.phone}</a></span>
+            </div>` : ''}
+          </div>
+
+          ${a.notes ? `
+          <div style="font-size:0.78rem; color:#d8b4fe; background:rgba(139,92,246,0.08); border-left:3px solid #8B5CF6; padding:8px 10px; border-radius:0 6px 6px 0; line-height:1.4;">
+            💡 <strong>Analiz:</strong> ${a.notes}
+          </div>` : ''}
+
+          <!-- QUICK INLINE PROCESS SELECTORS -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; background:rgba(0,0,0,0.25); padding:8px 10px; border-radius:8px; border:1px solid var(--surface-border);">
+            <div>
+              <label style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:2px; font-weight:700;">DURUM GÜNCELLE:</label>
+              <select onchange="quickUpdateArtistStatus('${a.id}', this.value)" class="form-control" style="font-size:0.76rem; padding:4px 6px; height:auto; background:rgba(0,0,0,0.4);">
+                <option value="pending" ${a.status === 'pending' ? 'selected' : ''}>⏳ İletişime Geçilecek</option>
+                <option value="in_progress" ${a.status === 'in_progress' ? 'selected' : ''}>💬 Görüşülüyor</option>
+                <option value="approved" ${a.status === 'approved' ? 'selected' : ''}>✅ Sahne Kesinleşti</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:2px; font-weight:700;">GÜN ATA:</label>
+              <select onchange="quickUpdateArtistDay('${a.id}', this.value)" class="form-control" style="font-size:0.76rem; padding:4px 6px; height:auto; background:rgba(0,0,0,0.4);">
+                <option value="day_1" ${a.proposed_day_key === 'day_1' ? 'selected' : ''}>6 Ekim (1. Gün)</option>
+                <option value="day_2" ${a.proposed_day_key === 'day_2' ? 'selected' : ''}>7 Ekim (2. Gün)</option>
+                <option value="day_3" ${a.proposed_day_key === 'day_3' ? 'selected' : ''}>8 Ekim (3. Gün)</option>
+                <option value="all_days" ${a.proposed_day_key === 'all_days' ? 'selected' : ''}>6-7-8 Ekim (Tüm Günler)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- MAIL SENT TRACKING CHECKBOX -->
+          <div class="mail-tracking-box ${isMailSent ? 'is-sent' : ''}" onclick="toggleArtistMailSent('${a.id}', ${!isMailSent})">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <label class="mail-tracking-label" onclick="event.stopPropagation();">
+                <input type="checkbox" class="mail-sent-checkbox" ${isMailSent ? 'checked' : ''} onchange="toggleArtistMailSent('${a.id}', this.checked)">
+                <span style="font-weight:700; font-size:0.86rem; color:${isMailSent ? '#4ade80' : 'var(--text-muted)'}; display:flex; align-items:center; gap:6px;">
+                  ${isMailSent ? '✅ Davet Maili İletildi' : '⏳ Mail Gönderilmedi (Bekliyor)'}
+                </span>
+              </label>
+              ${isMailSent 
+                ? `<span style="font-size:0.7rem; background:rgba(34,197,94,0.2); color:#4ade80; padding:2px 8px; border-radius:10px; font-weight:700;">GÖNDERİLDİ</span>` 
+                : `<span style="font-size:0.7rem; background:rgba(255,255,255,0.06); color:var(--text-muted); padding:2px 8px; border-radius:10px;">BEKLEMEDE</span>`}
+            </div>
+            ${isMailSent ? `
+              <div style="font-size:0.73rem; color:#86efac; margin-top:3px; padding-left:26px; line-height:1.3;">
+                İleten: <strong>${a.mail_sent_by || 'Berke Saygılı'}</strong> • 🕒 ${a.mail_sent_at || 'Kayıtlı'}
+              </div>
+            ` : `
+              <div style="font-size:0.73rem; color:var(--text-muted); margin-top:3px; padding-left:26px;">
+                Menajerliğe sahne davet mektubu gönderildiğinde işaretleyerek süreci takip edebilirsiniz.
+              </div>
+            `}
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="partner-actions">
+            <div style="display:inline-flex; border-radius:6px; overflow:hidden; box-shadow:0 2px 6px rgba(139,92,246,0.25);">
+              <button type="button" class="btn-mail-action" onclick="handleSendArtistEmail('${a.id}')" title="Tarayıcıda açık olan e-posta hesabınız ile doğrudan gönder" style="background:#7C3AED; border-radius:6px 0 0 6px; border-right:1px solid rgba(255,255,255,0.25); margin:0; cursor:pointer;">
+                ✉️ Mail Gönder
+              </button>
+              <button type="button" class="btn-mail-action" onclick="openMailServicePicker()" title="Mail servisini seç (Gmail / Outlook / Yandex)" style="background:#6D28D9; border-radius:0 6px 6px 0; padding:7px 9px; margin:0; cursor:pointer;">
+                ▾
+              </button>
+            </div>
+            <button class="btn-copy-mail" onclick="copyArtistEmail('${a.email}', this)" title="Menajerlik e-posta adresini kopyala">
+              📋 Kopyala
+            </button>
+            <button class="btn-copy-mail" onclick="openArtistInvitationModal('${a.id}')" title="Bu sanatçıya özel resmi sahne davet mektubu taslağını görüntüle">
+              📄 Sahne Daveti
+            </button>
+            ${isAdmin() ? `
+              <div style="display:inline-flex; gap:6px; margin-left:auto;">
+                <button class="btn-copy-mail" onclick="openEditArtistModal('${a.id}')" style="color:#c4b5fd; border-color:rgba(139,92,246,0.4);" title="Düzenle (Berke)">
+                  ✏️
+                </button>
+                <button class="btn-copy-mail" onclick="deleteArtist('${a.id}', '${a.name.replace(/'/g, "\\'")}')" style="color:#f87171; border-color:rgba(239,68,68,0.4);" title="Sil (Berke)">
+                  🗑️
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // TOGGLE ARTIST MAIL SENT
+    async function toggleArtistMailSent(artistId, isSent) {
+      const userName = currentUser ? currentUser.name : 'Berke Saygılı';
+      const a = (appData.artists || []).find(x => x.id === artistId);
+      if (a) {
+        a.mail_sent = !!isSent;
+        if (isSent) {
+          a.mail_sent_by = userName;
+          const now = new Date();
+          const pad = n => n < 10 ? '0' + n : n;
+          a.mail_sent_at = `${pad(now.getDate())}.${pad(now.getMonth()+1)}.${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+          if (a.status === 'pending') {
+            a.status = 'in_progress';
+          }
+        } else {
+          a.mail_sent_by = '';
+          a.mail_sent_at = '';
+        }
+        saveLocal();
+        renderArtists();
+      }
+
+      try {
+        const res = await fetch(`${API_BASE}/api/artists/toggle_mail`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: artistId, mail_sent: !!isSent, user_name: userName })
+        });
+        const result = await res.json();
+        if (result && result.success && result.artists) {
+          appData.artists = result.artists;
+          saveLocal();
+          renderArtists();
+        }
+      } catch (err) {
+        console.error('Artist mail toggle API error:', err);
+      }
+    }
+
+    // QUICK UPDATE STATUS
+    async function quickUpdateArtistStatus(artistId, newStatus) {
+      const a = (appData.artists || []).find(x => x.id === artistId);
+      if (!a) return;
+      a.status = newStatus;
+      saveLocal();
+      renderArtists();
+
+      try {
+        const res = await fetch(`${API_BASE}/api/artists/update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: artistId, status: newStatus, user_name: currentUser ? currentUser.name : 'Berke' })
+        });
+        const result = await res.json();
+        if (result && result.success && result.artists) {
+          appData.artists = result.artists;
+          saveLocal();
+          renderArtists();
+        }
+      } catch (err) {
+        console.error('Quick update artist status error:', err);
+      }
+    }
+
+    // QUICK UPDATE DAY
+    async function quickUpdateArtistDay(artistId, newDayKey) {
+      const a = (appData.artists || []).find(x => x.id === artistId);
+      if (!a) return;
+      a.proposed_day_key = newDayKey;
+      if (newDayKey === 'day_1') a.proposed_day = '6 Ekim (1. Gün - Açılış)';
+      else if (newDayKey === 'day_2') a.proposed_day = '7 Ekim (2. Gün - Gençlik)';
+      else if (newDayKey === 'day_3') a.proposed_day = '8 Ekim (3. Gün - Kapanış Galası)';
+      else a.proposed_day = '6-7-8 Ekim (Tüm Günler)';
+
+      saveLocal();
+      renderArtists();
+
+      try {
+        const res = await fetch(`${API_BASE}/api/artists/update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: artistId, proposed_day_key: newDayKey, proposed_day: a.proposed_day, user_name: currentUser ? currentUser.name : 'Berke' })
+        });
+        const result = await res.json();
+        if (result && result.success && result.artists) {
+          appData.artists = result.artists;
+          saveLocal();
+          renderArtists();
+        }
+      } catch (err) {
+        console.error('Quick update artist day error:', err);
+      }
+    }
+
+    // SEND ARTIST EMAIL VIA BROWSER WEBMAIL
+    function executeSendArtistEmailWithContent(artistId, service, customSubj = null, customBody = null) {
+      const a = (appData.artists || []).find(x => x.id === artistId);
+      if (!a) return;
+
+      const targetEmail = (a.email || '').replace(/;/g, ',').trim();
+      const subject = customSubj || `SET Kampüse Hoş Geldin Fest (6-8 Ekim 2026) - Sahne Performansı & Konser Daveti - ${a.name}`;
+      const body = customBody || generateArtistMailBody(a);
+
+      const encodedTo = encodeURIComponent(targetEmail);
+      const encodedSub = encodeURIComponent(subject);
+      const encodedBody = encodeURIComponent(body);
+
+      let url = '';
+      if (service === 'gmail') {
+        url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodedTo}&su=${encodedSub}&body=${encodedBody}`;
+      } else if (service === 'outlook') {
+        url = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodedTo}&subject=${encodedSub}&body=${encodedBody}`;
+      } else if (service === 'yandex') {
+        url = `https://mail.yandex.com.tr/compose?to=${encodedTo}&subject=${encodedSub}&body=${encodedBody}`;
+      } else {
+        url = `mailto:${targetEmail}?subject=${encodedSub}&body=${encodedBody}`;
+      }
+
+      window.open(url, '_blank');
+
+      if (!a.mail_sent) {
+        toggleArtistMailSent(artistId, true);
+      }
+    }
+
+    function handleSendArtistEmail(artistId) {
+      const service = getPreferredMailService();
+      executeSendArtistEmailWithContent(artistId, service);
+    }
+
+    function sendArtistEmailFromModal() {
+      if (!activeInvitationArtist) return;
+      const customSubj = document.getElementById('a-invite-subject') ? document.getElementById('a-invite-subject').value : null;
+      const customBody = document.getElementById('a-invite-body') ? document.getElementById('a-invite-body').value : null;
+      const service = getPreferredMailService();
+      executeSendArtistEmailWithContent(activeInvitationArtist.id, service, customSubj, customBody);
+    }
+
+    // COPY HELPERS
+    function copyArtistEmail(email, btn) {
+      if (!email) return;
+      navigator.clipboard.writeText(email).then(() => {
+        const prev = btn.innerHTML;
+        btn.innerHTML = '✓ Kopyalandı';
+        btn.style.color = '#4ade80';
+        setTimeout(() => {
+          btn.innerHTML = prev;
+          btn.style.color = '';
+        }, 1800);
+      }).catch(() => {
+        prompt('E-posta adresini kopyalayabilirsiniz:', email);
+      });
+    }
+
+    function copyAllArtistEmails() {
+      const emails = (appData.artists || []).map(a => a.email).filter(Boolean);
+      const unique = [...new Set(emails)].join(', ');
+      if (!unique) {
+        alert('Kayıtlı sanatçı/menajerlik e-postası bulunamadı.');
+        return;
+      }
+      navigator.clipboard.writeText(unique).then(() => {
+        alert(`${emails.length} adet sanatçı ve menajerlik e-postası panoya kopyalandı!\nE-posta istemcinizde BCC (Gizli Alıcı) alanına yapıştırabilirsiniz.`);
+      }).catch(() => {
+        prompt('Tüm e-postaları kopyalayabilirsiniz:', unique);
+      });
+    }
+
+    // INVITATION MODAL
+    function openArtistInvitationModal(artistId) {
+      const a = (appData.artists || []).find(x => x.id === artistId) || (appData.artists && appData.artists[0]) || null;
+      activeInvitationArtist = a;
+
+      const subject = a ? `SET Kampüse Hoş Geldin Fest (6-8 Ekim 2026) - Sahne Performansı & Konser Daveti - ${a.name}` : `SET Kampüse Hoş Geldin Fest (6-8 Ekim 2026) - Sahne & Konser Daveti`;
+      const body = generateArtistMailBody(a);
+
+      const titleEl = document.getElementById('a-invite-title');
+      if (titleEl) titleEl.innerText = a ? `${a.name} - Sahne Davet Mektubu` : 'Resmi Sahne Davet Mektubu';
+      const subjEl = document.getElementById('a-invite-subject');
+      if (subjEl) subjEl.value = subject;
+      const bodyEl = document.getElementById('a-invite-body');
+      if (bodyEl) bodyEl.value = body;
+
+      const mailtoBtn = document.getElementById('a-invite-mailto-btn');
+      if (mailtoBtn) {
+        mailtoBtn.title = `Tarayıcıda (${getPreferredMailService()}) doğrudan gönder`;
+      }
+
+      const modal = document.getElementById('artist-invitation-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeArtistInvitationModal() {
+      const modal = document.getElementById('artist-invitation-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function copyArtistSubjectText() {
+      const subj = document.getElementById('a-invite-subject').value;
+      navigator.clipboard.writeText(subj).then(() => {
+        alert('E-posta konusu panoya kopyalandı!');
+      });
+    }
+
+    function copyArtistInvitationText() {
+      const body = document.getElementById('a-invite-body').value;
+      navigator.clipboard.writeText(body).then(() => {
+        const statusEl = document.getElementById('a-copy-status-text');
+        if (statusEl) {
+          statusEl.style.display = 'inline';
+          setTimeout(() => { statusEl.style.display = 'none'; }, 2500);
+        }
+      }).catch(() => {
+        prompt('Davet mektubunu kopyalayabilirsiniz:', body);
+      });
+    }
+
+    // ADD / EDIT ARTIST MODAL
+    function openAddArtistModal() {
+      document.getElementById('artist-modal-title').innerText = '🎭 Yeni Sanatçı / Performans Ekle';
+      document.getElementById('artist-form').reset();
+      document.getElementById('na-id').value = '';
+      document.getElementById('na-status').value = 'pending';
+      document.getElementById('na-day-key').value = 'day_1';
+      document.getElementById('na-category').value = 'headliner_band';
+      document.getElementById('artist-modal').classList.add('active');
+    }
+
+    function openEditArtistModal(artistId) {
+      const a = (appData.artists || []).find(x => x.id === artistId);
+      if (!a) return;
+
+      document.getElementById('artist-modal-title').innerText = `✏️ ${a.name} - Düzenle`;
+      document.getElementById('na-id').value = a.id;
+      document.getElementById('na-name').value = a.name || '';
+      document.getElementById('na-genre').value = a.genre || '';
+      document.getElementById('na-category').value = a.category || 'headliner_band';
+      document.getElementById('na-day-key').value = a.proposed_day_key || 'day_1';
+      document.getElementById('na-status').value = a.status || 'pending';
+      document.getElementById('na-stage-time').value = a.stage_time || '';
+      document.getElementById('na-budget').value = a.estimated_budget || '';
+      document.getElementById('na-agency').value = a.agency || '';
+      document.getElementById('na-contact').value = a.contact_name || '';
+      document.getElementById('na-phone').value = a.phone || '';
+      document.getElementById('na-email').value = a.email || '';
+      document.getElementById('na-needs').value = a.stage_needs || '';
+      document.getElementById('na-hospitality').value = a.hospitality_rider || '';
+      document.getElementById('na-notes').value = a.notes || '';
+      document.getElementById('na-mail-sent').checked = !!a.mail_sent;
+
+      document.getElementById('artist-modal').classList.add('active');
+    }
+
+    function closeArtistModal() {
+      document.getElementById('artist-modal').classList.remove('active');
+    }
+
+    async function handleSaveArtist(e) {
+      e.preventDefault();
+      const id = document.getElementById('na-id').value;
+      const isNew = !id;
+
+      const category = document.getElementById('na-category').value;
+      let categoryTitle = '🎭 Sahne Performansı';
+      if (category === 'headliner_band') categoryTitle = '🎸 Ana Sahne & Canlı Grup';
+      else if (category === 'dj_electronic') categoryTitle = '🎧 DJ & Elektronik Performans';
+      else if (category === 'mc_hype') categoryTitle = '🎤 MC & Sahne Hype Şov';
+      else if (category === 'host_moderator') categoryTitle = '🎙️ Sunucu & Sahne Moderatörü';
+      else if (category === 'campus_talent') categoryTitle = '🎓 Kampüs & Konservatuvar Topluluğu';
+
+      const dayKey = document.getElementById('na-day-key').value;
+      let proposedDay = '6 Ekim (1. Gün - Açılış)';
+      if (dayKey === 'day_2') proposedDay = '7 Ekim (2. Gün - Gençlik)';
+      else if (dayKey === 'day_3') proposedDay = '8 Ekim (3. Gün - Kapanış Galası)';
+      else if (dayKey === 'all_days') proposedDay = '6-7-8 Ekim (Tüm Günler)';
+
+      const artistObj = {
+        name: document.getElementById('na-name').value.trim(),
+        genre: document.getElementById('na-genre').value.trim(),
+        category: category,
+        category_title: categoryTitle,
+        proposed_day_key: dayKey,
+        proposed_day: proposedDay,
+        status: document.getElementById('na-status').value,
+        stage_time: document.getElementById('na-stage-time').value.trim(),
+        estimated_budget: document.getElementById('na-budget').value.trim(),
+        agency: document.getElementById('na-agency').value.trim(),
+        contact_name: document.getElementById('na-contact').value.trim(),
+        phone: document.getElementById('na-phone').value.trim(),
+        email: document.getElementById('na-email').value.trim(),
+        stage_needs: document.getElementById('na-needs').value.trim(),
+        hospitality_rider: document.getElementById('na-hospitality').value.trim(),
+        notes: document.getElementById('na-notes').value.trim(),
+        mail_sent: document.getElementById('na-mail-sent').checked,
+        user_name: currentUser ? currentUser.name : 'Berke Saygılı'
+      };
+
+      if (!isNew) {
+        artistObj.id = id;
+        try {
+          const res = await fetch(`${API_BASE}/api/artists/update`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(artistObj)
+          });
+          const result = await res.json();
+          if (result && result.success && result.artists) {
+            appData.artists = result.artists;
+          } else {
+            const idx = (appData.artists || []).findIndex(a => a.id === id);
+            if (idx >= 0) appData.artists[idx] = { ...appData.artists[idx], ...artistObj };
+          }
+        } catch (err) {
+          const idx = (appData.artists || []).findIndex(a => a.id === id);
+          if (idx >= 0) appData.artists[idx] = { ...appData.artists[idx], ...artistObj };
+        }
+      } else {
+        try {
+          const res = await fetch(`${API_BASE}/api/artists/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(artistObj)
+          });
+          const result = await res.json();
+          if (result && result.success && result.artists) {
+            appData.artists = result.artists;
+          } else {
+            artistObj.id = `art_${Date.now()}`;
+            appData.artists = appData.artists || [];
+            appData.artists.push(artistObj);
+          }
+        } catch (err) {
+          artistObj.id = `art_${Date.now()}`;
+          appData.artists = appData.artists || [];
+          appData.artists.push(artistObj);
+        }
+      }
+
+      saveLocal();
+      closeArtistModal();
+      renderArtists();
+    }
+
+    async function deleteArtist(artistId, artistName) {
+      if (!isAdmin()) {
+        alert('Yetkisiz işlem! Yalnızca Berke Saygılı sanatçı silebilir.');
+        return;
+      }
+      if (!confirm(`"${artistName}" sanatçısını listeden silmek istediğinize emin misiniz?`)) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/api/artists/delete`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: artistId, user_name: currentUser ? currentUser.name : 'Berke' })
+        });
+        const result = await res.json();
+        if (result && result.success && result.artists) {
+          appData.artists = result.artists;
+        } else {
+          appData.artists = (appData.artists || []).filter(a => a.id !== artistId);
+        }
+      } catch (err) {
+        appData.artists = (appData.artists || []).filter(a => a.id !== artistId);
+      }
+
+      saveLocal();
+      renderArtists();
+    }
+
     loadData();
     startCountdown();
     updateMailServiceLabel();
