@@ -710,6 +710,43 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
             self.send_json_response({'success': True, 'contacts': data['contacts']})
             return
 
+        elif path == '/api/team/update':
+            member_id = req_data.get('id')
+            username = req_data.get('username')
+            new_department = req_data.get('department')
+            new_role = req_data.get('role')
+            new_badge = req_data.get('badge')
+            new_pin = req_data.get('pin')
+
+            found = False
+            for tm in data.get('team_members', []):
+                if (member_id and tm.get('id') == member_id) or (username and tm.get('username') == username):
+                    if new_department is not None:
+                        tm['department'] = new_department
+                    if new_role is not None:
+                        tm['role'] = new_role
+                    if new_badge is not None:
+                        tm['badge'] = new_badge
+                    if new_pin is not None:
+                        tm['pin'] = str(new_pin).strip()
+
+                    for c in data.get('contacts', []):
+                        if c.get('name') == tm.get('name'):
+                            if new_role:
+                                c['role'] = new_role
+                            elif new_department:
+                                c['role'] = new_department
+
+                    found = True
+                    break
+
+            if found:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'team_members': data['team_members'], 'contacts': data.get('contacts', [])})
+            else:
+                self.send_json_response({'success': False, 'error': 'Üye bulunamadı'}, 404)
+            return
+
         elif path == '/api/contacts/delete':
             cnt_id = req_data.get('id')
             phone = req_data.get('phone')

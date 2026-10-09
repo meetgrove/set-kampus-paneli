@@ -1820,6 +1820,9 @@
         <button class="btn-primary" onclick="openAddTaskModal()" style="font-size:0.82rem; padding:8px 14px;">
           ➕ Görev Ekle / Kişi Ata
         </button>
+        <button class="btn-primary" onclick="openTeamManagementModal()" style="font-size:0.82rem; padding:8px 14px; background:linear-gradient(135deg, #8B5CF6, #6D28D9); border:none; color:#FFF; font-weight:700; box-shadow:0 4px 12px rgba(139,92,246,0.35); display:inline-flex; align-items:center; gap:6px;">
+          👥 Ekip & Departman Yönetimi
+        </button>
         <button class="btn-secondary" onclick="openAddScheduleModal()">
           🕒 Akış / Program Ekle
         </button>
@@ -2858,6 +2861,40 @@
           <button type="submit" class="btn-primary">Bilgileri Güncelle</button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <!-- TEAM & DEPARTMENT MANAGEMENT MODAL (PRESIDENT EXCLUSIVE) -->
+  <div class="modal-overlay" id="team-management-modal" onclick="if(event.target === this) closeTeamManagementModal()">
+    <div class="modal" style="max-width: 900px; width: 95%; max-height: 90vh; display: flex; flex-direction: column;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg, #8B5CF6, #6D28D9); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:1.25rem; font-weight:800;">👥</div>
+          <div>
+            <h3 style="margin:0; font-size:1.15rem; color:#FFF; font-weight:800;">Ekip Departman & Rol Yönetimi</h3>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Başkan Özel Paneli — Tüm ekip üyelerinin festival departmanını ve görev unvanını anında değiştirin</div>
+          </div>
+        </div>
+        <button type="button" onclick="closeTeamManagementModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.3rem; cursor:pointer; padding:4px;">✕</button>
+      </div>
+
+      <!-- SEARCH / FILTER BAR -->
+      <div style="display:flex; gap:12px; margin-bottom:14px; align-items:center;">
+        <input type="text" id="team-search-input" oninput="filterTeamManagementList(this.value)" placeholder="🔍 İsim, kullanıcı adı veya departman ara..." class="form-control" style="font-size:0.85rem; padding:8px 12px; background:rgba(0,0,0,0.3);">
+        <span id="team-mgmt-count-badge" style="background:rgba(139,92,246,0.2); color:#c4b5fd; border:1px solid rgba(139,92,246,0.4); font-size:0.78rem; font-weight:700; padding:6px 12px; border-radius:20px; white-space:nowrap;">16 Üye</span>
+      </div>
+
+      <!-- MEMBER CARDS LIST (SCROLLABLE) -->
+      <div id="team-mgmt-container" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:12px; padding-right:4px;">
+        <!-- Dynamically rendered -->
+      </div>
+
+      <div class="modal-footer" style="margin-top:14px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-size:0.75rem; color:var(--text-muted);">
+          ⚡ Seçtiğiniz departman ve unvan <b style="color:var(--accent-ochre-light);">"Departmanı Kaydet"</b> butonuna basıldığında sisteme anında kaydedilir.
+        </div>
+        <button type="button" class="btn-secondary" onclick="closeTeamManagementModal()">Kapat</button>
+      </div>
     </div>
   </div>
 
@@ -7180,7 +7217,7 @@
       "read_by": []
     }
   ]
-}};
+};
   </script>
 <script>
     let appData = {
@@ -8808,6 +8845,253 @@
       document.getElementById('ef-backup').value = f.backup_location || '';
       document.getElementById('edit-festival-modal').classList.add('active');
     }
+    
+    // ==========================================
+    // TEAM & DEPARTMENT MANAGEMENT (PRESIDENT)
+    // ==========================================
+    function openTeamManagementModal() {
+      if (!isAdmin()) {
+        alert('Bu işlem sadece Festival Başkanı (Berke Saygılı) yetkisindedir.');
+        return;
+      }
+      const sInput = document.getElementById('team-search-input');
+      if (sInput) sInput.value = '';
+      renderTeamManagementList('');
+      const modal = document.getElementById('team-management-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function openTeamManagementModalWithUser(userName) {
+      if (!isAdmin()) {
+        alert('Bu işlem sadece Festival Başkanı (Berke Saygılı) yetkisindedir.');
+        return;
+      }
+      const sInput = document.getElementById('team-search-input');
+      if (sInput) sInput.value = userName || '';
+      renderTeamManagementList(userName || '');
+      const modal = document.getElementById('team-management-modal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeTeamManagementModal() {
+      const modal = document.getElementById('team-management-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function filterTeamManagementList(query) {
+      renderTeamManagementList(query);
+    }
+
+    function renderTeamManagementList(searchQuery = '') {
+      const container = document.getElementById('team-mgmt-container');
+      if (!container) return;
+      const q = (searchQuery || '').toLowerCase().trim();
+
+      const allMembers = (appData && Array.isArray(appData.team_members) && appData.team_members.length > 0)
+        ? appData.team_members
+        : ((typeof EMBEDDED_DEFAULT_DATA !== 'undefined' && EMBEDDED_DEFAULT_DATA.team_members) ? EMBEDDED_DEFAULT_DATA.team_members : []);
+
+      const filtered = allMembers.filter(tm => {
+        if (!q) return true;
+        return (tm.name && tm.name.toLowerCase().includes(q)) ||
+               (tm.username && tm.username.toLowerCase().includes(q)) ||
+               (tm.department && tm.department.toLowerCase().includes(q)) ||
+               (tm.role && tm.role.toLowerCase().includes(q)) ||
+               (tm.badge && tm.badge.toLowerCase().includes(q));
+      });
+
+      const countBadge = document.getElementById('team-mgmt-count-badge');
+      if (countBadge) countBadge.innerText = `${filtered.length} Üye`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="text-align:center; padding:36px; background:rgba(0,0,0,0.2); border-radius:10px; border:1px dashed var(--surface-border); color:var(--text-muted); font-size:0.88rem;">
+            🔍 Aramanıza uygun ekip üyesi bulunamadı.
+          </div>
+        `;
+        return;
+      }
+
+      const standardDepts = [
+        "Üst Yönetim & Genel Koordinasyon",
+        "Sahne, Ses, Işık & Canlı Performans",
+        "Saha İçeriği, Deneyim & Oyun Alanları",
+        "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+        "Ar-Ge, Konsept & Atmosfer Tasarımı"
+      ];
+
+      container.innerHTML = filtered.map(m => {
+        const isGeneral = m.username === 'genel';
+        const initial = isGeneral ? '🌐' : (m.name ? m.name.charAt(0) : 'U');
+        const isCurrent = currentUser && currentUser.username === m.username;
+
+        const depts = [...standardDepts];
+        if (m.department && !depts.includes(m.department)) {
+          depts.push(m.department);
+        }
+
+        return `
+          <div id="tm-card-${m.id}" style="background:var(--surface-elevated); border:1px solid ${isCurrent ? 'var(--accent-ochre)' : 'var(--surface-border)'}; border-radius:12px; padding:14px 18px; display:flex; flex-direction:column; gap:12px; transition:all 0.2s; box-shadow:0 2px 10px rgba(0,0,0,0.2);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:38px; height:38px; border-radius:50%; background:${m.role_type === 'admin' ? 'var(--accent-ochre)' : 'rgba(139,92,246,0.25)'}; color:${m.role_type === 'admin' ? '#000' : '#c4b5fd'}; font-weight:800; display:flex; align-items:center; justify-content:center; font-size:0.95rem; border:1px solid ${m.role_type === 'admin' ? 'transparent' : 'rgba(139,92,246,0.4)'};">
+                  ${initial}
+                </div>
+                <div>
+                  <div style="font-weight:700; color:#FFF; font-size:0.98rem; display:flex; align-items:center; gap:8px;">
+                    ${m.name}
+                    ${m.role_type === 'admin' ? '<span style="background:rgba(201,138,44,0.2); color:var(--accent-ochre-light); border:1px solid rgba(201,138,44,0.4); font-size:0.68rem; padding:2px 7px; border-radius:4px; font-weight:700;">BAŞKAN</span>' : ''}
+                    ${isCurrent ? '<span style="background:rgba(34,197,94,0.15); color:#22C55E; font-size:0.68rem; padding:2px 7px; border-radius:4px; font-weight:700;">SEN</span>' : ''}
+                  </div>
+                  <div style="font-size:0.75rem; color:var(--text-muted); font-family:monospace; margin-top:2px;">
+                    Kullanıcı: <b style="color:#FAF9F6;">@${m.username}</b> | PIN: <b style="color:var(--accent-ochre-light);">${m.pin || '----'}</b>
+                  </div>
+                </div>
+              </div>
+              <div id="tm-status-${m.id}" style="display:none; font-size:0.76rem; font-weight:700; color:#22c55e; background:rgba(34,197,94,0.12); border:1px solid rgba(34,197,94,0.3); padding:3px 10px; border-radius:20px;">
+                ✓ Güncellendi
+              </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; align-items:end;">
+              <div class="form-group" style="margin:0;">
+                <label style="font-size:0.72rem; color:var(--accent-ochre); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
+                  🏛️ Festival Departmanı *
+                </label>
+                <select id="tm-dept-${m.id}" class="form-control" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
+                  ${depts.map(dep => `
+                    <option value="${dep}" ${m.department === dep ? 'selected' : ''}>${dep}</option>
+                  `).join('')}
+                </select>
+              </div>
+
+              <div class="form-group" style="margin:0;">
+                <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
+                  📋 Görev / Rol Tanımı
+                </label>
+                <input type="text" id="tm-role-${m.id}" class="form-control" value="${m.role || ''}" placeholder="Örn: Saha Operasyon & Lojistik" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
+              </div>
+
+              <div class="form-group" style="margin:0;">
+                <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
+                  🏷️ Rozet / Kısa Unvan
+                </label>
+                <input type="text" id="tm-badge-${m.id}" class="form-control" value="${m.badge || ''}" placeholder="Örn: Saha Operasyon" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
+              </div>
+
+              <div style="display:flex; justify-content:flex-end;">
+                <button id="tm-btn-${m.id}" onclick="saveTeamMemberChanges('${m.id}')" class="btn-primary" style="font-size:0.82rem; padding:8px 18px; border-radius:8px; background:linear-gradient(135deg, #10B981, #059669); border:none; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; box-shadow:0 3px 10px rgba(16,185,129,0.3);">
+                  💾 Departmanı Kaydet
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function saveTeamMemberChanges(memberId) {
+      if (!isAdmin()) {
+        alert('Bu işlem sadece Festival Başkanı yetkisindedir.');
+        return;
+      }
+
+      const m = (appData.team_members || []).find(x => x.id === memberId);
+      if (!m) return;
+
+      const deptEl = document.getElementById(`tm-dept-${memberId}`);
+      const roleEl = document.getElementById(`tm-role-${memberId}`);
+      const badgeEl = document.getElementById(`tm-badge-${memberId}`);
+
+      const newDept = deptEl ? deptEl.value : m.department;
+      const newRole = roleEl ? roleEl.value.trim() : m.role;
+      const newBadge = badgeEl ? badgeEl.value.trim() : m.badge;
+
+      m.department = newDept;
+      if (newRole) m.role = newRole;
+      if (newBadge) m.badge = newBadge;
+
+      (appData.contacts || []).forEach(c => {
+        if (c.name === m.name) {
+          if (newRole) c.role = newRole;
+          else if (newDept) c.role = newDept;
+        }
+      });
+
+      if (currentUser && currentUser.username === m.username) {
+        currentUser.department = newDept;
+        currentUser.role = newRole;
+        currentUser.badge = newBadge;
+        localStorage.setItem('set_fest_user', JSON.stringify(currentUser));
+        renderUserHeader();
+      }
+
+      saveLocal();
+      populateLoginSelect();
+      renderContacts();
+
+      const statusEl = document.getElementById(`tm-status-${memberId}`);
+      if (statusEl) {
+        statusEl.innerText = `✓ Departman: ${newDept}`;
+        statusEl.style.display = 'inline-block';
+      }
+      const btnEl = document.getElementById(`tm-btn-${memberId}`);
+      if (btnEl) {
+        const oldHtml = btnEl.innerHTML;
+        btnEl.innerHTML = '✓ Kaydedildi!';
+        btnEl.style.background = '#059669';
+        setTimeout(() => {
+          btnEl.innerHTML = oldHtml;
+          btnEl.style.background = 'linear-gradient(135deg, #10B981, #059669)';
+        }, 2000);
+      }
+
+      showPanelToast(`${m.name} departmanı başarıyla "${newDept}" olarak güncellendi!`);
+
+      try {
+        const res = await fetch(`${API_BASE}/api/team/update`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            id: m.id,
+            username: m.username,
+            department: newDept,
+            role: newRole,
+            badge: newBadge,
+            user_name: currentUser ? currentUser.name : 'Berke'
+          })
+        });
+        const result = await res.json();
+        if (result && result.success) {
+          if (result.team_members) appData.team_members = result.team_members;
+          if (result.contacts) appData.contacts = result.contacts;
+          saveLocal();
+        }
+      } catch (err) {
+        console.warn('Backend sync failed, saved locally:', err);
+      }
+    }
+
+    function showPanelToast(message, isSuccess = true) {
+      let toast = document.getElementById('panel-toast-notification');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'panel-toast-notification';
+        toast.style.cssText = 'position:fixed; bottom:24px; right:24px; z-index:999999; padding:12px 20px; border-radius:10px; font-size:0.88rem; font-weight:700; color:#fff; box-shadow:0 8px 30px rgba(0,0,0,0.5); display:flex; align-items:center; gap:10px; transition:all 0.3s cubic-bezier(0.16,1,0.3,1); transform:translateY(100px); opacity:0; pointer-events:none;';
+        document.body.appendChild(toast);
+      }
+      toast.style.background = isSuccess ? 'linear-gradient(135deg, #059669, #10B981)' : 'linear-gradient(135deg, #DC2626, #EF4444)';
+      toast.style.border = isSuccess ? '1.5px solid #34D399' : '1.5px solid #F87171';
+      toast.innerHTML = (isSuccess ? '✅ ' : '⚠️ ') + message;
+      toast.style.transform = 'translateY(0)';
+      toast.style.opacity = '1';
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => {
+        toast.style.transform = 'translateY(100px)';
+        toast.style.opacity = '0';
+      }, 3500);
+    }
+
     function closeEditFestivalModal() {
       document.getElementById('edit-festival-modal').classList.remove('active');
     }
