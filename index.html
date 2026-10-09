@@ -72,12 +72,11 @@
       backdrop-filter: blur(12px);
     }
     .header-inner {
-      max-width: 1380px;
+      max-width: 1440px;
       margin: 0 auto;
-      padding: 16px 24px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      padding: 14px 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
       align-items: center;
       gap: 16px;
     }
@@ -85,6 +84,8 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      justify-self: start;
+      min-width: 0;
     }
     .brand-logo-link {
       display: flex;
@@ -146,11 +147,15 @@
     .countdown-box {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 12px;
       background: var(--surface);
       border: 1px solid var(--surface-border);
-      padding: 8px 16px;
+      padding: 8px 18px;
       border-radius: 30px;
+      justify-self: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      white-space: nowrap;
     }
     .countdown-label {
       font-size: 0.75rem;
@@ -1286,13 +1291,18 @@
     }
 
     /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .header-inner { flex-direction: column; align-items: flex-start; }
-      .countdown-box { width: 100%; justify-content: space-between; }
-      .user-select-box { width: 100%; }
-      .user-select { width: 100%; }
-      .tasks-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1024px) {
+      .header-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .brand { justify-self: auto; width: 100%; justify-content: space-between; }
+      .countdown-box { justify-self: auto; width: 100%; justify-content: center; }
+      .header-right-actions { justify-self: auto; width: 100%; justify-content: flex-end; }
       .user-profile-badge { width: 100%; justify-content: space-between; }
+      .tasks-grid { grid-template-columns: 1fr; }
     }
   
     /* ARTISTS & STAGE PORTAL */
@@ -1449,7 +1459,10 @@
     .header-right-actions {
       display: flex;
       align-items: center;
+      justify-content: flex-end;
       gap: 12px;
+      justify-self: end;
+      min-width: 0;
     }
     .btn-notification-bell {
       position: relative;
@@ -3460,6 +3473,46 @@
       "role_type": "member"
     },
     {
+      "id": "tm_12",
+      "name": "Gizem Özcan",
+      "username": "gizem",
+      "pin": "1011",
+      "role": "Saha Operasyon & Ekip Koordinasyonu",
+      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "badge": "Saha Operasyon",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_13",
+      "name": "Elif Fırat",
+      "username": "elif",
+      "pin": "1012",
+      "role": "Topluluk Stantları & Deneyim Alanları Sorumlusu",
+      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "badge": "Stant & İletişim",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_14",
+      "name": "Salih Şilek",
+      "username": "salih",
+      "pin": "1013",
+      "role": "Sahne, Ses & Canlı Performans Destek Sorumlusu",
+      "department": "Sahne, Ses, Işık & Canlı Performans",
+      "badge": "Sahne & Ses",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_15",
+      "name": "Aleyna Maden",
+      "username": "aleyna",
+      "pin": "1014",
+      "role": "Medya, Tanıtım & Atmosfer Tasarımı",
+      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "badge": "Medya & Tasarım",
+      "role_type": "member"
+    },
+    {
       "id": "tm_genel",
       "name": "Genel Ekip / Festival Akışı",
       "username": "genel",
@@ -4324,6 +4377,26 @@
     {
       "role": "Saha İçerikleri Tamamlayıcı",
       "name": "Samet Kara",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha Operasyon & Ekip Koordinasyonu",
+      "name": "Gizem Özcan",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Topluluk Stantları & Deneyim Alanları",
+      "name": "Elif Fırat",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Sahne, Ses & Canlı Performans Destek",
+      "name": "Salih Şilek",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Medya, Tanıtım & Atmosfer Tasarımı",
+      "name": "Aleyna Maden",
       "phone": "05xx xxx xx xx"
     },
     {
@@ -7161,7 +7234,7 @@
         if (!appData.inventory || !Array.isArray(appData.inventory) || appData.inventory.length === 0) {
           appData.inventory = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.inventory));
         }
-        if (!appData.contacts || !Array.isArray(appData.contacts) || appData.contacts.length === 0) {
+        if (!appData.contacts || !Array.isArray(appData.contacts) || appData.contacts.length < EMBEDDED_DEFAULT_DATA.contacts.length) {
           appData.contacts = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.contacts));
         }
         if (!appData.partners || !Array.isArray(appData.partners) || appData.partners.length === 0) {

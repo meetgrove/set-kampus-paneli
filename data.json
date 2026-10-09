@@ -147,6 +147,46 @@
       "role_type": "member"
     },
     {
+      "id": "tm_12",
+      "name": "Gizem Özcan",
+      "username": "gizem",
+      "pin": "1011",
+      "role": "Saha Operasyon & Ekip Koordinasyonu",
+      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "badge": "Saha Operasyon",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_13",
+      "name": "Elif Fırat",
+      "username": "elif",
+      "pin": "1012",
+      "role": "Topluluk Stantları & Deneyim Alanları Sorumlusu",
+      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "badge": "Stant & İletişim",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_14",
+      "name": "Salih Şilek",
+      "username": "salih",
+      "pin": "1013",
+      "role": "Sahne, Ses & Canlı Performans Destek Sorumlusu",
+      "department": "Sahne, Ses, Işık & Canlı Performans",
+      "badge": "Sahne & Ses",
+      "role_type": "member"
+    },
+    {
+      "id": "tm_15",
+      "name": "Aleyna Maden",
+      "username": "aleyna",
+      "pin": "1014",
+      "role": "Medya, Tanıtım & Atmosfer Tasarımı",
+      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "badge": "Medya & Tasarım",
+      "role_type": "member"
+    },
+    {
       "id": "tm_genel",
       "name": "Genel Ekip / Festival Akışı",
       "username": "genel",
@@ -1011,6 +1051,26 @@
     {
       "role": "Saha İçerikleri Tamamlayıcı",
       "name": "Samet Kara",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Saha Operasyon & Ekip Koordinasyonu",
+      "name": "Gizem Özcan",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Topluluk Stantları & Deneyim Alanları",
+      "name": "Elif Fırat",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Sahne, Ses & Canlı Performans Destek",
+      "name": "Salih Şilek",
+      "phone": "05xx xxx xx xx"
+    },
+    {
+      "role": "Medya, Tanıtım & Atmosfer Tasarımı",
+      "name": "Aleyna Maden",
       "phone": "05xx xxx xx xx"
     },
     {
