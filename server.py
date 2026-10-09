@@ -747,6 +747,99 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'error': 'Üye bulunamadı'}, 404)
             return
 
+        elif path == '/api/team/add':
+            name = req_data.get('name', '').strip()
+            username = req_data.get('username', '').strip().lower()
+            pin = str(req_data.get('pin', '')).strip()
+            department = req_data.get('department', '').strip()
+            role = req_data.get('role', 'Saha Ekibi').strip()
+            badge = req_data.get('badge', 'Ekip').strip()
+            phone = req_data.get('phone', '').strip()
+            role_type = req_data.get('role_type', 'member').strip()
+
+            if not name or not username or not pin:
+                self.send_json_response({'success': False, 'error': 'İsim, kullanıcı adı ve PIN zorunludur'}, 400)
+                return
+
+            existing_usernames = [tm.get('username', '').lower() for tm in data.get('team_members', [])]
+            if username in existing_usernames:
+                self.send_json_response({'success': False, 'error': f"'{username}' kullanıcı adı zaten kullanımda!"}, 400)
+                return
+
+            new_id = f"tm_{int(time.time() * 1000)}"
+            new_member = {
+                'id': new_id,
+                'name': name,
+                'username': username,
+                'pin': pin,
+                'role': role,
+                'department': department,
+                'badge': badge,
+                'role_type': role_type
+            }
+
+            team_list = data.setdefault('team_members', [])
+            genel_idx = -1
+            for idx, tm in enumerate(team_list):
+                if tm.get('id') == 'tm_genel' or tm.get('username') == 'genel':
+                    genel_idx = idx
+                    break
+            if genel_idx >= 0:
+                team_list.insert(genel_idx, new_member)
+            else:
+                team_list.append(new_member)
+
+            if phone:
+                cnt_exists = False
+                for c in data.setdefault('contacts', []):
+                    if c.get('name') == name:
+                        c['phone'] = phone
+                        c['role'] = role or department
+                        cnt_exists = True
+                        break
+                if not cnt_exists:
+                    data['contacts'].append({
+                        'id': f"cnt_{int(time.time() * 1000)}",
+                        'name': name,
+                        'role': role or department,
+                        'phone': phone,
+                        'internal': ''
+                    })
+
+            save_ekip_data(data)
+            self.send_json_response({
+                'success': True,
+                'member': new_member,
+                'team_members': data['team_members'],
+                'contacts': data.get('contacts', [])
+            })
+            return
+
+        elif path == '/api/team/delete':
+            member_id = req_data.get('id')
+            username = req_data.get('username')
+            if not member_id and not username:
+                self.send_json_response({'success': False, 'error': 'ID veya kullanıcı adı belirtilmedi'}, 400)
+                return
+            if member_id == 'tm_1' or username == 'berke':
+                self.send_json_response({'success': False, 'error': 'Ana yönetici hesabı silinemez!'}, 403)
+                return
+            if member_id == 'tm_genel' or username == 'genel':
+                self.send_json_response({'success': False, 'error': 'Genel giriş hesabı silinemez!'}, 403)
+                return
+
+            original_len = len(data.get('team_members', []))
+            data['team_members'] = [
+                tm for tm in data.get('team_members', [])
+                if tm.get('id') != member_id and tm.get('username') != username
+            ]
+            if len(data['team_members']) < original_len:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'team_members': data['team_members']})
+            else:
+                self.send_json_response({'success': False, 'error': 'Üye bulunamadı'}, 404)
+            return
+
         elif path == '/api/contacts/delete':
             cnt_id = req_data.get('id')
             phone = req_data.get('phone')

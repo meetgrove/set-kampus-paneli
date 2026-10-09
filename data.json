@@ -11,27 +11,77 @@
     {
       "id": "dep_1",
       "name": "Üst Yönetim & Genel Koordinasyon",
-      "lead": "Berke Saygılı"
+      "lead": "Berke Saygılı",
+      "icon": "👑",
+      "color": "#C98A2C",
+      "tagline": "Stratejik Yönetim, Resmi EBYS & Festival Güvenliği",
+      "description": "Festivalin genel vizyonu, üniversite rektörlüğü, SKS Daire Başkanlığı, Tekirdağ Büyükşehir Belediyesi ve emniyet birimleriyle olan resmi protokollerin yürütülmesi, bütçe-sponsorluk denetimi ve departmanlar arası operasyonel senkronizasyondan sorumludur.",
+      "responsibilities": [
+        "Rektörlük, SKS ve Büyükşehir Belediyesi resmi izinleri ve EBYS protokolleri",
+        "Departman başkanlıkları koordinasyonu ve günlük kriz yönetimi",
+        "Festival genel bütçe, sponsorluk denetimi ve kaynak tahsisi",
+        "Saha acil durum planı, sağlık ve güvenlik ekipleri koordinasyonu"
+      ]
     },
     {
       "id": "dep_2",
       "name": "Sahne, Ses, Işık & Canlı Performans",
-      "lead": "Efe Kağan Yağcı"
+      "lead": "Efe Kağan Yağcı",
+      "icon": "🎤",
+      "color": "#EC4899",
+      "tagline": "Ana Sahne Kurulumu, Akustik, Aydınlatma & Sanatçı Yönetimi",
+      "description": "Büyükşehir Belediyesi konser tırları ve ana sahne mekaniği, 10kW line-array ses sistemi, truss ışıklandırma, DJ setup, sanatçı kulis ağırlaması (hospitality), rider karşılama ve 2 günlük canlı performans akışının kesintisiz icrasından sorumludur.",
+      "responsibilities": [
+        "Konser tırı, ses/ışık truss sistemleri montaj ve akustik ses provası",
+        "Headliner sanatçılar, DJ ve müzik gruplarının sahne rider karşılama operasyonu",
+        "Sahne sunucusu, MC ve program akışının dakikası dakikasına yürütülmesi",
+        "Jeneratör, elektrik altyapısı ve yedek güç sistemlerinin teknik denetimi"
+      ]
     },
     {
       "id": "dep_3",
       "name": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "lead": "Mecit Çalık & Mert Akmeşe"
+      "lead": "Mecit Çalık & Mert Akmeşe",
+      "icon": "🎪",
+      "color": "#3B82F6",
+      "tagline": "Etkileşimli Alanlar, Topluluk Stantları & Festival Coşkusu",
+      "description": "Festival alanında yer alacak 60+ öğrenci topluluk standının yerleşim planı, Red Bull & sponsor aktivasyon alanları, çadır-sandalye-varil düzeni, dev oyun parkurları (rodeo, şişme oyunlar, gladyatör), langırt/masa tenisi turnuvaları ve katılımcı deneyiminden sorumludur.",
+      "responsibilities": [
+        "60 çadır ve topluluk stantlarının parsellenmesi ve masa/sandalye dağıtımı",
+        "Şişme oyun parkurları, rodeo ve yarışma istasyonlarının operasyonu",
+        "Sponsor deneyim çadırları ve marka aktivasyon noktalarının saha yönetimi",
+        "Ödüllü kampüs turnuvaları ve mini yarışmaların canlı organizasyonu"
+      ]
     },
     {
       "id": "dep_4",
       "name": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "lead": "Ceren Çakmak & Samet Kara"
+      "lead": "Ceren Çakmak & Samet Kara",
+      "icon": "⚙️",
+      "color": "#10B981",
+      "tagline": "Operasyonel Süreçler, Envanter Zimmeti & Alan Düzeni",
+      "description": "SKS ambarından çekilen 120 sandalye, 60 masa, çadırlar, 25 festival varili, 15 palet ve diğer ekipmanların sahaya taşınması, kurulumu, QR/barkod zimmet takibi, yiyecek-içecek stant düzeni, temizlik/geri dönüşüm noktaları ve festival bitimi lojistik tahliyeden sorumludur.",
+      "responsibilities": [
+        "SKS ve ambar ekipmanlarının sahaya nakli, tutanakla zimmetlenmesi ve iadesi",
+        "25 boyalı varil masası ve 15 palet oturma grubunun alana konuşlandırılması",
+        "Yiyecek-içecek satış noktaları, ikramlar ve su istasyonlarının tedarik kontrolü",
+        "Festival alanı temizlik, atık yönetimi ve kapanış sonrası saha restorasyonu"
+      ]
     },
     {
       "id": "dep_5",
       "name": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "lead": "Melike Konar & Hakan Karadağ"
+      "lead": "Melike Konar & Hakan Karadağ",
+      "icon": "💡",
+      "color": "#8B5CF6",
+      "tagline": "Görsel Kimlik, Festival Teması, Sosyal Medya & Ambiyans",
+      "description": "Festivalin genel sanatsal konsepti, vintage/retro ışıklandırma ve peri led süslemeleri, festival fotoğraf/selfie tagları, yönlendirme tabelaları, afiş ve dijital grafik tasarımları, drone/video çekimleri, sosyal medya canlı yayınları ve festival atmosferinden sorumludur.",
+      "responsibilities": [
+        "Festival görsel kimliği, sosyal medya postları, afiş ve basılı materyal tasarımları",
+        "Selfie noktaları, ahşap yönlendirme tabelaları ve festival tagının üretimi",
+        "Festival alanı peri led, fener ve gece ambiyans aydınlatmalarının planlaması",
+        "Fotoğraf, aftermovie video çekimleri, drone kayıtları ve basın-medya iletişimi"
+      ]
     }
   ],
   "team_members": [
