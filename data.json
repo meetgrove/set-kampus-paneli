@@ -10,57 +10,53 @@
   "departments": [
     {
       "id": "dep_1",
-      "name": "Üst Yönetim & Genel Koordinasyon",
-      "lead": "Berke Saygılı",
-      "icon": "👑",
+      "name": "Yönetim",
+      "lead": "Berke Saygılı & Burak Avcı",
       "color": "#C98A2C",
       "tagline": "Stratejik Yönetim, Resmi EBYS & Festival Güvenliği",
-      "description": "Festivalin genel vizyonu, üniversite rektörlüğü, SKS Daire Başkanlığı, Tekirdağ Büyükşehir Belediyesi ve emniyet birimleriyle olan resmi protokollerin yürütülmesi, bütçe-sponsorluk denetimi ve departmanlar arası operasyonel senkronizasyondan sorumludur.",
+      "description": "Festivalin genel vizyonu, üniversite rektörlüğü, SKS Daire Başkanlığı, Tekirdağ Büyükşehir Belediyesi ve emniyet birimleriyle olan resmi protokollerin yürütülmesi, bütçe-sponsorluk denetimi ve kriz yönetiminden sorumludur.",
       "responsibilities": [
         "Rektörlük, SKS ve Büyükşehir Belediyesi resmi izinleri ve EBYS protokolleri",
-        "Departman başkanlıkları koordinasyonu ve günlük kriz yönetimi",
-        "Festival genel bütçe, sponsorluk denetimi ve kaynak tahsisi",
+        "Departman liderlikleri koordinasyonu ve kriz yönetimi",
+        "Festival genel bütçe ve sponsorluk kaynak tahsisi denetimi",
         "Saha acil durum planı, sağlık ve güvenlik ekipleri koordinasyonu"
       ]
     },
     {
       "id": "dep_2",
-      "name": "Sahne, Ses, Işık & Canlı Performans",
-      "lead": "Efe Kağan Yağcı",
-      "icon": "🎤",
-      "color": "#EC4899",
-      "tagline": "Ana Sahne Kurulumu, Akustik, Aydınlatma & Sanatçı Yönetimi",
-      "description": "Büyükşehir Belediyesi konser tırları ve ana sahne mekaniği, 10kW line-array ses sistemi, truss ışıklandırma, DJ setup, sanatçı kulis ağırlaması (hospitality), rider karşılama ve 2 günlük canlı performans akışının kesintisiz icrasından sorumludur.",
+      "name": "Koordinasyon",
+      "lead": "Selin Aşkın",
+      "color": "#3B82F6",
+      "tagline": "Operasyonel Senkronizasyon & Paydaş İletişimi",
+      "description": "Departmanlar arası günlük operasyonel senkronizasyon, toplantı ve raporlama akışının konsolidasyonu, SKS ve ambar koordinasyonu ile paydaş iletişim takviminin yürütülmesinden sorumludur.",
       "responsibilities": [
-        "Konser tırı, ses/ışık truss sistemleri montaj ve akustik ses provası",
-        "Headliner sanatçılar, DJ ve müzik gruplarının sahne rider karşılama operasyonu",
-        "Sahne sunucusu, MC ve program akışının dakikası dakikasına yürütülmesi",
-        "Jeneratör, elektrik altyapısı ve yedek güç sistemlerinin teknik denetimi"
+        "Departmanların günlük operasyonel çıktı ve takvim denetimi",
+        "SKS birimleri ile malzeme teslim ve protokol eşgüdümü",
+        "Festival saha akışı ve genel bilgilendirme takibi",
+        "Ekip içi acil durum haberleşme ve lojistik koordinasyonu"
       ]
     },
     {
       "id": "dep_3",
-      "name": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "lead": "Mecit Çalık & Mert Akmeşe",
-      "icon": "🎪",
-      "color": "#3B82F6",
-      "tagline": "Etkileşimli Alanlar, Topluluk Stantları & Festival Coşkusu",
-      "description": "Festival alanında yer alacak 60+ öğrenci topluluk standının yerleşim planı, Red Bull & sponsor aktivasyon alanları, çadır-sandalye-varil düzeni, dev oyun parkurları (rodeo, şişme oyunlar, gladyatör), langırt/masa tenisi turnuvaları ve katılımcı deneyiminden sorumludur.",
+      "name": "Sahne",
+      "lead": "Efe Kağan Yağcı",
+      "color": "#EC4899",
+      "tagline": "Ana Sahne Kurulumu, Akustik, Ses, Işık & Sanatçı Yönetimi",
+      "description": "Büyükşehir Belediyesi konser tırları ve ana sahne mekaniği, line-array ses sistemi, truss aydınlatma, DJ setup, kulis ağırlaması (hospitality), rider karşılama ve canlı performans akışının eksiksiz icrasından sorumludur.",
       "responsibilities": [
-        "60 çadır ve topluluk stantlarının parsellenmesi ve masa/sandalye dağıtımı",
-        "Şişme oyun parkurları, rodeo ve yarışma istasyonlarının operasyonu",
-        "Sponsor deneyim çadırları ve marka aktivasyon noktalarının saha yönetimi",
-        "Ödüllü kampüs turnuvaları ve mini yarışmaların canlı organizasyonu"
+        "Konser tırı, ses/ışık truss sistemleri montaj ve akustik ses provası",
+        "Headliner sanatçılar, DJ ve müzik gruplarının sahne rider karşılama operasyonu",
+        "Sahne sunucusu, MC ve program akışının dakikası dakikasına yürütülmesi",
+        "Jeneratör, elektrik altyapısı ve teknik yedek güç denetimi"
       ]
     },
     {
       "id": "dep_4",
-      "name": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "name": "Saha İçi Operasyon",
       "lead": "Ceren Çakmak & Samet Kara",
-      "icon": "⚙️",
       "color": "#10B981",
-      "tagline": "Operasyonel Süreçler, Envanter Zimmeti & Alan Düzeni",
-      "description": "SKS ambarından çekilen 120 sandalye, 60 masa, çadırlar, 25 festival varili, 15 palet ve diğer ekipmanların sahaya taşınması, kurulumu, QR/barkod zimmet takibi, yiyecek-içecek stant düzeni, temizlik/geri dönüşüm noktaları ve festival bitimi lojistik tahliyeden sorumludur.",
+      "tagline": "Saha Lojistiği, Envanter Zimmeti & Alan Düzeni",
+      "description": "SKS ambarından temin edilen 120 sandalye, 60 masa, çadırlar, 25 festival varili, 15 palet ve diğer ekipmanların sahaya taşınması, kurulumu, QR/barkod zimmet takibi, yiyecek-içecek stant düzeni ve saha restorasyonundan sorumludur.",
       "responsibilities": [
         "SKS ve ambar ekipmanlarının sahaya nakli, tutanakla zimmetlenmesi ve iadesi",
         "25 boyalı varil masası ve 15 palet oturma grubunun alana konuşlandırılması",
@@ -70,17 +66,30 @@
     },
     {
       "id": "dep_5",
-      "name": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "name": "Saha İçeriği",
+      "lead": "Mecit Çalık & Mert Akmeşe",
+      "color": "#06B6D4",
+      "tagline": "Etkileşimli Alanlar, Topluluk Stantları & Festival Deneyimi",
+      "description": "Festival alanında yer alacak 60+ öğrenci topluluk standının yerleşim planı, Red Bull ve sponsor aktivasyon alanları, çadır düzeni, dev şişme oyun parkurları (rodeo, gladyatör), langırt/masa tenisi turnuvaları ve katılımcı deneyiminden sorumludur.",
+      "responsibilities": [
+        "60 çadır ve topluluk stantlarının parsellenmesi ve masa/sandalye dağıtımı",
+        "Şişme oyun parkurları, rodeo ve yarışma istasyonlarının operasyonu",
+        "Sponsor deneyim çadırları ve marka aktivasyon noktalarının saha yönetimi",
+        "Ödüllü kampüs turnuvaları ve mini yarışmaların canlı organizasyonu"
+      ]
+    },
+    {
+      "id": "dep_6",
+      "name": "Ar-Ge ve Tasarım",
       "lead": "Melike Konar & Hakan Karadağ",
-      "icon": "💡",
       "color": "#8B5CF6",
-      "tagline": "Görsel Kimlik, Festival Teması, Sosyal Medya & Ambiyans",
-      "description": "Festivalin genel sanatsal konsepti, vintage/retro ışıklandırma ve peri led süslemeleri, festival fotoğraf/selfie tagları, yönlendirme tabelaları, afiş ve dijital grafik tasarımları, drone/video çekimleri, sosyal medya canlı yayınları ve festival atmosferinden sorumludur.",
+      "tagline": "Görsel Kimlik, Ambiyans Tasarımı, Medya & Tanıtım",
+      "description": "Festivalin görsel kimliği, retro ve peri led aydınlatma süslemeleri, festival fotoğraf/selfie tagları, yönlendirme tabelaları, afiş ve dijital grafik tasarımları, drone/video çekimleri ve festival atmosferinden sorumludur.",
       "responsibilities": [
         "Festival görsel kimliği, sosyal medya postları, afiş ve basılı materyal tasarımları",
         "Selfie noktaları, ahşap yönlendirme tabelaları ve festival tagının üretimi",
         "Festival alanı peri led, fener ve gece ambiyans aydınlatmalarının planlaması",
-        "Fotoğraf, aftermovie video çekimleri, drone kayıtları ve basın-medya iletişimi"
+        "Fotoğraf, aftermovie video çekimleri, drone kayıtları ve medya iletişimi"
       ]
     }
   ],
@@ -91,8 +100,8 @@
       "username": "berke",
       "pin": "2026",
       "role": "Başkan & Festival Sorumlusu",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "Yönetim",
+      "department": "Yönetim",
+      "badge": "Başkan",
       "role_type": "admin"
     },
     {
@@ -101,8 +110,8 @@
       "username": "burak",
       "pin": "1001",
       "role": "Başkan Yardımcısı & Genel İşleyiş",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "İşleyiş",
+      "department": "Yönetim",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -111,8 +120,8 @@
       "username": "selin",
       "pin": "1002",
       "role": "Genel Koordinatör",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "Koordinasyon",
+      "department": "Koordinasyon",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -121,8 +130,8 @@
       "username": "emrullah",
       "pin": "1003",
       "role": "Organizasyon Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Organizasyon",
+      "department": "Sahne",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -131,8 +140,8 @@
       "username": "melike",
       "pin": "1004",
       "role": "Ar-Ge & Konsept Tasarımı",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Ar-Ge",
+      "department": "Ar-Ge ve Tasarım",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -141,8 +150,8 @@
       "username": "mecit",
       "pin": "1005",
       "role": "Saha İçeriği Planlama (Meydan & Oyun)",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Saha İçerik",
+      "department": "Saha İçeriği",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -151,8 +160,8 @@
       "username": "mert",
       "pin": "1006",
       "role": "Saha İçeriği Planlama (Stant & Yerleşim)",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Saha Yerleşim",
+      "department": "Saha İçeriği",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -161,8 +170,8 @@
       "username": "ceren",
       "pin": "1007",
       "role": "Saha İçi Koordinasyon & Sahne / Performans Sorumlusu",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Sanatçı & Performans Yetkili",
+      "department": "Saha İçi Operasyon",
+      "badge": "Yönetim Ekibi",
       "role_type": "member",
       "can_manage_artists": true
     },
@@ -172,8 +181,8 @@
       "username": "efe",
       "pin": "1008",
       "role": "Ses, Işık, Sahne İçerikleri Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Teknik & Sahne",
+      "department": "Sahne",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -182,8 +191,8 @@
       "username": "samet",
       "pin": "1009",
       "role": "Saha İçerikleri Tamamlayıcı & Lojistik",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Lojistik Destek",
+      "department": "Saha İçi Operasyon",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -192,8 +201,8 @@
       "username": "hakan",
       "pin": "1010",
       "role": "Grafik Tasarım, Afiş & Sahne Tasarımları",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Grafik & Tasarım",
+      "department": "Ar-Ge ve Tasarım",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -202,8 +211,8 @@
       "username": "gizem",
       "pin": "1011",
       "role": "Saha Operasyon & Ekip Koordinasyonu",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Saha Operasyon",
+      "department": "Saha İçi Operasyon",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -212,8 +221,8 @@
       "username": "elif",
       "pin": "1012",
       "role": "Topluluk Stantları & Deneyim Alanları Sorumlusu",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Stant & İletişim",
+      "department": "Saha İçeriği",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -222,8 +231,8 @@
       "username": "salih",
       "pin": "1013",
       "role": "Sahne, Ses & Canlı Performans Destek Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Sahne & Ses",
+      "department": "Sahne",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -232,8 +241,8 @@
       "username": "aleyna",
       "pin": "1014",
       "role": "Medya, Tanıtım & Atmosfer Tasarımı",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Medya & Tasarım",
+      "department": "Ar-Ge ve Tasarım",
+      "badge": "Yönetim Ekibi",
       "role_type": "member"
     },
     {
@@ -242,8 +251,8 @@
       "username": "genel",
       "pin": "0000",
       "role": "Tüm Festival Alanları & Görev Takibi",
-      "department": "Genel Koordinasyon",
-      "badge": "Genel Erişim (0000)",
+      "department": "Koordinasyon",
+      "badge": "Genel Erişim",
       "role_type": "general"
     }
   ],
@@ -253,7 +262,7 @@
       "title": "Büyükşehir Belediyesi Sahne Tırları Kampüs Giriş İzni",
       "description": "Rektörlük dilekçesi EBYS akışı üzerinden güvenlik amirliğine tır plaka ve belediye personel listesinin bildirilmesi.",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "alindi",
       "deadline": "2026-09-29",
@@ -268,7 +277,7 @@
       "title": "Büyükşehir ve Rektörlük Festival Açılış Protokolü",
       "description": "17 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Yüksek",
       "status": "alindi",
       "deadline": "2026-10-02",
@@ -281,7 +290,7 @@
       "title": "10 Günlük Operasyonel İşleyiş Takviminin Takibi",
       "description": "Departmanların günlük çıktılarını denetlemek ve her akşam 20:00 genel durum raporunu konsolide etmek.",
       "assignee": "Burak Avcı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-09-28"
@@ -291,7 +300,7 @@
       "title": "SKS ile 60 Çadır, 120 Sandalye ve Masa Zimmet Protokolü",
       "description": "SKS ambarındaki envanterin 16 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
       "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Koordinasyon",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-09-29"
@@ -301,7 +310,7 @@
       "title": "Departmanlar Arası İletişim & Sabah 09:30 Stand-Up Moderasyonu",
       "description": "10 kişilik çekirdek ekibin her sabah 15 dakikalık hızlı senkronizasyon toplantısını yönetmek ve engelleri çözmek.",
       "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Koordinasyon",
       "priority": "Yüksek",
       "status": "alindi",
       "deadline": "2026-09-28",
@@ -314,7 +323,7 @@
       "title": "Üniversite Tanıtım ve Basın Birimi Duyuru Koordinasyonu",
       "description": "Festivalin üniversite web sitesinde ve resmi sosyal medya hesaplarında duyurulması için basın bülteninin iletilmesi.",
       "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Koordinasyon",
       "priority": "Orta",
       "status": "yapilacak",
       "deadline": "2026-10-02"
@@ -324,7 +333,7 @@
       "title": "2 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
       "description": "Açılış, kulüp performansları, yarışmalar ve kapanış konserlerinin saat saat dakika dakika akış planı.",
       "assignee": "Mecit Çalık",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-01",
@@ -336,7 +345,7 @@
       "title": "Öğrenci Kulüpleri Sahne Şovları ve Sıralaması (Line-up)",
       "description": "Dans topluluğu, tiyatro kulübü ve spor topluluklarının sahneye çıkış saatleri ve prova çizelgesi.",
       "assignee": "Emrullah Genç",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-02"
@@ -346,7 +355,7 @@
       "title": "Festival Sunucusu (MC) ve Canlı Anons Metinleri",
       "description": "Gün boyu mikrofonu yönetecek enerjik sunucunun belirlenmesi, yarışma anonsları ve festival akış provaları.",
       "assignee": "Emrullah Genç",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Orta",
       "status": "yapilacak",
       "deadline": "2026-10-03"
@@ -356,7 +365,7 @@
       "title": "50 Adet Armut Koltuk / Puf Temini Araştırması",
       "description": "",
       "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-01",
@@ -368,7 +377,7 @@
       "title": "Instagram Photo-Booth ve İnteraktif Anı Duvarı Tasarımı",
       "description": "Öğrencilerin önünde fotoğraf çekileceği SET temalı arka plan panosu ve festival anı defteri/duvarı konsepti.",
       "assignee": "Melike Konar",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "category": "Ar-Ge ve Tasarım",
       "priority": "Yüksek",
       "status": "yapildi",
       "deadline": "2026-10-02",
@@ -383,7 +392,7 @@
       "title": "Festival Flamaları, İpli Renkli Bayraklar ve Gece Işıklandırması",
       "description": "Çim alan ağaçları ve çadırlar arasına gerilecek üçgen festival flamaları ile günışığı peri ampulleri konsepti.",
       "assignee": "Melike Konar",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "category": "Ar-Ge ve Tasarım",
       "priority": "Orta",
       "status": "yapilacak",
       "deadline": "2026-10-03"
@@ -393,7 +402,7 @@
       "title": "Dev Ahşap Jenga ve Cornhole İstasyonları Kurulum Planı",
       "description": "2 takım dev ahşap jenga ve cornhole atış tahtalarının hazırlanması, çim alandaki güvenlik mesafelerinin belirlenmesi.",
       "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-02",
@@ -404,7 +413,7 @@
       "title": "Masa Langırtı ve Çim Halat Çekme Turnuva Kuralları",
       "description": "Çim alana yerleştirilecek 2 langırt masasının teraziye alınması ve kulüpler arası turnuva fikstürünün yazılması.",
       "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-03"
@@ -414,7 +423,7 @@
       "title": "Çim Dinlenme Meydanında Varil Masa ve Puf Yerleşim Planı",
       "description": "25 varil kokteyl masası ve 50 armut pufun öğrencilerin sahneyi rahat göreceği şekilde çim alana yerleşim krokisi.",
       "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-03"
@@ -424,7 +433,7 @@
       "title": "60 Kulüp Çadırının Tartan Parkur Boyunca Sıralanma Planı",
       "description": "Spor kompleksi önündeki koşu parkurunda 3x3m çadırların elektrik hatlarına ve yaya akışına göre numaralandırılması.",
       "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Kritik",
       "status": "alindi",
       "deadline": "2026-10-02",
@@ -437,7 +446,7 @@
       "title": "SKS Masa ve Sandalyelerinin Stantlara Dağıtım Krokisi",
       "description": "16 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
       "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
+      "category": "Saha İçeriği",
       "priority": "Yüksek",
       "status": "alindi",
       "deadline": "2026-10-04",
@@ -450,7 +459,7 @@
       "title": "SET Danışma Masası, Karşılama Ekibi ve Yaka Kartları",
       "description": "Girişte öğrencilere festival broşürü dağıtacak karşılama ekibi ile çekirdek kadro akreditasyon yaka kartlarının dağıtımı.",
       "assignee": "Ceren Çakmak",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "category": "Saha İçi Operasyon",
       "priority": "Orta",
       "status": "alindi",
       "deadline": "2026-10-04",
@@ -465,7 +474,7 @@
       "title": "Büyükşehir Belediyesi Ses & Sahne Teknisyenleri Rider Keşfi",
       "description": "Büyükşehir teknik ekibiyle sahada mikser, telsiz mikrofonlar, hoparlör açıları ve truss güvenliğinin incelenmesi.",
       "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-09-30"
@@ -475,7 +484,7 @@
       "title": "Ana Sahne LED Ekran Görselleri ve Video Döngüsü (Loop)",
       "description": "1920x1080 oranında 'SET KAMPÜSE HOŞ GELDİN' temalı, gündüz kulüp logoları akşam konser dinamik LED video loop'ları.",
       "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-02"
@@ -485,7 +494,7 @@
       "title": "16 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
       "description": "Konser verecek üniversite grupları ve DJ ile ses sisteminin test edilmesi, desibel ayarlarının kilitlenmesi.",
       "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-16"
@@ -495,7 +504,7 @@
       "title": "Sanayi Sitesinden 25 Adet Boş Sac Varilin Toplanması ve Nakliyesi",
       "description": "Süleymanpaşa oto tamircilerinden toplanan 200L varillerin kamyonetle kampüs bahçesine taşınması.",
       "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "category": "Saha İçi Operasyon",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-01"
@@ -505,7 +514,7 @@
       "title": "2 Ekim SET Varil Boyama Atölyesi Malzeme ve Lojistik Hazırlığı",
       "description": "Mat siyah/antrasit sprey boyalar, SET logo stencilleri ve zımparaların hazırlanarak atölye alanının kurulması.",
       "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "category": "Saha İçi Operasyon",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-02"
@@ -515,7 +524,7 @@
       "title": "Sahne Arkası Elektrik Hatları, Jeneratör ve Yakıt Kontrolü",
       "description": "Büyükşehir sahne jeneratörünün konumlandırılması, yakıt rezervi ve ana panodan seyyar hatların çekilmesi.",
       "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
+      "category": "Saha İçi Operasyon",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-10-04"
@@ -525,7 +534,7 @@
       "title": "Resmi Festival Afişi & Sosyal Medya Görsel Seti Tasarımı",
       "description": "Rektörlük ve SKS onaylı festival ana afişi, Instagram duyuru serisi, story formatları ve 3 günlük program takvimi tasarımlarının tamamlanıp dijital baskıya verilmesi.",
       "assignee": "Hakan Karadağ",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "category": "Ar-Ge ve Tasarım",
       "priority": "Kritik",
       "status": "yapilacak",
       "deadline": "2026-09-28"
@@ -535,7 +544,7 @@
       "title": "Sahne Arkası LED Ekran Animasyon & DJ Loop Tasarımları",
       "description": "Büyükşehir Belediyesi sahne arkası LED ekran için hareketli SET introları, sahne araları video loopları ve görsel efekt paketinin hazırlanması.",
       "assignee": "Hakan Karadağ",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
+      "category": "Sahne",
       "priority": "Yüksek",
       "status": "yapilacak",
       "deadline": "2026-10-02"
@@ -545,7 +554,7 @@
       "title": "Alan İçi Yönlendirme Tabelaları & Stant Numarataj Şablonları",
       "description": "Festival çim alanı giriş takı grafikleri, oyun alanı yönlendirmeleri, varil masa üzeri sticker tasarımları ve SKS stant numaratajlarının hazırlanması.",
       "assignee": "Hakan Karadağ",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
+      "category": "Ar-Ge ve Tasarım",
       "priority": "Orta",
       "status": "yapilacak",
       "deadline": "2026-10-03"
@@ -555,7 +564,7 @@
       "title": "AREM ARMAN İLETİŞİM",
       "description": "konuşulacak",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "alindi",
       "deadline": "2026-10-04",
@@ -568,7 +577,7 @@
       "title": "MAHMUT ORHAN",
       "description": "iletişim",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "alindi",
       "deadline": "2026-10-04",
@@ -581,7 +590,7 @@
       "title": "HİKAYEDEN ADAMLAR",
       "description": "iletişime geçildi dönüş bekleniyor",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "alindi",
       "deadline": "2026-10-04",
@@ -594,7 +603,7 @@
       "title": "EMİR CAN İĞREK İLETİŞİM",
       "description": "",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Yüksek",
       "status": "alindi",
       "claimed_by": "Berke Saygılı",
@@ -609,7 +618,7 @@
       "title": "SKS SET TOPLULUK STAND TALEBİ",
       "description": "SET İÇİN RESMİ BELGE TESLİMİ",
       "assignee": "Berke Saygılı & Emrullah Genç",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Kritik",
       "status": "alindi",
       "claimed_by": "Berke Saygılı",
@@ -624,7 +633,7 @@
       "title": "DANS TOPLULUĞU WORKSHOP-SHOW",
       "description": "Selin Su iletişime geçilecek",
       "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
+      "category": "Yönetim",
       "priority": "Orta",
       "status": "alindi",
       "claimed_by": "Berke Saygılı",

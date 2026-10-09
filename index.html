@@ -1969,7 +1969,7 @@
         🎭 Sahne & Sanatçı Portalı <span class="tab-badge" id="artists-count-badge">33</span>
       </button>
       <button class="tab-btn tab-btn-dept" onclick="switchTab('departments')" id="tab-btn-departments">
-        🏛️ Festival Departmanları & Ekip <span class="tab-badge" id="dept-count-badge">5</span>
+        Festival Departmanları & Ekip <span class="tab-badge" id="dept-count-badge">6</span>
       </button>
 
     </div>
@@ -1979,11 +1979,12 @@
       <div class="task-controls">
         <div class="filters-group">
           <button class="filter-chip active" onclick="filterCategory('ALL', this)">Tümü</button>
-          <button class="filter-chip" onclick="filterCategory('Üst Yönetim & Genel Koordinasyon', this)">👑 Üst Yönetim & Koordinasyon</button>
-          <button class="filter-chip" onclick="filterCategory('Sahne, Ses, Işık & Canlı Performans', this)">🎤 Sahne, Ses & Performans</button>
-          <button class="filter-chip" onclick="filterCategory('Saha İçeriği, Deneyim & Oyun Alanları', this)">🎪 Saha İçeriği & Oyunlar</button>
-          <button class="filter-chip" onclick="filterCategory('Saha İçi Operasyon & Tamamlayıcı Lojistik', this)">⚙️ Saha Operasyonu & Lojistik</button>
-          <button class="filter-chip" onclick="filterCategory('Ar-Ge, Konsept & Atmosfer Tasarımı', this)">💡 Ar-Ge & Atmosfer</button>
+          <button class="filter-chip" onclick="filterCategory('Yönetim', this)">Yönetim</button>
+          <button class="filter-chip" onclick="filterCategory('Koordinasyon', this)">Koordinasyon</button>
+          <button class="filter-chip" onclick="filterCategory('Sahne', this)">Sahne</button>
+          <button class="filter-chip" onclick="filterCategory('Saha İçi Operasyon', this)">Saha İçi Operasyon</button>
+          <button class="filter-chip" onclick="filterCategory('Saha İçeriği', this)">Saha İçeriği</button>
+          <button class="filter-chip" onclick="filterCategory('Ar-Ge ve Tasarım', this)">Ar-Ge ve Tasarım</button>
         </div>
         <button id="btn-add-task-main" class="btn-primary" onclick="openAddTaskModal()" style="display:none;">+ Yeni Görev Ekle</button>
       </div>
@@ -2564,21 +2565,53 @@
 
     <!-- TAB: DEPARTMENTS & TEAM -->
     <div class="tab-pane" id="pane-departments">
+      <!-- DEPARTMENTS TOP SLIDING CAROUSEL (KAYAR EKRAN) -->
+      <div class="dept-slider-wrapper" style="background:linear-gradient(135deg, rgba(23, 24, 28, 0.95), rgba(30, 32, 45, 0.95)); border:1px solid rgba(201, 138, 44, 0.35); border-radius:var(--radius); padding:16px 20px; margin-bottom:20px; box-shadow:0 8px 24px rgba(0,0,0,0.4);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-size:0.75rem; font-weight:800; color:var(--accent-ochre-light); letter-spacing:0.8px; text-transform:uppercase; background:rgba(201,138,44,0.15); border:1px solid rgba(201,138,44,0.3); padding:4px 12px; border-radius:14px;">
+              Departman Hızlı Özet & Kayar Kartlar
+            </span>
+            <span style="font-size:0.82rem; color:var(--text-muted);" id="dept-slider-info-text">6 Operasyonel Departman</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button type="button" class="btn-primary" onclick="openAddDepartmentModal()" id="btn-add-dept-slider" style="display:none; font-size:0.78rem; padding:6px 12px; background:linear-gradient(135deg, #C98A2C, #9a6316); border:none; border-radius:6px; color:#FFF; font-weight:700; cursor:pointer;">
+              ➕ Yeni Departman Ekle
+            </button>
+            <div style="display:flex; gap:6px;">
+              <button type="button" onclick="scrollDeptSlider(-1)" title="Önceki" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#FAF9F6; width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:0.95rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">
+                ◀
+              </button>
+              <button type="button" onclick="scrollDeptSlider(1)" title="Sonraki" style="background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#FAF9F6; width:34px; height:34px; border-radius:8px; cursor:pointer; font-size:0.95rem; display:flex; align-items:center; justify-content:center; transition:all 0.2s;">
+                ▶
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="dept-slider-container" style="display:flex; gap:14px; overflow-x:auto; scroll-behavior:smooth; scroll-snap-type:x mandatory; padding-bottom:8px; -webkit-overflow-scrolling:touch; scrollbar-width:thin;">
+          <!-- Dynamically rendered by renderDepartmentSlider() -->
+        </div>
+      </div>
+
       <!-- DEPARTMENTS HERO / BANNER -->
       <div style="background:linear-gradient(135deg, rgba(23, 24, 23, 0.95), rgba(30, 32, 45, 0.95)); border:1px solid rgba(201, 138, 44, 0.35); border-radius:var(--radius); padding:24px; margin-bottom:24px; box-shadow:0 10px 30px rgba(0,0,0,0.5); position:relative; overflow:hidden;">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; position:relative; z-index:1;">
           <div>
             <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(201, 138, 44, 0.15); border:1px solid rgba(201, 138, 44, 0.35); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:800; color:var(--accent-ochre-light); margin-bottom:10px;">
-              🏛️ 5 ANA OPERASYONEL DİREKTÖRLÜK
+              6 OPERASYONEL FESTİVAL DİREKTÖRLÜĞÜ
             </div>
             <h2 style="font-size:1.6rem; font-weight:800; color:#FFF; margin:0 0 6px 0; letter-spacing:-0.5px;">
               Festival Departmanları & Ekip Hiyerarşisi
             </h2>
             <p style="color:var(--text-muted); font-size:0.88rem; margin:0; max-width:680px; line-height:1.5;">
-              SET 17-18 Ekim Kampüse Hoş Geldin Fest hazırlık ve saha yönetiminde yer alan 5 departmanın liderleri, sorumluluk alanları, aktif kadroları ve görev tamamlama metrikleri.
+              SET 17-18 Ekim Kampüse Hoş Geldin Fest hazırlık ve saha yönetiminde yer alan 6 departmanın liderleri, sorumluluk alanları, aktif kadroları ve görev tamamlama metrikleri.
             </p>
           </div>
           <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <button class="btn-primary" onclick="openAddDepartmentModal()" id="dept-hero-add-dept-btn" style="display:none; background:linear-gradient(135deg, #C98A2C, #9a6316); border:none; color:#FFF; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(201,138,44,0.35);">
+              ➕ Yeni Departman Ekle
+            </button>
             <button class="btn-primary" onclick="openAddTeamMemberModal()" id="dept-hero-add-btn" style="background:linear-gradient(135deg, #10B981, #059669); border:none; color:#FFF; font-weight:700; font-size:0.85rem; padding:10px 18px; border-radius:8px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(16,185,129,0.35);">
               ➕ Yeni Ekip Üyesi Ekle
             </button>
@@ -2595,7 +2628,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:14px; margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.08);">
           <div style="background:rgba(0,0,0,0.3); padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
             <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">TOPLAM DEPARTMAN</div>
-            <div style="font-size:1.35rem; font-weight:800; color:#FAF9F6; margin-top:2px;">5 Departman</div>
+            <div style="font-size:1.35rem; font-weight:800; color:#FAF9F6; margin-top:2px;" id="dept-stat-dept-count">6 Departman</div>
           </div>
           <div style="background:rgba(0,0,0,0.3); padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.05);">
             <div style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">AKTİF EKİP KADROSU</div>
@@ -2639,11 +2672,12 @@
         <!-- ROSTER FILTER CHIPS -->
         <div class="filters-group" style="margin-bottom:16px; overflow-x:auto;">
           <button class="filter-chip active" onclick="filterDeptRosterCategory('ALL', this)">Tüm Ekip (<span id="roster-all-count">16</span>)</button>
-          <button class="filter-chip" onclick="filterDeptRosterCategory('Üst Yönetim & Genel Koordinasyon', this)">👑 Üst Yönetim</button>
-          <button class="filter-chip" onclick="filterDeptRosterCategory('Sahne, Ses, Işık & Canlı Performans', this)">🎤 Sahne & Performans</button>
-          <button class="filter-chip" onclick="filterDeptRosterCategory('Saha İçeriği, Deneyim & Oyun Alanları', this)">🎪 Saha İçeriği & Stantlar</button>
-          <button class="filter-chip" onclick="filterDeptRosterCategory('Saha İçi Operasyon & Tamamlayıcı Lojistik', this)">⚙️ Operasyon & Lojistik</button>
-          <button class="filter-chip" onclick="filterDeptRosterCategory('Ar-Ge, Konsept & Atmosfer Tasarımı', this)">💡 Ar-Ge & Tasarım</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Yönetim', this)">Yönetim</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Koordinasyon', this)">Koordinasyon</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Sahne', this)">Sahne</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Saha İçi Operasyon', this)">Saha İçi Operasyon</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Saha İçeriği', this)">Saha İçeriği</button>
+          <button class="filter-chip" onclick="filterDeptRosterCategory('Ar-Ge ve Tasarım', this)">Ar-Ge ve Tasarım</button>
         </div>
 
         <!-- ROSTER GRID -->
@@ -2698,11 +2732,12 @@
           <div class="form-group">
             <label>Kategori</label>
             <select id="nt-category" class="form-control">
-              <option value="Üst Yönetim & Genel Koordinasyon">Üst Yönetim & Genel Koordinasyon</option>
-              <option value="Sahne, Ses, Işık & Canlı Performans">Sahne, Ses, Işık & Canlı Performans</option>
-              <option value="Saha İçeriği, Deneyim & Oyun Alanları">Saha İçeriği, Deneyim & Oyun Alanları</option>
-              <option value="Saha İçi Operasyon & Tamamlayıcı Lojistik">Saha İçi Operasyon & Tamamlayıcı Lojistik</option>
-              <option value="Ar-Ge, Konsept & Atmosfer Tasarımı">Ar-Ge, Konsept & Atmosfer Tasarımı</option>
+              <option value="Yönetim">Yönetim</option>
+              <option value="Koordinasyon">Koordinasyon</option>
+              <option value="Sahne">Sahne</option>
+              <option value="Saha İçi Operasyon">Saha İçi Operasyon</option>
+              <option value="Saha İçeriği">Saha İçeriği</option>
+              <option value="Ar-Ge ve Tasarım">Ar-Ge ve Tasarım</option>
             </select>
           </div>
           <div class="form-group">
@@ -2751,11 +2786,12 @@
           <div class="form-group">
             <label>Kategori</label>
             <select id="et-category" class="form-control">
-              <option value="Üst Yönetim & Genel Koordinasyon">Üst Yönetim & Genel Koordinasyon</option>
-              <option value="Sahne, Ses, Işık & Canlı Performans">Sahne, Ses, Işık & Canlı Performans</option>
-              <option value="Saha İçeriği, Deneyim & Oyun Alanları">Saha İçeriği, Deneyim & Oyun Alanları</option>
-              <option value="Saha İçi Operasyon & Tamamlayıcı Lojistik">Saha İçi Operasyon & Tamamlayıcı Lojistik</option>
-              <option value="Ar-Ge, Konsept & Atmosfer Tasarımı">Ar-Ge, Konsept & Atmosfer Tasarımı</option>
+              <option value="Yönetim">Yönetim</option>
+              <option value="Koordinasyon">Koordinasyon</option>
+              <option value="Sahne">Sahne</option>
+              <option value="Saha İçi Operasyon">Saha İçi Operasyon</option>
+              <option value="Saha İçeriği">Saha İçeriği</option>
+              <option value="Ar-Ge ve Tasarım">Ar-Ge ve Tasarım</option>
             </select>
           </div>
           <div class="form-group">
@@ -3026,12 +3062,21 @@
       <!-- DEPT FILTER BUTTONS IN TEAM MODAL -->
       <div class="filters-group" style="margin-bottom:12px; overflow-x:auto;">
         <button class="filter-chip active" onclick="filterTeamModalDept('ALL', this)">Tümü</button>
-        <button class="filter-chip" onclick="filterTeamModalDept('Üst Yönetim & Genel Koordinasyon', this)">👑 Üst Yönetim</button>
-        <button class="filter-chip" onclick="filterTeamModalDept('Sahne, Ses, Işık & Canlı Performans', this)">🎤 Sahne & Ses</button>
-        <button class="filter-chip" onclick="filterTeamModalDept('Saha İçeriği, Deneyim & Oyun Alanları', this)">🎪 Saha İçerik</button>
-        <button class="filter-chip" onclick="filterTeamModalDept('Saha İçi Operasyon & Tamamlayıcı Lojistik', this)">⚙️ Operasyon & Lojistik</button>
-        <button class="filter-chip" onclick="filterTeamModalDept('Ar-Ge, Konsept & Atmosfer Tasarımı', this)">💡 Ar-Ge & Tasarım</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Yönetim', this)">Yönetim</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Koordinasyon', this)">Koordinasyon</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Sahne', this)">Sahne</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Saha İçi Operasyon', this)">Saha İçi Operasyon</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Saha İçeriği', this)">Saha İçeriği</button>
+        <button class="filter-chip" onclick="filterTeamModalDept('Ar-Ge ve Tasarım', this)">Ar-Ge ve Tasarım</button>
       </div>
+      <datalist id="dept-datalist-mgmt">
+        <option value="Yönetim">Yönetim</option>
+        <option value="Koordinasyon">Koordinasyon</option>
+        <option value="Sahne">Sahne</option>
+        <option value="Saha İçi Operasyon">Saha İçi Operasyon</option>
+        <option value="Saha İçeriği">Saha İçeriği</option>
+        <option value="Ar-Ge ve Tasarım">Ar-Ge ve Tasarım</option>
+      </datalist>
 
       <!-- MEMBER CARDS LIST (SCROLLABLE) -->
       <div id="team-mgmt-container" style="flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:12px; padding-right:4px;">
@@ -3084,25 +3129,27 @@
 
           <div class="form-group">
             <label style="font-size:0.76rem; color:var(--accent-ochre); font-weight:700; text-transform:uppercase;">Festival Departmanı *</label>
-            <select id="new-tm-dept" class="form-control" required>
-              <option value="Üst Yönetim & Genel Koordinasyon">👑 Üst Yönetim & Genel Koordinasyon</option>
-              <option value="Sahne, Ses, Işık & Canlı Performans">🎤 Sahne, Ses, Işık & Canlı Performans</option>
-              <option value="Saha İçeriği, Deneyim & Oyun Alanları">🎪 Saha İçeriği, Deneyim & Oyun Alanları</option>
-              <option value="Saha İçi Operasyon & Tamamlayıcı Lojistik" selected>⚙️ Saha İçi Operasyon & Tamamlayıcı Lojistik</option>
-              <option value="Ar-Ge, Konsept & Atmosfer Tasarımı">💡 Ar-Ge, Konsept & Atmosfer Tasarımı</option>
-            </select>
+            <input type="text" id="new-tm-dept" list="dept-datalist-new" class="form-control" placeholder="Departman adı yazın veya seçin..." required value="Saha İçi Operasyon">
+            <datalist id="dept-datalist-new">
+              <option value="Yönetim">Yönetim</option>
+              <option value="Koordinasyon">Koordinasyon</option>
+              <option value="Sahne">Sahne</option>
+              <option value="Saha İçi Operasyon">Saha İçi Operasyon</option>
+              <option value="Saha İçeriği">Saha İçeriği</option>
+              <option value="Ar-Ge ve Tasarım">Ar-Ge ve Tasarım</option>
+            </datalist>
           </div>
         </div>
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
           <div class="form-group">
             <label style="font-size:0.76rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Görev / Rol Tanımı</label>
-            <input type="text" id="new-tm-role" class="form-control" placeholder="Örn: Saha Operasyon & İletişim Sorumlusu">
+            <input type="text" id="new-tm-role" class="form-control" placeholder="Örn: Saha Operasyon Görevlisi">
           </div>
 
           <div class="form-group">
             <label style="font-size:0.76rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Rozet / Kısa Unvan</label>
-            <input type="text" id="new-tm-badge" class="form-control" placeholder="Örn: Saha Operasyon">
+            <input type="text" id="new-tm-badge" class="form-control" value="Yönetim Ekibi" placeholder="Örn: Yönetim Ekibi">
           </div>
         </div>
 
@@ -3114,11 +3161,11 @@
           </div>
 
           <div class="form-group">
-            <label style="font-size:0.76rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Yetki Tipi</label>
-            <select id="new-tm-role-type" class="form-control">
-              <option value="member" selected>Standart Ekip Üyesi</option>
-              <option value="admin">Yönetici / Başkan Yetkisi</option>
-            </select>
+            <label style="font-size:0.76rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Yetki / Statü</label>
+            <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:6px; padding:9px 12px; font-size:0.83rem; font-weight:700; color:#34d399; display:flex; align-items:center; gap:8px;">
+              <span>🛡️</span> <span>Yönetim Ekibi</span>
+            </div>
+            <input type="hidden" id="new-tm-role-type" value="member">
           </div>
         </div>
 
@@ -3127,6 +3174,75 @@
           <button type="submit" id="btn-save-new-member" class="btn-primary" style="background:linear-gradient(135deg, #10B981, #059669); border:none; color:#FFF; font-weight:700; padding:10px 22px; border-radius:8px; display:inline-flex; align-items:center; gap:6px; box-shadow:0 4px 14px rgba(16,185,129,0.35);">
             💾 Ekip Üyesini Kaydet
           </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  <!-- DEPARTMENT EDIT / ADD MODAL -->
+  <div class="modal-overlay" id="department-edit-modal" onclick="if(event.target === this) closeDepartmentEditModal()">
+    <div class="modal" style="max-width: 620px; width: 95%;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div style="width:38px; height:38px; border-radius:10px; background:linear-gradient(135deg, #C98A2C, #9a6316); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:1.25rem; font-weight:800;">⚙️</div>
+          <div>
+            <h3 id="dept-modal-title" style="margin:0; font-size:1.15rem; color:#FFF; font-weight:800;">Departmanı Düzenle</h3>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Festival departmanının tüm parametrelerini düzenleyin</div>
+          </div>
+        </div>
+        <button type="button" onclick="closeDepartmentEditModal()" style="background:none; border:none; color:var(--text-muted); font-size:1.3rem; cursor:pointer; padding:4px;">✕</button>
+      </div>
+
+      <form id="department-edit-form" onsubmit="handleSaveDepartment(event)">
+        <input type="hidden" id="dept-form-id" value="">
+
+        <div style="display:grid; grid-template-columns:2fr 1fr; gap:12px;">
+          <div class="form-group">
+            <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Departman Adı *</label>
+            <input type="text" id="dept-form-name" class="form-control" required placeholder="Örn: Sahne">
+          </div>
+          <div class="form-group">
+            <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Tema Rengi</label>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <input type="color" id="dept-form-color-picker" style="width:38px; height:36px; border:none; border-radius:6px; background:none; cursor:pointer;" onchange="document.getElementById('dept-form-color').value = this.value">
+              <input type="text" id="dept-form-color" class="form-control" style="font-family:monospace; padding:6px 8px; font-size:0.85rem;" placeholder="#C98A2C" oninput="document.getElementById('dept-form-color-picker').value = this.value">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Lider / Başkan(lar) *</label>
+          <input type="text" id="dept-form-lead" class="form-control" required placeholder="Örn: Efe Kağan Yağcı">
+        </div>
+
+        <div class="form-group">
+          <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Slogan / Alt Başlık</label>
+          <input type="text" id="dept-form-tagline" class="form-control" placeholder="Örn: Ana Sahne Kurulumu, Ses, Işık & Sanatçı Yönetimi">
+        </div>
+
+        <div class="form-group">
+          <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Departman Açıklaması</label>
+          <textarea id="dept-form-desc" class="form-control" rows="3" placeholder="Departmanın festivaldeki temel misyonu ve sorumlulukları..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Temel Görev & Sorumluluklar (Her satıra bir madde)</label>
+          <textarea id="dept-form-resps" class="form-control" rows="4" placeholder="Konser tırı montajı ve akustik ses provası&#10;Sanatçı rider karşılama operasyonu&#10;Teknik elektrik altyapısı"></textarea>
+        </div>
+
+        <div class="modal-footer" style="margin-top:16px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <button type="button" id="btn-delete-dept" onclick="handleDeleteCurrentDepartment()" style="display:none; background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#f87171; font-weight:700; font-size:0.8rem; padding:8px 14px; border-radius:6px; cursor:pointer;">
+              🗑️ Departmanı Sil
+            </button>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button type="button" class="btn-secondary" onclick="closeDepartmentEditModal()">Vazgeç</button>
+            <button type="submit" class="btn-primary" style="background:linear-gradient(135deg, #10B981, #059669); border:none; color:#FFF; font-weight:700; padding:10px 20px; border-radius:8px; cursor:pointer;">
+              💾 Departmanı Kaydet
+            </button>
+          </div>
         </div>
       </form>
     </div>
@@ -3606,978 +3722,641 @@
   },
   "departments": [
     {
-      "id": "dep_1",
-      "name": "Üst Yönetim & Genel Koordinasyon",
-      "lead": "Berke Saygılı",
-      "icon": "👑",
-      "color": "#C98A2C",
-      "tagline": "Stratejik Yönetim, Resmi EBYS & Festival Güvenliği",
-      "description": "Festivalin genel vizyonu, üniversite rektörlüğü, SKS Daire Başkanlığı, Tekirdağ Büyükşehir Belediyesi ve emniyet birimleriyle olan resmi protokollerin yürütülmesi, bütçe-sponsorluk denetimi ve departmanlar arası operasyonel senkronizasyondan sorumludur.",
-      "responsibilities": [
-        "Rektörlük, SKS ve Büyükşehir Belediyesi resmi izinleri ve EBYS protokolleri",
-        "Departman başkanlıkları koordinasyonu ve günlük kriz yönetimi",
-        "Festival genel bütçe, sponsorluk denetimi ve kaynak tahsisi",
-        "Saha acil durum planı, sağlık ve güvenlik ekipleri koordinasyonu"
-      ]
+        "id": "dep_1",
+        "name": "Yönetim",
+        "lead": "Berke Saygılı & Burak Avcı",
+        "color": "#C98A2C",
+        "tagline": "Stratejik Yönetim, Resmi EBYS & Festival Güvenliği",
+        "description": "Festivalin genel vizyonu, üniversite rektörlüğü, SKS Daire Başkanlığı, Tekirdağ Büyükşehir Belediyesi ve emniyet birimleriyle olan resmi protokollerin yürütülmesi, bütçe-sponsorluk denetimi ve kriz yönetiminden sorumludur.",
+        "responsibilities": [
+            "Rektörlük, SKS ve Büyükşehir Belediyesi resmi izinleri ve EBYS protokolleri",
+            "Departman liderlikleri koordinasyonu ve kriz yönetimi",
+            "Festival genel bütçe ve sponsorluk kaynak tahsisi denetimi",
+            "Saha acil durum planı, sağlık ve güvenlik ekipleri koordinasyonu"
+        ]
     },
     {
-      "id": "dep_2",
-      "name": "Sahne, Ses, Işık & Canlı Performans",
-      "lead": "Efe Kağan Yağcı",
-      "icon": "🎤",
-      "color": "#EC4899",
-      "tagline": "Ana Sahne Kurulumu, Akustik, Aydınlatma & Sanatçı Yönetimi",
-      "description": "Büyükşehir Belediyesi konser tırları ve ana sahne mekaniği, 10kW line-array ses sistemi, truss ışıklandırma, DJ setup, sanatçı kulis ağırlaması (hospitality), rider karşılama ve 2 günlük canlı performans akışının kesintisiz icrasından sorumludur.",
-      "responsibilities": [
-        "Konser tırı, ses/ışık truss sistemleri montaj ve akustik ses provası",
-        "Headliner sanatçılar, DJ ve müzik gruplarının sahne rider karşılama operasyonu",
-        "Sahne sunucusu, MC ve program akışının dakikası dakikasına yürütülmesi",
-        "Jeneratör, elektrik altyapısı ve yedek güç sistemlerinin teknik denetimi"
-      ]
+        "id": "dep_2",
+        "name": "Koordinasyon",
+        "lead": "Selin Aşkın",
+        "color": "#3B82F6",
+        "tagline": "Operasyonel Senkronizasyon & Paydaş İletişimi",
+        "description": "Departmanlar arası günlük operasyonel senkronizasyon, toplantı ve raporlama akışının konsolidasyonu, SKS ve ambar koordinasyonu ile paydaş iletişim takviminin yürütülmesinden sorumludur.",
+        "responsibilities": [
+            "Departmanların günlük operasyonel çıktı ve takvim denetimi",
+            "SKS birimleri ile malzeme teslim ve protokol eşgüdümü",
+            "Festival saha akışı ve genel bilgilendirme takibi",
+            "Ekip içi acil durum haberleşme ve lojistik koordinasyonu"
+        ]
     },
     {
-      "id": "dep_3",
-      "name": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "lead": "Mecit Çalık & Mert Akmeşe",
-      "icon": "🎪",
-      "color": "#3B82F6",
-      "tagline": "Etkileşimli Alanlar, Topluluk Stantları & Festival Coşkusu",
-      "description": "Festival alanında yer alacak 60+ öğrenci topluluk standının yerleşim planı, Red Bull & sponsor aktivasyon alanları, çadır-sandalye-varil düzeni, dev oyun parkurları (rodeo, şişme oyunlar, gladyatör), langırt/masa tenisi turnuvaları ve katılımcı deneyiminden sorumludur.",
-      "responsibilities": [
-        "60 çadır ve topluluk stantlarının parsellenmesi ve masa/sandalye dağıtımı",
-        "Şişme oyun parkurları, rodeo ve yarışma istasyonlarının operasyonu",
-        "Sponsor deneyim çadırları ve marka aktivasyon noktalarının saha yönetimi",
-        "Ödüllü kampüs turnuvaları ve mini yarışmaların canlı organizasyonu"
-      ]
+        "id": "dep_3",
+        "name": "Sahne",
+        "lead": "Efe Kağan Yağcı",
+        "color": "#EC4899",
+        "tagline": "Ana Sahne Kurulumu, Akustik, Ses, Işık & Sanatçı Yönetimi",
+        "description": "Büyükşehir Belediyesi konser tırları ve ana sahne mekaniği, line-array ses sistemi, truss aydınlatma, DJ setup, kulis ağırlaması (hospitality), rider karşılama ve canlı performans akışının eksiksiz icrasından sorumludur.",
+        "responsibilities": [
+            "Konser tırı, ses/ışık truss sistemleri montaj ve akustik ses provası",
+            "Headliner sanatçılar, DJ ve müzik gruplarının sahne rider karşılama operasyonu",
+            "Sahne sunucusu, MC ve program akışının dakikası dakikasına yürütülmesi",
+            "Jeneratör, elektrik altyapısı ve teknik yedek güç denetimi"
+        ]
     },
     {
-      "id": "dep_4",
-      "name": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "lead": "Ceren Çakmak & Samet Kara",
-      "icon": "⚙️",
-      "color": "#10B981",
-      "tagline": "Operasyonel Süreçler, Envanter Zimmeti & Alan Düzeni",
-      "description": "SKS ambarından çekilen 120 sandalye, 60 masa, çadırlar, 25 festival varili, 15 palet ve diğer ekipmanların sahaya taşınması, kurulumu, QR/barkod zimmet takibi, yiyecek-içecek stant düzeni, temizlik/geri dönüşüm noktaları ve festival bitimi lojistik tahliyeden sorumludur.",
-      "responsibilities": [
-        "SKS ve ambar ekipmanlarının sahaya nakli, tutanakla zimmetlenmesi ve iadesi",
-        "25 boyalı varil masası ve 15 palet oturma grubunun alana konuşlandırılması",
-        "Yiyecek-içecek satış noktaları, ikramlar ve su istasyonlarının tedarik kontrolü",
-        "Festival alanı temizlik, atık yönetimi ve kapanış sonrası saha restorasyonu"
-      ]
+        "id": "dep_4",
+        "name": "Saha İçi Operasyon",
+        "lead": "Ceren Çakmak & Samet Kara",
+        "color": "#10B981",
+        "tagline": "Saha Lojistiği, Envanter Zimmeti & Alan Düzeni",
+        "description": "SKS ambarından temin edilen 120 sandalye, 60 masa, çadırlar, 25 festival varili, 15 palet ve diğer ekipmanların sahaya taşınması, kurulumu, QR/barkod zimmet takibi, yiyecek-içecek stant düzeni ve saha restorasyonundan sorumludur.",
+        "responsibilities": [
+            "SKS ve ambar ekipmanlarının sahaya nakli, tutanakla zimmetlenmesi ve iadesi",
+            "25 boyalı varil masası ve 15 palet oturma grubunun alana konuşlandırılması",
+            "Yiyecek-içecek satış noktaları, ikramlar ve su istasyonlarının tedarik kontrolü",
+            "Festival alanı temizlik, atık yönetimi ve kapanış sonrası saha restorasyonu"
+        ]
     },
     {
-      "id": "dep_5",
-      "name": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "lead": "Melike Konar & Hakan Karadağ",
-      "icon": "💡",
-      "color": "#8B5CF6",
-      "tagline": "Görsel Kimlik, Festival Teması, Sosyal Medya & Ambiyans",
-      "description": "Festivalin genel sanatsal konsepti, vintage/retro ışıklandırma ve peri led süslemeleri, festival fotoğraf/selfie tagları, yönlendirme tabelaları, afiş ve dijital grafik tasarımları, drone/video çekimleri, sosyal medya canlı yayınları ve festival atmosferinden sorumludur.",
-      "responsibilities": [
-        "Festival görsel kimliği, sosyal medya postları, afiş ve basılı materyal tasarımları",
-        "Selfie noktaları, ahşap yönlendirme tabelaları ve festival tagının üretimi",
-        "Festival alanı peri led, fener ve gece ambiyans aydınlatmalarının planlaması",
-        "Fotoğraf, aftermovie video çekimleri, drone kayıtları ve basın-medya iletişimi"
-      ]
+        "id": "dep_5",
+        "name": "Saha İçeriği",
+        "lead": "Mecit Çalık & Mert Akmeşe",
+        "color": "#06B6D4",
+        "tagline": "Etkileşimli Alanlar, Topluluk Stantları & Festival Deneyimi",
+        "description": "Festival alanında yer alacak 60+ öğrenci topluluk standının yerleşim planı, Red Bull ve sponsor aktivasyon alanları, çadır düzeni, dev şişme oyun parkurları (rodeo, gladyatör), langırt/masa tenisi turnuvaları ve katılımcı deneyiminden sorumludur.",
+        "responsibilities": [
+            "60 çadır ve topluluk stantlarının parsellenmesi ve masa/sandalye dağıtımı",
+            "Şişme oyun parkurları, rodeo ve yarışma istasyonlarının operasyonu",
+            "Sponsor deneyim çadırları ve marka aktivasyon noktalarının saha yönetimi",
+            "Ödüllü kampüs turnuvaları ve mini yarışmaların canlı organizasyonu"
+        ]
+    },
+    {
+        "id": "dep_6",
+        "name": "Ar-Ge ve Tasarım",
+        "lead": "Melike Konar & Hakan Karadağ",
+        "color": "#8B5CF6",
+        "tagline": "Görsel Kimlik, Ambiyans Tasarımı, Medya & Tanıtım",
+        "description": "Festivalin görsel kimliği, retro ve peri led aydınlatma süslemeleri, festival fotoğraf/selfie tagları, yönlendirme tabelaları, afiş ve dijital grafik tasarımları, drone/video çekimleri ve festival atmosferinden sorumludur.",
+        "responsibilities": [
+            "Festival görsel kimliği, sosyal medya postları, afiş ve basılı materyal tasarımları",
+            "Selfie noktaları, ahşap yönlendirme tabelaları ve festival tagının üretimi",
+            "Festival alanı peri led, fener ve gece ambiyans aydınlatmalarının planlaması",
+            "Fotoğraf, aftermovie video çekimleri, drone kayıtları ve medya iletişimi"
+        ]
     }
-  ],
+],
   "team_members": [
     {
-      "id": "tm_1",
-      "name": "Berke Saygılı",
-      "username": "berke",
-      "pin": "2026",
-      "role": "Başkan & Festival Sorumlusu",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "Yönetim",
-      "role_type": "admin"
+        "id": "tm_1",
+        "name": "Berke Saygılı",
+        "username": "berke",
+        "pin": "2026",
+        "role": "Başkan & Festival Sorumlusu",
+        "department": "Yönetim",
+        "badge": "Başkan",
+        "role_type": "admin"
     },
     {
-      "id": "tm_2",
-      "name": "Burak Avcı",
-      "username": "burak",
-      "pin": "1001",
-      "role": "Başkan Yardımcısı & Genel İşleyiş",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "İşleyiş",
-      "role_type": "member"
+        "id": "tm_2",
+        "name": "Burak Avcı",
+        "username": "burak",
+        "pin": "1001",
+        "role": "Başkan Yardımcısı & Genel İşleyiş",
+        "department": "Yönetim",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_3",
-      "name": "Selin Aşkın",
-      "username": "selin",
-      "pin": "1002",
-      "role": "Genel Koordinatör",
-      "department": "Üst Yönetim & Genel Koordinasyon",
-      "badge": "Koordinasyon",
-      "role_type": "member"
+        "id": "tm_3",
+        "name": "Selin Aşkın",
+        "username": "selin",
+        "pin": "1002",
+        "role": "Genel Koordinatör",
+        "department": "Koordinasyon",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_4",
-      "name": "Emrullah Genç",
-      "username": "emrullah",
-      "pin": "1003",
-      "role": "Organizasyon Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Organizasyon",
-      "role_type": "member"
+        "id": "tm_4",
+        "name": "Emrullah Genç",
+        "username": "emrullah",
+        "pin": "1003",
+        "role": "Organizasyon Sorumlusu",
+        "department": "Sahne",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_5",
-      "name": "Melike Konar",
-      "username": "melike",
-      "pin": "1004",
-      "role": "Ar-Ge & Konsept Tasarımı",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Ar-Ge",
-      "role_type": "member"
+        "id": "tm_5",
+        "name": "Melike Konar",
+        "username": "melike",
+        "pin": "1004",
+        "role": "Ar-Ge & Konsept Tasarımı",
+        "department": "Ar-Ge ve Tasarım",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_6",
-      "name": "Mecit Çalık",
-      "username": "mecit",
-      "pin": "1005",
-      "role": "Saha İçeriği Planlama (Meydan & Oyun)",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Saha İçerik",
-      "role_type": "member"
+        "id": "tm_6",
+        "name": "Mecit Çalık",
+        "username": "mecit",
+        "pin": "1005",
+        "role": "Saha İçeriği Planlama (Meydan & Oyun)",
+        "department": "Saha İçeriği",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_7",
-      "name": "Mert Akmeşe",
-      "username": "mert",
-      "pin": "1006",
-      "role": "Saha İçeriği Planlama (Stant & Yerleşim)",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Saha Yerleşim",
-      "role_type": "member"
+        "id": "tm_7",
+        "name": "Mert Akmeşe",
+        "username": "mert",
+        "pin": "1006",
+        "role": "Saha İçeriği Planlama (Stant & Yerleşim)",
+        "department": "Saha İçeriği",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_8",
-      "name": "Ceren Çakmak",
-      "username": "ceren",
-      "pin": "1007",
-      "role": "Saha İçi Koordinasyon & Sahne / Performans Sorumlusu",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Sanatçı & Performans Yetkili",
-      "role_type": "member",
-      "can_manage_artists": true
+        "id": "tm_8",
+        "name": "Ceren Çakmak",
+        "username": "ceren",
+        "pin": "1007",
+        "role": "Saha İçi Koordinasyon & Sahne / Performans Sorumlusu",
+        "department": "Saha İçi Operasyon",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member",
+        "can_manage_artists": true
     },
     {
-      "id": "tm_9",
-      "name": "Efe Kağan Yağcı",
-      "username": "efe",
-      "pin": "1008",
-      "role": "Ses, Işık, Sahne İçerikleri Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Teknik & Sahne",
-      "role_type": "member"
+        "id": "tm_9",
+        "name": "Efe Kağan Yağcı",
+        "username": "efe",
+        "pin": "1008",
+        "role": "Ses, Işık, Sahne İçerikleri Sorumlusu",
+        "department": "Sahne",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_10",
-      "name": "Samet Kara",
-      "username": "samet",
-      "pin": "1009",
-      "role": "Saha İçerikleri Tamamlayıcı & Lojistik",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Lojistik Destek",
-      "role_type": "member"
+        "id": "tm_10",
+        "name": "Samet Kara",
+        "username": "samet",
+        "pin": "1009",
+        "role": "Saha İçerikleri Tamamlayıcı & Lojistik",
+        "department": "Saha İçi Operasyon",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_11",
-      "name": "Hakan Karadağ",
-      "username": "hakan",
-      "pin": "1010",
-      "role": "Grafik Tasarım, Afiş & Sahne Tasarımları",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Grafik & Tasarım",
-      "role_type": "member"
+        "id": "tm_11",
+        "name": "Hakan Karadağ",
+        "username": "hakan",
+        "pin": "1010",
+        "role": "Grafik Tasarım, Afiş & Sahne Tasarımları",
+        "department": "Ar-Ge ve Tasarım",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_12",
-      "name": "Gizem Özcan",
-      "username": "gizem",
-      "pin": "1011",
-      "role": "Saha Operasyon & Ekip Koordinasyonu",
-      "department": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "badge": "Saha Operasyon",
-      "role_type": "member"
+        "id": "tm_12",
+        "name": "Gizem Özcan",
+        "username": "gizem",
+        "pin": "1011",
+        "role": "Saha Operasyon & Ekip Koordinasyonu",
+        "department": "Saha İçi Operasyon",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_13",
-      "name": "Elif Fırat",
-      "username": "elif",
-      "pin": "1012",
-      "role": "Topluluk Stantları & Deneyim Alanları Sorumlusu",
-      "department": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "badge": "Stant & İletişim",
-      "role_type": "member"
+        "id": "tm_13",
+        "name": "Elif Fırat",
+        "username": "elif",
+        "pin": "1012",
+        "role": "Topluluk Stantları & Deneyim Alanları Sorumlusu",
+        "department": "Saha İçeriği",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_14",
-      "name": "Salih Şilek",
-      "username": "salih",
-      "pin": "1013",
-      "role": "Sahne, Ses & Canlı Performans Destek Sorumlusu",
-      "department": "Sahne, Ses, Işık & Canlı Performans",
-      "badge": "Sahne & Ses",
-      "role_type": "member"
+        "id": "tm_14",
+        "name": "Salih Şilek",
+        "username": "salih",
+        "pin": "1013",
+        "role": "Sahne, Ses & Canlı Performans Destek Sorumlusu",
+        "department": "Sahne",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_15",
-      "name": "Aleyna Maden",
-      "username": "aleyna",
-      "pin": "1014",
-      "role": "Medya, Tanıtım & Atmosfer Tasarımı",
-      "department": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "badge": "Medya & Tasarım",
-      "role_type": "member"
+        "id": "tm_15",
+        "name": "Aleyna Maden",
+        "username": "aleyna",
+        "pin": "1014",
+        "role": "Medya, Tanıtım & Atmosfer Tasarımı",
+        "department": "Ar-Ge ve Tasarım",
+        "badge": "Yönetim Ekibi",
+        "role_type": "member"
     },
     {
-      "id": "tm_genel",
-      "name": "Genel Ekip / Festival Akışı",
-      "username": "genel",
-      "pin": "0000",
-      "role": "Tüm Festival Alanları & Görev Takibi",
-      "department": "Genel Koordinasyon",
-      "badge": "Genel Erişim (0000)",
-      "role_type": "general"
+        "id": "tm_genel",
+        "name": "Genel Ekip / Festival Akışı",
+        "username": "genel",
+        "pin": "0000",
+        "role": "Tüm Festival Alanları & Görev Takibi",
+        "department": "Koordinasyon",
+        "badge": "Genel Erişim",
+        "role_type": "general"
     }
-  ],
+],
   "tasks": [
     {
-      "id": "tsk_1",
-      "title": "Büyükşehir Belediyesi Sahne Tırları Kampüs Giriş İzni",
-      "description": "Rektörlük dilekçesi EBYS akışı üzerinden güvenlik amirliğine tır plaka ve belediye personel listesinin bildirilmesi.",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "alindi",
-      "deadline": "2026-09-29",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:07",
-      "updated_by": "Berke Saygılı (Görevi Aldı)",
-      "completed_by": "",
-      "completed_at": ""
+        "id": "tsk_1",
+        "title": "Büyükşehir Belediyesi Sahne Tırları Kampüs Giriş İzni",
+        "description": "Rektörlük dilekçesi EBYS akışı üzerinden güvenlik amirliğine tır plaka ve belediye personel listesinin bildirilmesi.",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "alindi",
+        "deadline": "2026-09-29",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:07",
+        "updated_by": "Berke Saygılı (Görevi Aldı)",
+        "completed_by": "",
+        "completed_at": ""
     },
     {
-      "id": "tsk_3",
-      "title": "Büyükşehir ve Rektörlük Festival Açılış Protokolü",
-      "description": "17 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Yüksek",
-      "status": "alindi",
-      "deadline": "2026-10-02",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:13",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_3",
+        "title": "Büyükşehir ve Rektörlük Festival Açılış Protokolü",
+        "description": "17 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Yüksek",
+        "status": "alindi",
+        "deadline": "2026-10-02",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:13",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_4",
-      "title": "10 Günlük Operasyonel İşleyiş Takviminin Takibi",
-      "description": "Departmanların günlük çıktılarını denetlemek ve her akşam 20:00 genel durum raporunu konsolide etmek.",
-      "assignee": "Burak Avcı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-09-28"
+        "id": "tsk_4",
+        "title": "10 Günlük Operasyonel İşleyiş Takviminin Takibi",
+        "description": "Departmanların günlük çıktılarını denetlemek ve her akşam 20:00 genel durum raporunu konsolide etmek.",
+        "assignee": "Burak Avcı",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-09-28"
     },
     {
-      "id": "tsk_6",
-      "title": "SKS ile 60 Çadır, 120 Sandalye ve Masa Zimmet Protokolü",
-      "description": "SKS ambarındaki envanterin 16 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
-      "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-09-29"
+        "id": "tsk_6",
+        "title": "SKS ile 60 Çadır, 120 Sandalye ve Masa Zimmet Protokolü",
+        "description": "SKS ambarındaki envanterin 16 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
+        "assignee": "Selin Aşkın",
+        "category": "Koordinasyon",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-09-29"
     },
     {
-      "id": "tsk_7",
-      "title": "Departmanlar Arası İletişim & Sabah 09:30 Stand-Up Moderasyonu",
-      "description": "10 kişilik çekirdek ekibin her sabah 15 dakikalık hızlı senkronizasyon toplantısını yönetmek ve engelleri çözmek.",
-      "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Yüksek",
-      "status": "alindi",
-      "deadline": "2026-09-28",
-      "claimed_by": "Selin Aşkın",
-      "claimed_at": "25 Eyl 21:20",
-      "updated_by": "Selin Aşkın (Görevi Aldı)"
+        "id": "tsk_7",
+        "title": "Departmanlar Arası İletişim & Sabah 09:30 Stand-Up Moderasyonu",
+        "description": "10 kişilik çekirdek ekibin her sabah 15 dakikalık hızlı senkronizasyon toplantısını yönetmek ve engelleri çözmek.",
+        "assignee": "Selin Aşkın",
+        "category": "Koordinasyon",
+        "priority": "Yüksek",
+        "status": "alindi",
+        "deadline": "2026-09-28",
+        "claimed_by": "Selin Aşkın",
+        "claimed_at": "25 Eyl 21:20",
+        "updated_by": "Selin Aşkın (Görevi Aldı)"
     },
     {
-      "id": "tsk_8",
-      "title": "Üniversite Tanıtım ve Basın Birimi Duyuru Koordinasyonu",
-      "description": "Festivalin üniversite web sitesinde ve resmi sosyal medya hesaplarında duyurulması için basın bülteninin iletilmesi.",
-      "assignee": "Selin Aşkın",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Orta",
-      "status": "yapilacak",
-      "deadline": "2026-10-02"
+        "id": "tsk_8",
+        "title": "Üniversite Tanıtım ve Basın Birimi Duyuru Koordinasyonu",
+        "description": "Festivalin üniversite web sitesinde ve resmi sosyal medya hesaplarında duyurulması için basın bülteninin iletilmesi.",
+        "assignee": "Selin Aşkın",
+        "category": "Koordinasyon",
+        "priority": "Orta",
+        "status": "yapilacak",
+        "deadline": "2026-10-02"
     },
     {
-      "id": "tsk_9",
-      "title": "2 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
-      "description": "Açılış, kulüp performansları, yarışmalar ve kapanış konserlerinin saat saat dakika dakika akış planı.",
-      "assignee": "Mecit Çalık",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-01",
-      "claimed_by": "",
-      "updated_by": "Berke Saygılı (Düzenledi)"
+        "id": "tsk_9",
+        "title": "2 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
+        "description": "Açılış, kulüp performansları, yarışmalar ve kapanış konserlerinin saat saat dakika dakika akış planı.",
+        "assignee": "Mecit Çalık",
+        "category": "Sahne",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-01",
+        "claimed_by": "",
+        "updated_by": "Berke Saygılı (Düzenledi)"
     },
     {
-      "id": "tsk_10",
-      "title": "Öğrenci Kulüpleri Sahne Şovları ve Sıralaması (Line-up)",
-      "description": "Dans topluluğu, tiyatro kulübü ve spor topluluklarının sahneye çıkış saatleri ve prova çizelgesi.",
-      "assignee": "Emrullah Genç",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-02"
+        "id": "tsk_10",
+        "title": "Öğrenci Kulüpleri Sahne Şovları ve Sıralaması (Line-up)",
+        "description": "Dans topluluğu, tiyatro kulübü ve spor topluluklarının sahneye çıkış saatleri ve prova çizelgesi.",
+        "assignee": "Emrullah Genç",
+        "category": "Sahne",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-02"
     },
     {
-      "id": "tsk_11",
-      "title": "Festival Sunucusu (MC) ve Canlı Anons Metinleri",
-      "description": "Gün boyu mikrofonu yönetecek enerjik sunucunun belirlenmesi, yarışma anonsları ve festival akış provaları.",
-      "assignee": "Emrullah Genç",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Orta",
-      "status": "yapilacak",
-      "deadline": "2026-10-03"
+        "id": "tsk_11",
+        "title": "Festival Sunucusu (MC) ve Canlı Anons Metinleri",
+        "description": "Gün boyu mikrofonu yönetecek enerjik sunucunun belirlenmesi, yarışma anonsları ve festival akış provaları.",
+        "assignee": "Emrullah Genç",
+        "category": "Sahne",
+        "priority": "Orta",
+        "status": "yapilacak",
+        "deadline": "2026-10-03"
     },
     {
-      "id": "tsk_12",
-      "title": "50 Adet Armut Koltuk / Puf Temini Araştırması",
-      "description": "",
-      "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-01",
-      "claimed_by": "",
-      "updated_by": "Berke Saygılı (Düzenledi)"
+        "id": "tsk_12",
+        "title": "50 Adet Armut Koltuk / Puf Temini Araştırması",
+        "description": "",
+        "assignee": "Mert Akmeşe",
+        "category": "Saha İçeriği",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-01",
+        "claimed_by": "",
+        "updated_by": "Berke Saygılı (Düzenledi)"
     },
     {
-      "id": "tsk_13",
-      "title": "Instagram Photo-Booth ve İnteraktif Anı Duvarı Tasarımı",
-      "description": "Öğrencilerin önünde fotoğraf çekileceği SET temalı arka plan panosu ve festival anı defteri/duvarı konsepti.",
-      "assignee": "Melike Konar",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "priority": "Yüksek",
-      "status": "yapildi",
-      "deadline": "2026-10-02",
-      "claimed_by": "Melike Konar",
-      "claimed_at": "26 Eyl 01:29",
-      "updated_by": "Melike Konar (Tamamladı)",
-      "completed_by": "Melike Konar",
-      "completed_at": "26 Eyl 01:29"
+        "id": "tsk_13",
+        "title": "Instagram Photo-Booth ve İnteraktif Anı Duvarı Tasarımı",
+        "description": "Öğrencilerin önünde fotoğraf çekileceği SET temalı arka plan panosu ve festival anı defteri/duvarı konsepti.",
+        "assignee": "Melike Konar",
+        "category": "Ar-Ge ve Tasarım",
+        "priority": "Yüksek",
+        "status": "yapildi",
+        "deadline": "2026-10-02",
+        "claimed_by": "Melike Konar",
+        "claimed_at": "26 Eyl 01:29",
+        "updated_by": "Melike Konar (Tamamladı)",
+        "completed_by": "Melike Konar",
+        "completed_at": "26 Eyl 01:29"
     },
     {
-      "id": "tsk_14",
-      "title": "Festival Flamaları, İpli Renkli Bayraklar ve Gece Işıklandırması",
-      "description": "Çim alan ağaçları ve çadırlar arasına gerilecek üçgen festival flamaları ile günışığı peri ampulleri konsepti.",
-      "assignee": "Melike Konar",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "priority": "Orta",
-      "status": "yapilacak",
-      "deadline": "2026-10-03"
+        "id": "tsk_14",
+        "title": "Festival Flamaları, İpli Renkli Bayraklar ve Gece Işıklandırması",
+        "description": "Çim alan ağaçları ve çadırlar arasına gerilecek üçgen festival flamaları ile günışığı peri ampulleri konsepti.",
+        "assignee": "Melike Konar",
+        "category": "Ar-Ge ve Tasarım",
+        "priority": "Orta",
+        "status": "yapilacak",
+        "deadline": "2026-10-03"
     },
     {
-      "id": "tsk_15",
-      "title": "Dev Ahşap Jenga ve Cornhole İstasyonları Kurulum Planı",
-      "description": "2 takım dev ahşap jenga ve cornhole atış tahtalarının hazırlanması, çim alandaki güvenlik mesafelerinin belirlenmesi.",
-      "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-02",
-      "updated_by": "Mecit Çalık (Geri Aldı)"
+        "id": "tsk_15",
+        "title": "Dev Ahşap Jenga ve Cornhole İstasyonları Kurulum Planı",
+        "description": "2 takım dev ahşap jenga ve cornhole atış tahtalarının hazırlanması, çim alandaki güvenlik mesafelerinin belirlenmesi.",
+        "assignee": "Mecit Çalık",
+        "category": "Saha İçeriği",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-02",
+        "updated_by": "Mecit Çalık (Geri Aldı)"
     },
     {
-      "id": "tsk_16",
-      "title": "Masa Langırtı ve Çim Halat Çekme Turnuva Kuralları",
-      "description": "Çim alana yerleştirilecek 2 langırt masasının teraziye alınması ve kulüpler arası turnuva fikstürünün yazılması.",
-      "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-03"
+        "id": "tsk_16",
+        "title": "Masa Langırtı ve Çim Halat Çekme Turnuva Kuralları",
+        "description": "Çim alana yerleştirilecek 2 langırt masasının teraziye alınması ve kulüpler arası turnuva fikstürünün yazılması.",
+        "assignee": "Mecit Çalık",
+        "category": "Saha İçeriği",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-03"
     },
     {
-      "id": "tsk_17",
-      "title": "Çim Dinlenme Meydanında Varil Masa ve Puf Yerleşim Planı",
-      "description": "25 varil kokteyl masası ve 50 armut pufun öğrencilerin sahneyi rahat göreceği şekilde çim alana yerleşim krokisi.",
-      "assignee": "Mecit Çalık",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-03"
+        "id": "tsk_17",
+        "title": "Çim Dinlenme Meydanında Varil Masa ve Puf Yerleşim Planı",
+        "description": "25 varil kokteyl masası ve 50 armut pufun öğrencilerin sahneyi rahat göreceği şekilde çim alana yerleşim krokisi.",
+        "assignee": "Mecit Çalık",
+        "category": "Saha İçeriği",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-03"
     },
     {
-      "id": "tsk_18",
-      "title": "60 Kulüp Çadırının Tartan Parkur Boyunca Sıralanma Planı",
-      "description": "Spor kompleksi önündeki koşu parkurunda 3x3m çadırların elektrik hatlarına ve yaya akışına göre numaralandırılması.",
-      "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Kritik",
-      "status": "alindi",
-      "deadline": "2026-10-02",
-      "claimed_by": "Mert Akmeşe",
-      "claimed_at": "25 Eyl 21:08",
-      "updated_by": "Mert Akmeşe (Görevi Aldı)"
+        "id": "tsk_18",
+        "title": "60 Kulüp Çadırının Tartan Parkur Boyunca Sıralanma Planı",
+        "description": "Spor kompleksi önündeki koşu parkurunda 3x3m çadırların elektrik hatlarına ve yaya akışına göre numaralandırılması.",
+        "assignee": "Mert Akmeşe",
+        "category": "Saha İçeriği",
+        "priority": "Kritik",
+        "status": "alindi",
+        "deadline": "2026-10-02",
+        "claimed_by": "Mert Akmeşe",
+        "claimed_at": "25 Eyl 21:08",
+        "updated_by": "Mert Akmeşe (Görevi Aldı)"
     },
     {
-      "id": "tsk_20",
-      "title": "SKS Masa ve Sandalyelerinin Stantlara Dağıtım Krokisi",
-      "description": "16 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
-      "assignee": "Mert Akmeşe",
-      "category": "Saha İçeriği, Deneyim & Oyun Alanları",
-      "priority": "Yüksek",
-      "status": "alindi",
-      "deadline": "2026-10-04",
-      "claimed_by": "Mert Akmeşe",
-      "claimed_at": "25 Eyl 21:08",
-      "updated_by": "Mert Akmeşe (Görevi Aldı)"
+        "id": "tsk_20",
+        "title": "SKS Masa ve Sandalyelerinin Stantlara Dağıtım Krokisi",
+        "description": "16 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
+        "assignee": "Mert Akmeşe",
+        "category": "Saha İçeriği",
+        "priority": "Yüksek",
+        "status": "alindi",
+        "deadline": "2026-10-04",
+        "claimed_by": "Mert Akmeşe",
+        "claimed_at": "25 Eyl 21:08",
+        "updated_by": "Mert Akmeşe (Görevi Aldı)"
     },
     {
-      "id": "tsk_23",
-      "title": "SET Danışma Masası, Karşılama Ekibi ve Yaka Kartları",
-      "description": "Girişte öğrencilere festival broşürü dağıtacak karşılama ekibi ile çekirdek kadro akreditasyon yaka kartlarının dağıtımı.",
-      "assignee": "Ceren Çakmak",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "priority": "Orta",
-      "status": "alindi",
-      "deadline": "2026-10-04",
-      "claimed_by": "Ceren Çakmak",
-      "claimed_at": "25 Eyl 22:41",
-      "updated_by": "Ceren Çakmak (Tamamlanmayı Geri Aldı)",
-      "completed_by": "",
-      "completed_at": ""
+        "id": "tsk_23",
+        "title": "SET Danışma Masası, Karşılama Ekibi ve Yaka Kartları",
+        "description": "Girişte öğrencilere festival broşürü dağıtacak karşılama ekibi ile çekirdek kadro akreditasyon yaka kartlarının dağıtımı.",
+        "assignee": "Ceren Çakmak",
+        "category": "Saha İçi Operasyon",
+        "priority": "Orta",
+        "status": "alindi",
+        "deadline": "2026-10-04",
+        "claimed_by": "Ceren Çakmak",
+        "claimed_at": "25 Eyl 22:41",
+        "updated_by": "Ceren Çakmak (Tamamlanmayı Geri Aldı)",
+        "completed_by": "",
+        "completed_at": ""
     },
     {
-      "id": "tsk_24",
-      "title": "Büyükşehir Belediyesi Ses & Sahne Teknisyenleri Rider Keşfi",
-      "description": "Büyükşehir teknik ekibiyle sahada mikser, telsiz mikrofonlar, hoparlör açıları ve truss güvenliğinin incelenmesi.",
-      "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-09-30"
+        "id": "tsk_24",
+        "title": "Büyükşehir Belediyesi Ses & Sahne Teknisyenleri Rider Keşfi",
+        "description": "Büyükşehir teknik ekibiyle sahada mikser, telsiz mikrofonlar, hoparlör açıları ve truss güvenliğinin incelenmesi.",
+        "assignee": "Efe Kağan Yağcı",
+        "category": "Sahne",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-09-30"
     },
     {
-      "id": "tsk_25",
-      "title": "Ana Sahne LED Ekran Görselleri ve Video Döngüsü (Loop)",
-      "description": "1920x1080 oranında 'SET KAMPÜSE HOŞ GELDİN' temalı, gündüz kulüp logoları akşam konser dinamik LED video loop'ları.",
-      "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-02"
+        "id": "tsk_25",
+        "title": "Ana Sahne LED Ekran Görselleri ve Video Döngüsü (Loop)",
+        "description": "1920x1080 oranında 'SET KAMPÜSE HOŞ GELDİN' temalı, gündüz kulüp logoları akşam konser dinamik LED video loop'ları.",
+        "assignee": "Efe Kağan Yağcı",
+        "category": "Sahne",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-02"
     },
     {
-      "id": "tsk_26",
-      "title": "16 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
-      "description": "Konser verecek üniversite grupları ve DJ ile ses sisteminin test edilmesi, desibel ayarlarının kilitlenmesi.",
-      "assignee": "Efe Kağan Yağcı",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-16"
+        "id": "tsk_26",
+        "title": "16 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
+        "description": "Konser verecek üniversite grupları ve DJ ile ses sisteminin test edilmesi, desibel ayarlarının kilitlenmesi.",
+        "assignee": "Efe Kağan Yağcı",
+        "category": "Sahne",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-16"
     },
     {
-      "id": "tsk_27",
-      "title": "Sanayi Sitesinden 25 Adet Boş Sac Varilin Toplanması ve Nakliyesi",
-      "description": "Süleymanpaşa oto tamircilerinden toplanan 200L varillerin kamyonetle kampüs bahçesine taşınması.",
-      "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-01"
+        "id": "tsk_27",
+        "title": "Sanayi Sitesinden 25 Adet Boş Sac Varilin Toplanması ve Nakliyesi",
+        "description": "Süleymanpaşa oto tamircilerinden toplanan 200L varillerin kamyonetle kampüs bahçesine taşınması.",
+        "assignee": "Samet Kara",
+        "category": "Saha İçi Operasyon",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-01"
     },
     {
-      "id": "tsk_28",
-      "title": "2 Ekim SET Varil Boyama Atölyesi Malzeme ve Lojistik Hazırlığı",
-      "description": "Mat siyah/antrasit sprey boyalar, SET logo stencilleri ve zımparaların hazırlanarak atölye alanının kurulması.",
-      "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-02"
+        "id": "tsk_28",
+        "title": "2 Ekim SET Varil Boyama Atölyesi Malzeme ve Lojistik Hazırlığı",
+        "description": "Mat siyah/antrasit sprey boyalar, SET logo stencilleri ve zımparaların hazırlanarak atölye alanının kurulması.",
+        "assignee": "Samet Kara",
+        "category": "Saha İçi Operasyon",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-02"
     },
     {
-      "id": "tsk_29",
-      "title": "Sahne Arkası Elektrik Hatları, Jeneratör ve Yakıt Kontrolü",
-      "description": "Büyükşehir sahne jeneratörünün konumlandırılması, yakıt rezervi ve ana panodan seyyar hatların çekilmesi.",
-      "assignee": "Samet Kara",
-      "category": "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-10-04"
+        "id": "tsk_29",
+        "title": "Sahne Arkası Elektrik Hatları, Jeneratör ve Yakıt Kontrolü",
+        "description": "Büyükşehir sahne jeneratörünün konumlandırılması, yakıt rezervi ve ana panodan seyyar hatların çekilmesi.",
+        "assignee": "Samet Kara",
+        "category": "Saha İçi Operasyon",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-10-04"
     },
     {
-      "id": "tsk_30",
-      "title": "Resmi Festival Afişi & Sosyal Medya Görsel Seti Tasarımı",
-      "description": "Rektörlük ve SKS onaylı festival ana afişi, Instagram duyuru serisi, story formatları ve 3 günlük program takvimi tasarımlarının tamamlanıp dijital baskıya verilmesi.",
-      "assignee": "Hakan Karadağ",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "priority": "Kritik",
-      "status": "yapilacak",
-      "deadline": "2026-09-28"
+        "id": "tsk_30",
+        "title": "Resmi Festival Afişi & Sosyal Medya Görsel Seti Tasarımı",
+        "description": "Rektörlük ve SKS onaylı festival ana afişi, Instagram duyuru serisi, story formatları ve 3 günlük program takvimi tasarımlarının tamamlanıp dijital baskıya verilmesi.",
+        "assignee": "Hakan Karadağ",
+        "category": "Ar-Ge ve Tasarım",
+        "priority": "Kritik",
+        "status": "yapilacak",
+        "deadline": "2026-09-28"
     },
     {
-      "id": "tsk_31",
-      "title": "Sahne Arkası LED Ekran Animasyon & DJ Loop Tasarımları",
-      "description": "Büyükşehir Belediyesi sahne arkası LED ekran için hareketli SET introları, sahne araları video loopları ve görsel efekt paketinin hazırlanması.",
-      "assignee": "Hakan Karadağ",
-      "category": "Sahne, Ses, Işık & Canlı Performans",
-      "priority": "Yüksek",
-      "status": "yapilacak",
-      "deadline": "2026-10-02"
+        "id": "tsk_31",
+        "title": "Sahne Arkası LED Ekran Animasyon & DJ Loop Tasarımları",
+        "description": "Büyükşehir Belediyesi sahne arkası LED ekran için hareketli SET introları, sahne araları video loopları ve görsel efekt paketinin hazırlanması.",
+        "assignee": "Hakan Karadağ",
+        "category": "Sahne",
+        "priority": "Yüksek",
+        "status": "yapilacak",
+        "deadline": "2026-10-02"
     },
     {
-      "id": "tsk_32",
-      "title": "Alan İçi Yönlendirme Tabelaları & Stant Numarataj Şablonları",
-      "description": "Festival çim alanı giriş takı grafikleri, oyun alanı yönlendirmeleri, varil masa üzeri sticker tasarımları ve SKS stant numaratajlarının hazırlanması.",
-      "assignee": "Hakan Karadağ",
-      "category": "Ar-Ge, Konsept & Atmosfer Tasarımı",
-      "priority": "Orta",
-      "status": "yapilacak",
-      "deadline": "2026-10-03"
+        "id": "tsk_32",
+        "title": "Alan İçi Yönlendirme Tabelaları & Stant Numarataj Şablonları",
+        "description": "Festival çim alanı giriş takı grafikleri, oyun alanı yönlendirmeleri, varil masa üzeri sticker tasarımları ve SKS stant numaratajlarının hazırlanması.",
+        "assignee": "Hakan Karadağ",
+        "category": "Ar-Ge ve Tasarım",
+        "priority": "Orta",
+        "status": "yapilacak",
+        "deadline": "2026-10-03"
     },
     {
-      "id": "tsk_28_8756633344",
-      "title": "AREM ARMAN İLETİŞİM",
-      "description": "konuşulacak",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "alindi",
-      "deadline": "2026-10-04",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:06",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_28_8756633344",
+        "title": "AREM ARMAN İLETİŞİM",
+        "description": "konuşulacak",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "alindi",
+        "deadline": "2026-10-04",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:06",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_29_8756633344",
-      "title": "MAHMUT ORHAN",
-      "description": "iletişim",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "alindi",
-      "deadline": "2026-10-04",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:06",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_29_8756633344",
+        "title": "MAHMUT ORHAN",
+        "description": "iletişim",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "alindi",
+        "deadline": "2026-10-04",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:06",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_30_8756633344",
-      "title": "HİKAYEDEN ADAMLAR",
-      "description": "iletişime geçildi dönüş bekleniyor",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "alindi",
-      "deadline": "2026-10-04",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:06",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_30_8756633344",
+        "title": "HİKAYEDEN ADAMLAR",
+        "description": "iletişime geçildi dönüş bekleniyor",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "alindi",
+        "deadline": "2026-10-04",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:06",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_31_8756633344",
-      "title": "EMİR CAN İĞREK İLETİŞİM",
-      "description": "",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Yüksek",
-      "status": "alindi",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 21:08",
-      "completed_by": "",
-      "completed_at": "",
-      "deadline": "2026-10-04",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_31_8756633344",
+        "title": "EMİR CAN İĞREK İLETİŞİM",
+        "description": "",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Yüksek",
+        "status": "alindi",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 21:08",
+        "completed_by": "",
+        "completed_at": "",
+        "deadline": "2026-10-04",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_32_8756633344",
-      "title": "SKS SET TOPLULUK STAND TALEBİ",
-      "description": "SET İÇİN RESMİ BELGE TESLİMİ",
-      "assignee": "Berke Saygılı & Emrullah Genç",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Kritik",
-      "status": "alindi",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 22:03",
-      "completed_by": "",
-      "completed_at": "",
-      "deadline": "2026-10-04",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_32_8756633344",
+        "title": "SKS SET TOPLULUK STAND TALEBİ",
+        "description": "SET İÇİN RESMİ BELGE TESLİMİ",
+        "assignee": "Berke Saygılı & Emrullah Genç",
+        "category": "Yönetim",
+        "priority": "Kritik",
+        "status": "alindi",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 22:03",
+        "completed_by": "",
+        "completed_at": "",
+        "deadline": "2026-10-04",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     },
     {
-      "id": "tsk_33_8756633344",
-      "title": "DANS TOPLULUĞU WORKSHOP-SHOW",
-      "description": "Selin Su iletişime geçilecek",
-      "assignee": "Berke Saygılı",
-      "category": "Üst Yönetim & Genel Koordinasyon",
-      "priority": "Orta",
-      "status": "alindi",
-      "claimed_by": "Berke Saygılı",
-      "claimed_at": "25 Eyl 22:07",
-      "completed_by": "",
-      "completed_at": "",
-      "deadline": "2026-10-04",
-      "updated_by": "Berke Saygılı (Görevi Aldı)"
+        "id": "tsk_33_8756633344",
+        "title": "DANS TOPLULUĞU WORKSHOP-SHOW",
+        "description": "Selin Su iletişime geçilecek",
+        "assignee": "Berke Saygılı",
+        "category": "Yönetim",
+        "priority": "Orta",
+        "status": "alindi",
+        "claimed_by": "Berke Saygılı",
+        "claimed_at": "25 Eyl 22:07",
+        "completed_by": "",
+        "completed_at": "",
+        "deadline": "2026-10-04",
+        "updated_by": "Berke Saygılı (Görevi Aldı)"
     }
-  ],
-  "inventory": [
-    {
-      "id": "cosm_1",
-      "item": "Renkli Festival Armut Koltukları (Su Geçirmez)",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 60,
-      "current": 50,
-      "unit": "Adet",
-      "source": "Sahil Kafeleri & Sponsorluk / Melike Konar",
-      "responsible": "Melike Konar",
-      "status": "Beklemede",
-      "notes": "Çim meydana dağınık ve renk blokları halinde yerleştirilecek.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:35"
-    },
-    {
-      "id": "cosm_2",
-      "item": "Boyalı Metal Varil Bistro & Bar Masaları",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 25,
-      "current": 25,
-      "unit": "Varil",
-      "source": "Sanayi Toplaması & SET Boyama Workshop",
-      "responsible": "Samet Kara & Melike Konar",
-      "status": "Beklemede",
-      "notes": "25 varil sanayiden toplandı, 2 Ekim workshopunda boyanacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 02:08"
-    },
-    {
-      "id": "cosm_3",
-      "item": "Renkli Etnik Yer Örtüleri & Piknik Halıları",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 20,
-      "current": 10,
-      "unit": "Adet",
-      "source": "Öğrenci İmecesi & Yurt Temini / Selin Aşkın",
-      "responsible": "Selin Aşkın",
-      "status": "Beklemede",
-      "notes": "Armut minderlerin altına ve çim alana serilerek piknik atmosferi kurulacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 02:08"
-    },
-    {
-      "id": "cosm_4",
-      "item": "Ahşap Palet Oturma Grupları & Minderleri",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 15,
-      "current": 6,
-      "unit": "Takım",
-      "source": "Lojistik Palet Temini / Samet Kara",
-      "responsible": "Samet Kara",
-      "status": "Sürece Alındı",
-      "notes": "Zımparalanmış euro paletler üstüne sünger minderler konulacak."
-    },
-    {
-      "id": "cosm_5",
-      "item": "Ahşap Kablo Makaraları Sehpa Seti",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 8,
-      "current": 4,
-      "unit": "Adet",
-      "source": "TREDAŞ Elektrik Deposu / Burak Avcı",
-      "responsible": "Burak Avcı",
-      "status": "Sürece Alındı",
-      "notes": "Büyük ahşap makaralar verniklenip rustik sehpa olarak kullanılacak."
-    },
-    {
-      "id": "cosm_6",
-      "item": "Chill Lounge Gölgelik Tenteleri (Bambu/Kumaş)",
-      "category": "chill_lounge",
-      "category_title": "🛋️ Chill Lounge & Oturma",
-      "target": 6,
-      "current": 2,
-      "unit": "Adet",
-      "source": "Sponsorluk & Kiralama / Mert Akmeşe",
-      "responsible": "Mert Akmeşe",
-      "status": "Beklemede",
-      "notes": "Öğle güneşinde gölge alan sağlamak için çim alana kurulacak."
-    },
-    {
-      "id": "cosm_7",
-      "item": "Retro Edison & Peri LED Işık Zincirleri",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 150,
-      "current": 60,
-      "unit": "Metre",
-      "source": "SET Ar-Ge / Hakan Karadağ",
-      "responsible": "Hakan Karadağ & Efe Kağan Yağcı",
-      "status": "Sürece Alındı",
-      "notes": "Akşam saatlerinde ağaçlar ve çadırlar arasına asılacak."
-    },
-    {
-      "id": "cosm_8",
-      "item": "Kampüse Hoş Geldin Ahşap & Neon Selfie Tagı",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 1,
-      "current": 1,
-      "unit": "Sistem",
-      "source": "SET Tasarım / Melike Konar & Hakan Karadağ",
-      "responsible": "Melike Konar",
-      "status": "Beklemede",
-      "notes": "Girişte öğrencilerin fotoğraf çekileceği dev festival karşılama tagı.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 02:08"
-    },
-    {
-      "id": "cosm_9",
-      "item": "SET Fest Renkli Üçgen Kumaş Flama Bayrakları",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 500,
-      "current": 350,
-      "unit": "Metre",
-      "source": "Tekstil Atölyesi / Selin Aşkın",
-      "responsible": "Selin Aşkın",
-      "status": "Sürece Alındı",
-      "notes": "Festival alanının tüm sınırlarına ve tartan pist boyunca asılacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 02:08"
-    },
-    {
-      "id": "cosm_10",
-      "item": "Yönlendirme Ahşap Ok Tabelaları (Sahne, Oyun, WC)",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 12,
-      "current": 12,
-      "unit": "Adet",
-      "source": "Ahşap Atölyesi / Hakan Karadağ",
-      "responsible": "Hakan Karadağ",
-      "status": "Beklemede",
-      "notes": "Festival alanının giriş ve kavşak noktalarına çakılacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_11",
-      "item": "Varil Boyama Şablon & Sprey Akrilik Boya Setleri",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 30,
-      "current": 30,
-      "unit": "Kutu",
-      "source": "Kırtasiye Sponsorluğu / Berke Saygılı",
-      "responsible": "Melike Konar",
-      "status": "Beklemede",
-      "notes": "2 Ekim'deki varil boyama etkinliğinde kullanılacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_12",
-      "item": "Renkli Sıfır Atık & Geri Dönüşüm İstasyonları",
-      "category": "atmosphere_decor",
-      "category_title": "✨ Atmosfer, Işık & Dekor",
-      "target": 10,
-      "current": 6,
-      "unit": "İstasyon",
-      "source": "Süleymanpaşa Belediyesi Çevre Koruma",
-      "responsible": "Ceren Çakmak",
-      "status": "Beklemede",
-      "notes": "Plastik, cam, kağıt ve evsel atıklar için ayrı renkli varil kutuları.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_13",
-      "item": "Dev Ahşap Jenga Turnuva Seti",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 3,
-      "current": 2,
-      "unit": "Set",
-      "source": "SET Envanteri / Mecit Çalık",
-      "responsible": "Mecit Çalık",
-      "status": "Sürece Alındı",
-      "notes": "Kulüplerarası tanışma turnuvası için çim zemin üzerine kurulacak."
-    },
-    {
-      "id": "cosm_14",
-      "item": "Açık Hava Ayaklı Masa Langırtı",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 2,
-      "current": 1,
-      "unit": "Adet",
-      "source": "Gençlik Merkezi / Mecit Çalık",
-      "responsible": "Mecit Çalık",
-      "status": "Sürece Alındı",
-      "notes": "Öğrencilerin festival boyunca ücretsiz oynayabileceği oyun istasyonu."
-    },
-    {
-      "id": "cosm_15",
-      "item": "Ahşap Cornhole (Fasulye Torbası) Parkuru",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 4,
-      "current": 4,
-      "unit": "Takım",
-      "source": "SET Üretim / Mecit Çalık",
-      "responsible": "Mecit Çalık",
-      "status": "Beklemede",
-      "notes": "Amerikan kampüs klasiği delikli fırlatma tahtası ve torbaları hazır.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_16",
-      "item": "30 Metrelik Kalın Jüt Halat Çekme İpi",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 2,
-      "current": 2,
-      "unit": "Adet",
-      "source": "Spor Kulübü / Emrullah Genç",
-      "responsible": "Emrullah Genç",
-      "status": "Beklemede",
-      "notes": "Fakülteler ve kulüpler arası büyük halat çekme yarışması için.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_17",
-      "item": "Dev Çim Satrancı & Dama Yer Örtüsü",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 1,
-      "current": 0,
-      "unit": "Set",
-      "source": "NKÜ Satranç Topluluğu / Selin Aşkın",
-      "responsible": "Selin Aşkın",
-      "status": "Beklemede",
-      "notes": "Büyük boy figürlerle çim üzerine serilecek interaktif oyun alanı."
-    },
-    {
-      "id": "cosm_18",
-      "item": "Kampüs Kutu Oyunları Köşesi (15 Çeşit Kutu Oyunu)",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 15,
-      "current": 10,
-      "unit": "Kutu",
-      "source": "SET Kütüphanesi & Kulüp İmecesi",
-      "responsible": "Mecit Çalık",
-      "status": "Sürece Alındı",
-      "notes": "Tabu, Codenames, Uno, Jenga, Scrabble, Dixit oyun masası."
-    },
-    {
-      "id": "cosm_19",
-      "item": "Limbo Çubuğu & Açık Hava Müzikli Dans Kiti",
-      "category": "games_experience",
-      "category_title": "🎯 Oyunlar & Deneyim",
-      "target": 2,
-      "current": 2,
-      "unit": "Set",
-      "source": "Dans Kulübü / Efe Kağan Yağcı",
-      "responsible": "Efe Kağan Yağcı",
-      "status": "Beklemede",
-      "notes": "Öğleden sonra DJ performansında müzikli limbo yarışmaları.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_20",
-      "item": "Ana Festival Sahnesi, Truss & Podyum (12x8m)",
-      "category": "logistics_stage",
-      "category_title": "⛺ Çadır, Stant & Sahne",
-      "target": 1,
-      "current": 1,
-      "unit": "Sistem",
-      "source": "Tekirdağ Büyükşehir Belediyesi",
-      "responsible": "Efe Kağan Yağcı",
-      "status": "Beklemede",
-      "notes": "LED ekran, çatı sistemi ve podyum kurulumu belediyece yapılacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_21",
-      "item": "Line Array Ses & Akıllı Sahne Işık Sistemi",
-      "category": "logistics_stage",
-      "category_title": "⛺ Çadır, Stant & Sahne",
-      "target": 1,
-      "current": 1,
-      "unit": "Sistem",
-      "source": "Tekirdağ Büyükşehir Belediyesi",
-      "responsible": "Efe Kağan Yağcı",
-      "status": "Beklemede",
-      "notes": "Konser ve DJ performansları için ana ses/ışık altyapısı.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_22",
-      "item": "Topluluk Tanıtım Çadırları (3x3m Pop-up Gazebo)",
-      "category": "logistics_stage",
-      "category_title": "⛺ Çadır, Stant & Sahne",
-      "target": 60,
-      "current": 40,
-      "unit": "Adet",
-      "source": "NKÜ SKS Daire Başkanlığı & Süleymanpaşa Bld.",
-      "responsible": "Mert Akmeşe & Selin Aşkın",
-      "status": "Temin Edildi",
-      "notes": "Tartan pist boyunca kulüp tanıtım stantları için kurulacak.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_23",
-      "item": "Katlanır Masa & Plastik Sandalye Seti",
-      "category": "logistics_stage",
-      "category_title": "⛺ Çadır, Stant & Sahne",
-      "target": 60,
-      "current": 45,
-      "unit": "Takım",
-      "source": "NKÜ SKS Daire Başkanlığı",
-      "responsible": "Mert Akmeşe & Ceren Çakmak",
-      "status": "Beklemede",
-      "notes": "Her kulüp çadırına 1 masa ve 2 sandalye verilecek.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    },
-    {
-      "id": "cosm_24",
-      "item": "Tartan Pist Kauçuk Kablo Geçiş Rampaları",
-      "category": "logistics_stage",
-      "category_title": "⛺ Çadır, Stant & Sahne",
-      "target": 15,
-      "current": 15,
-      "unit": "Metre",
-      "source": "Büyükşehir Teknik / Samet Kara",
-      "responsible": "Samet Kara",
-      "status": "Sürece Alındı",
-      "notes": "Tartan pist zeminini korumak ve kablo takılmalarını önlemek için.",
-      "updated_by": "Berke Saygılı",
-      "updated_at": "26.09.2026 01:36"
-    }
-  ],
+],
   "schedule": [
     {
       "day": "17 Ekim Cumartesi",
@@ -7543,10 +7322,13 @@
         if (!appData.festival || !appData.festival.name || appData.festival.dates !== EMBEDDED_DEFAULT_DATA.festival.dates) {
           appData.festival = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.festival));
         }
-        if (!appData.departments || !Array.isArray(appData.departments) || appData.departments.length < EMBEDDED_DEFAULT_DATA.departments.length || !appData.departments[0].description) {
+        if (!appData.departments || !Array.isArray(appData.departments) || appData.departments.length < EMBEDDED_DEFAULT_DATA.departments.length || !appData.departments[0].description || appData.departments.some(d => d.name && (d.name.includes('Üst Yönetim') || d.name.includes('🎤') || d.name.includes('👑')))) {
           appData.departments = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.departments));
         }
-        if (!appData.tasks || !Array.isArray(appData.tasks) || appData.tasks.length < EMBEDDED_DEFAULT_DATA.tasks.length) {
+        if (!appData.team_members || !Array.isArray(appData.team_members) || appData.team_members.some(m => m.department && m.department.includes('Üst Yönetim'))) {
+          appData.team_members = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.team_members));
+        }
+        if (!appData.tasks || !Array.isArray(appData.tasks) || appData.tasks.length < EMBEDDED_DEFAULT_DATA.tasks.length || appData.tasks.some(t => t.category && t.category.includes('Üst Yönetim'))) {
           appData.tasks = JSON.parse(JSON.stringify(EMBEDDED_DEFAULT_DATA.tasks));
         }
         if (!appData.schedule || !Array.isArray(appData.schedule) || appData.schedule.length === 0 || (appData.schedule[0] && appData.schedule[0].day && appData.schedule[0].day.includes('6 Ekim'))) {
@@ -8020,7 +7802,7 @@
     const API_BASE = '';
 
     function isAdmin() {
-      return currentUser && (currentUser.username === 'berke' || currentUser.role_type === 'admin');
+      return currentUser && currentUser.username === 'berke';
     }
 
     function canManageArtists() {
@@ -8111,6 +7893,14 @@
       const btnAddCosmeticMain = document.getElementById('btn-add-cosmetic-main');
       if (btnAddCosmeticMain) {
         btnAddCosmeticMain.style.display = isAdmin() ? 'inline-flex' : 'none';
+      }
+      const btnAddDeptHero = document.getElementById('dept-hero-add-dept-btn');
+      if (btnAddDeptHero) {
+        btnAddDeptHero.style.display = isAdmin() ? 'inline-flex' : 'none';
+      }
+      const btnAddDeptSlider = document.getElementById('btn-add-dept-slider');
+      if (btnAddDeptSlider) {
+        btnAddDeptSlider.style.display = isAdmin() ? 'inline-flex' : 'none';
       }
 
       // Render Top Live Flash Announcement Banner
@@ -8592,7 +8382,7 @@
       document.getElementById('et-title').value = task.title;
       document.getElementById('et-desc').value = task.description || '';
       document.getElementById('et-assignee').value = task.assignee || '';
-      document.getElementById('et-category').value = task.category || 'Üst Yönetim & Genel Koordinasyon';
+      document.getElementById('et-category').value = task.category || 'Yönetim';
       document.getElementById('et-priority').value = task.priority || 'Orta';
       document.getElementById('et-deadline').value = task.deadline || '';
       document.getElementById('et-status').value = task.status || 'yapilacak';
@@ -9221,13 +9011,9 @@
         return;
       }
 
-      const standardDepts = [
-        "Üst Yönetim & Genel Koordinasyon",
-        "Sahne, Ses, Işık & Canlı Performans",
-        "Saha İçeriği, Deneyim & Oyun Alanları",
-        "Saha İçi Operasyon & Tamamlayıcı Lojistik",
-        "Ar-Ge, Konsept & Atmosfer Tasarımı"
-      ];
+      const standardDepts = (appData && Array.isArray(appData.departments) && appData.departments.length > 0)
+        ? appData.departments.map(d => d.name)
+        : ["Yönetim", "Koordinasyon", "Sahne", "Saha İçi Operasyon", "Saha İçeriği", "Ar-Ge ve Tasarım"];
 
       container.innerHTML = filtered.map(m => {
         const isGeneral = m.username === 'genel';
@@ -9272,27 +9058,23 @@
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:12px; align-items:end;">
               <div class="form-group" style="margin:0;">
                 <label style="font-size:0.72rem; color:var(--accent-ochre); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
-                  🏛️ Festival Departmanı *
+                  Festival Departmanı *
                 </label>
-                <select id="tm-dept-${m.id}" class="form-control" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
-                  ${depts.map(dep => `
-                    <option value="${dep}" ${m.department === dep ? 'selected' : ''}>${dep}</option>
-                  `).join('')}
-                </select>
+                <input type="text" list="dept-datalist-mgmt" id="tm-dept-${m.id}" value="${m.department || ''}" placeholder="Departman yazın veya seçin..." class="form-control" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
               </div>
 
               <div class="form-group" style="margin:0;">
                 <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
-                  📋 Görev / Rol Tanımı
+                  Görev / Rol Tanımı
                 </label>
                 <input type="text" id="tm-role-${m.id}" class="form-control" value="${m.role || ''}" placeholder="Örn: Saha Operasyon & Lojistik" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
               </div>
 
               <div class="form-group" style="margin:0;">
                 <label style="font-size:0.72rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; margin-bottom:5px; display:block;">
-                  🏷️ Rozet / Kısa Unvan
+                  Rozet / Kısa Unvan
                 </label>
-                <input type="text" id="tm-badge-${m.id}" class="form-control" value="${m.badge || ''}" placeholder="Örn: Saha Operasyon" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
+                <input type="text" id="tm-badge-${m.id}" class="form-control" value="${m.badge || 'Yönetim Ekibi'}" placeholder="Örn: Yönetim Ekibi" style="font-size:0.83rem; padding:7px 10px; background:rgba(0,0,0,0.35);">
               </div>
 
               <div style="display:flex; justify-content:flex-end;">
@@ -9319,13 +9101,34 @@
       const roleEl = document.getElementById(`tm-role-${memberId}`);
       const badgeEl = document.getElementById(`tm-badge-${memberId}`);
 
-      const newDept = deptEl ? deptEl.value : m.department;
+      const newDept = deptEl ? deptEl.value.trim() : m.department;
       const newRole = roleEl ? roleEl.value.trim() : m.role;
-      const newBadge = badgeEl ? badgeEl.value.trim() : m.badge;
+      const newBadge = badgeEl ? badgeEl.value.trim() : m.badge || 'Yönetim Ekibi';
 
       m.department = newDept;
       if (newRole) m.role = newRole;
       if (newBadge) m.badge = newBadge;
+
+      // Auto-register new department if not yet existing
+      if (newDept && appData.departments && !appData.departments.some(d => d.name.toLowerCase() === newDept.toLowerCase())) {
+        const newDepObj = {
+          id: 'dep_' + Date.now(),
+          name: newDept,
+          lead: m.name || 'Atanmadı',
+          tagline: newDept + ' Operasyonel Birimi',
+          description: newDept + ' operasyonel süreçleri ve saha koordinasyonu.',
+          responsibilities: [newDept + ' genel görev takibi ve yönetimi'],
+          color: '#3B82F6'
+        };
+        appData.departments.push(newDepObj);
+        try {
+          fetch(`${API_BASE}/api/departments/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newDepObj)
+          });
+        } catch(e) {}
+      }
 
       (appData.contacts || []).forEach(c => {
         if (c.name === m.name) {
@@ -9397,9 +9200,107 @@
     let currentDeptRosterSearch = '';
 
     function renderDepartments() {
+      renderDepartmentSlider();
       renderDepartmentCards();
       renderDeptRoster();
       updateDeptStats();
+      updateDeptDatalists();
+    }
+
+    function scrollDeptSlider(direction) {
+      const container = document.getElementById('dept-slider-container');
+      if (container) {
+        const scrollAmount = 300 * direction;
+        container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      }
+    }
+
+    function renderDepartmentSlider() {
+      const container = document.getElementById('dept-slider-container');
+      if (!container) return;
+
+      const departments = (appData && Array.isArray(appData.departments) && appData.departments.length > 0)
+        ? appData.departments
+        : ((typeof EMBEDDED_DEFAULT_DATA !== 'undefined' && EMBEDDED_DEFAULT_DATA.departments) ? EMBEDDED_DEFAULT_DATA.departments : []);
+
+      const allMembers = (appData && Array.isArray(appData.team_members)) ? appData.team_members : [];
+      const allTasks = (appData && Array.isArray(appData.tasks)) ? appData.tasks : [];
+
+      const addBtn = document.getElementById('btn-add-dept-slider');
+      if (addBtn) addBtn.style.display = isAdmin() ? 'inline-flex' : 'none';
+
+      const infoEl = document.getElementById('dept-slider-info-text');
+      if (infoEl) infoEl.innerText = `${departments.length} Operasyonel Departman`;
+
+      container.innerHTML = departments.map(dept => {
+        const deptMembers = allMembers.filter(m => m.username !== 'genel' && m.department === dept.name);
+        const deptTasks = allTasks.filter(t => t.category === dept.name);
+        const doneTasks = deptTasks.filter(t => t.status === 'yapildi');
+        const taskPct = deptTasks.length > 0 ? Math.round((doneTasks.length / deptTasks.length) * 100) : 0;
+        const color = dept.color || '#C98A2C';
+
+        return `
+          <div class="dept-slider-card" style="scroll-snap-align:start; flex:0 0 280px; min-width:280px; max-width:280px; background:rgba(23, 24, 28, 0.95); border:1px solid rgba(255,255,255,0.08); border-top:3px solid ${color}; border-radius:12px; padding:16px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 6px 18px rgba(0,0,0,0.35); transition:transform 0.2s, box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-2px)'" onmouseleave="this.style.transform='translateY(0)'">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; gap:8px;">
+                <div style="font-weight:800; font-size:1.05rem; color:#FFF; line-height:1.2;">
+                  ${dept.name}
+                </div>
+                <span style="background:${color}22; color:${color}; border:1px solid ${color}44; font-size:0.68rem; font-weight:800; padding:2px 7px; border-radius:12px; white-space:nowrap;">
+                  ${deptMembers.length} Üye
+                </span>
+              </div>
+
+              <div style="font-size:0.75rem; color:${color}; font-weight:700; margin-bottom:6px; display:flex; align-items:center; gap:4px;">
+                <span>Lider:</span> <span style="color:#FFF;">${dept.lead || 'Atanmadı'}</span>
+              </div>
+
+              ${dept.tagline ? `<div style="font-size:0.72rem; color:var(--text-muted); line-height:1.3; margin-bottom:10px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">${dept.tagline}</div>` : ''}
+            </div>
+
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:var(--text-muted); margin-bottom:4px; font-weight:600;">
+                <span>Görevler (${doneTasks.length}/${deptTasks.length})</span>
+                <span style="color:#FFF; font-weight:700;">%${taskPct}</span>
+              </div>
+              <div style="width:100%; height:5px; background:rgba(255,255,255,0.08); border-radius:4px; overflow:hidden; margin-bottom:12px;">
+                <div style="height:100%; width:${taskPct}%; background:${color}; border-radius:4px;"></div>
+              </div>
+
+              <div style="display:flex; gap:6px;">
+                <button type="button" onclick="focusDepartmentCard('${encodeURIComponent(dept.name)}')" style="flex:1; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#FAF9F6; font-size:0.74rem; font-weight:700; padding:6px 8px; border-radius:6px; cursor:pointer;">
+                  İncele
+                </button>
+                <button type="button" onclick="goToDepartmentTasks('${encodeURIComponent(dept.name)}')" style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:var(--accent-ochre-light); font-size:0.74rem; font-weight:700; padding:6px 8px; border-radius:6px; cursor:pointer;" title="Görevlere Git">
+                  Görevler
+                </button>
+                ${isAdmin() ? `
+                  <button type="button" onclick="openEditDepartmentModal('${dept.id}')" style="background:${color}22; border:1px solid ${color}66; color:${color}; font-size:0.74rem; font-weight:700; padding:6px 8px; border-radius:6px; cursor:pointer;" title="Departmanı Düzenle">
+                    Düzenle
+                  </button>
+                ` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function focusDepartmentCard(deptNameEncoded) {
+      const deptName = decodeURIComponent(deptNameEncoded);
+      const cards = Array.from(document.querySelectorAll('.dept-card'));
+      const card = cards.find(c => {
+        const h4 = c.querySelector('h4');
+        return h4 && h4.innerText.trim() === deptName;
+      });
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.style.transition = 'box-shadow 0.3s, border-color 0.3s';
+        card.style.boxShadow = '0 0 25px rgba(201,138,44,0.6)';
+        setTimeout(() => {
+          card.style.boxShadow = '';
+        }, 2000);
+      }
     }
 
     function updateDeptStats() {
@@ -9420,8 +9321,13 @@
 
       const badgeEl = document.getElementById('dept-count-badge');
       if (badgeEl) {
-        const deptsCount = (appData && Array.isArray(appData.departments)) ? appData.departments.length : 5;
+        const deptsCount = (appData && Array.isArray(appData.departments)) ? appData.departments.length : 6;
         badgeEl.innerText = deptsCount;
+      }
+      const deptStatCount = document.getElementById('dept-stat-dept-count');
+      if (deptStatCount) {
+        const deptsCount = (appData && Array.isArray(appData.departments)) ? appData.departments.length : 6;
+        deptStatCount.innerText = `${deptsCount} Departman`;
       }
     }
 
@@ -9443,7 +9349,10 @@
         const taskPct = deptTasks.length > 0 ? Math.round((doneTasks.length / deptTasks.length) * 100) : 0;
 
         const color = dept.color || '#C98A2C';
-        const icon = dept.icon || '🏛️';
+        const words = dept.name.split(' ');
+        const monogram = words.length > 1
+          ? (words[0].charAt(0) + words[1].charAt(0)).toUpperCase()
+          : dept.name.slice(0, 2).toUpperCase();
 
         const respListHtml = (dept.responsibilities && Array.isArray(dept.responsibilities))
           ? dept.responsibilities.map(r => `
@@ -9457,14 +9366,14 @@
         const membersListHtml = deptMembers.length > 0
           ? deptMembers.map(m => {
               const initial = m.name ? m.name.charAt(0) : 'U';
-              const isAdminUser = m.role_type === 'admin';
+              const isBerkeAdmin = m.username === 'berke';
               return `
                 <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(0,0,0,0.35); border:1px solid rgba(255,255,255,0.08); padding:4px 10px; border-radius:20px; font-size:0.75rem;">
-                  <div style="width:20px; height:20px; border-radius:50%; background:${isAdminUser ? color : 'rgba(255,255,255,0.1)'}; color:${isAdminUser ? '#000' : '#FFF'}; font-size:0.65rem; font-weight:800; display:flex; align-items:center; justify-content:center;">
+                  <div style="width:20px; height:20px; border-radius:50%; background:${isBerkeAdmin ? color : 'rgba(255,255,255,0.1)'}; color:${isBerkeAdmin ? '#000' : '#FFF'}; font-size:0.65rem; font-weight:800; display:flex; align-items:center; justify-content:center;">
                     ${initial}
                   </div>
                   <span style="font-weight:700; color:#FFF;">${m.name}</span>
-                  <span style="color:var(--text-muted); font-size:0.7rem;">(${m.badge || m.role})</span>
+                  <span style="color:var(--text-muted); font-size:0.7rem;">(${m.badge || 'Yönetim Ekibi'})</span>
                 </div>
               `;
             }).join('')
@@ -9475,15 +9384,15 @@
             <!-- HEADER -->
             <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
               <div style="display:flex; align-items:center; gap:12px;">
-                <div style="width:46px; height:46px; border-radius:12px; background:radial-gradient(circle, ${color}33, ${color}11); border:1px solid ${color}66; display:flex; align-items:center; justify-content:center; font-size:1.5rem; flex-shrink:0;">
-                  ${icon}
+                <div style="width:46px; height:46px; border-radius:12px; background:radial-gradient(circle, ${color}33, ${color}11); border:1px solid ${color}66; display:flex; align-items:center; justify-content:center; font-size:1rem; font-weight:800; color:${color}; flex-shrink:0;">
+                  ${monogram}
                 </div>
                 <div>
                   <h4 style="margin:0; font-size:1.05rem; font-weight:800; color:#FFF; line-height:1.3;">
                     ${dept.name}
                   </h4>
                   <div style="font-size:0.75rem; color:${color}; font-weight:700; margin-top:3px; display:flex; align-items:center; gap:4px;">
-                    👑 Lider: ${dept.lead || 'Atanmadı'}
+                    Lider: ${dept.lead || 'Atanmadı'}
                   </div>
                 </div>
               </div>
@@ -9504,7 +9413,7 @@
             ${respListHtml ? `
               <div style="background:rgba(0,0,0,0.22); border-radius:10px; padding:12px; border:1px solid rgba(255,255,200,0.04);">
                 <div style="font-size:0.72rem; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">
-                  🎯 Temel Görev & Sorumluluk Alanları
+                  Temel Görev & Sorumluluk Alanları
                 </div>
                 <ul style="list-style:none; padding:0; margin:0;">
                   ${respListHtml}
@@ -9515,7 +9424,7 @@
             <!-- MEMBERS CHIPS -->
             <div>
               <div style="font-size:0.72rem; font-weight:800; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.5px;">
-                👥 Departman Kadrosu (${deptMembers.length})
+                Departman Kadrosu (${deptMembers.length})
               </div>
               <div style="display:flex; flex-wrap:wrap; gap:6px;">
                 ${membersListHtml}
@@ -9533,11 +9442,14 @@
               </div>
               <div style="display:flex; gap:8px;">
                 <button type="button" class="btn-primary" onclick="goToDepartmentTasks('${encodeURIComponent(dept.name)}')" style="flex:1; font-size:0.78rem; padding:7px 12px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#FAF9F6; border-radius:6px; cursor:pointer; font-weight:700; display:inline-flex; align-items:center; justify-content:center; gap:6px;">
-                  📋 Görevleri Gör (${deptTasks.length})
+                  Görevleri Gör (${deptTasks.length})
                 </button>
                 ${isAdmin() ? `
-                  <button type="button" class="btn-primary" onclick="openTeamManagementModal()" title="Bu departmandaki üyeleri yönet" style="font-size:0.78rem; padding:7px 10px; background:${color}22; border:1px solid ${color}55; color:${color}; border-radius:6px; cursor:pointer; font-weight:700;">
-                    ⚙️
+                  <button type="button" class="btn-primary" onclick="openEditDepartmentModal('${dept.id}')" title="Departmanı Düzenle" style="font-size:0.78rem; padding:7px 12px; background:${color}22; border:1px solid ${color}66; color:${color}; border-radius:6px; cursor:pointer; font-weight:700;">
+                    Düzenle
+                  </button>
+                  <button type="button" class="btn-primary" onclick="openTeamManagementModal()" title="Bu departmandaki üyeleri yönet" style="font-size:0.78rem; padding:7px 10px; background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.15); color:#FFF; border-radius:6px; cursor:pointer; font-weight:700;">
+                    Ekip
                   </button>
                 ` : ''}
               </div>
@@ -9545,6 +9457,194 @@
           </div>
         `;
       }).join('');
+    }
+
+    // DEPARTMENT EDIT & ADD CRUD FUNCTIONS
+    function openEditDepartmentModal(deptId) {
+      if (!isAdmin()) {
+        alert('Departman düzenleme yetkisi sadece Festival Başkanındadır.');
+        return;
+      }
+      const depts = (appData && Array.isArray(appData.departments)) ? appData.departments : [];
+      const dept = depts.find(d => d.id === deptId);
+      if (!dept) return;
+
+      document.getElementById('dept-modal-title').innerText = `Departman Düzenle: ${dept.name}`;
+      document.getElementById('dept-form-id').value = dept.id;
+      document.getElementById('dept-form-name').value = dept.name || '';
+      document.getElementById('dept-form-lead').value = dept.lead || '';
+      document.getElementById('dept-form-tagline').value = dept.tagline || '';
+      document.getElementById('dept-form-desc').value = dept.description || '';
+      document.getElementById('dept-form-resps').value = Array.isArray(dept.responsibilities) ? dept.responsibilities.join('\n') : '';
+      const color = dept.color || '#C98A2C';
+      document.getElementById('dept-form-color').value = color;
+      document.getElementById('dept-form-color-picker').value = color;
+
+      const delBtn = document.getElementById('btn-delete-dept');
+      if (delBtn) delBtn.style.display = 'inline-block';
+
+      document.getElementById('department-edit-modal').classList.add('active');
+    }
+
+    function openAddDepartmentModal() {
+      if (!isAdmin()) {
+        alert('Yeni departman ekleme yetkisi sadece Festival Başkanındadır.');
+        return;
+      }
+      document.getElementById('dept-modal-title').innerText = 'Yeni Departman Ekle';
+      document.getElementById('dept-form-id').value = '';
+      document.getElementById('dept-form-name').value = '';
+      document.getElementById('dept-form-lead').value = '';
+      document.getElementById('dept-form-tagline').value = '';
+      document.getElementById('dept-form-desc').value = '';
+      document.getElementById('dept-form-resps').value = '';
+      document.getElementById('dept-form-color').value = '#3B82F6';
+      document.getElementById('dept-form-color-picker').value = '#3B82F6';
+
+      const delBtn = document.getElementById('btn-delete-dept');
+      if (delBtn) delBtn.style.display = 'none';
+
+      document.getElementById('department-edit-modal').classList.add('active');
+    }
+
+    function closeDepartmentEditModal() {
+      const modal = document.getElementById('department-edit-modal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    async function handleSaveDepartment(e) {
+      if (e) e.preventDefault();
+      if (!isAdmin()) {
+        alert('Bu işlem sadece Festival Başkanı yetkisindedir.');
+        return;
+      }
+
+      const depId = document.getElementById('dept-form-id').value.trim();
+      const name = document.getElementById('dept-form-name').value.trim();
+      const lead = document.getElementById('dept-form-lead').value.trim();
+      const tagline = document.getElementById('dept-form-tagline').value.trim();
+      const desc = document.getElementById('dept-form-desc').value.trim();
+      const respsRaw = document.getElementById('dept-form-resps').value;
+      const resps = respsRaw.split('\n').map(s => s.trim()).filter(Boolean);
+      const color = document.getElementById('dept-form-color').value.trim() || '#C98A2C';
+
+      if (!name) {
+        alert('Lütfen departman adını girin.');
+        return;
+      }
+
+      if (!appData.departments) appData.departments = [];
+
+      if (depId) {
+        const found = appData.departments.find(d => d.id === depId);
+        if (found) {
+          const oldName = found.name;
+          found.name = name;
+          found.lead = lead;
+          found.tagline = tagline;
+          found.description = desc;
+          found.responsibilities = resps;
+          found.color = color;
+
+          if (oldName && oldName !== name) {
+            (appData.team_members || []).forEach(tm => {
+              if (tm.department === oldName) tm.department = name;
+            });
+            (appData.tasks || []).forEach(t => {
+              if (t.category === oldName) t.category = name;
+            });
+          }
+        }
+
+        try {
+          await fetch(`${API_BASE}/api/departments/update`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: depId,
+              name: name,
+              lead: lead,
+              tagline: tagline,
+              description: desc,
+              responsibilities: resps,
+              color: color
+            })
+          });
+        } catch(err) {}
+
+        showPanelToast(`"${name}" departmanı başarıyla güncellendi!`);
+      } else {
+        const newId = 'dep_' + Date.now();
+        const newDep = {
+          id: newId,
+          name: name,
+          lead: lead,
+          tagline: tagline,
+          description: desc,
+          responsibilities: resps,
+          color: color
+        };
+        appData.departments.push(newDep);
+
+        try {
+          await fetch(`${API_BASE}/api/departments/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newDep)
+          });
+        } catch(err) {}
+
+        showPanelToast(`"${name}" departmanı başarıyla oluşturuldu!`);
+      }
+
+      saveLocal();
+      closeDepartmentEditModal();
+      renderDepartments();
+      renderTeamManagementList();
+      renderDeptRoster();
+      updateDeptDatalists();
+    }
+
+    async function handleDeleteCurrentDepartment() {
+      if (!isAdmin()) return;
+      const depId = document.getElementById('dept-form-id').value.trim();
+      if (!depId) return;
+
+      const dep = (appData.departments || []).find(d => d.id === depId);
+      if (!dep) return;
+
+      if (!confirm(`"${dep.name}" departmanını silmek istediğinize emin misiniz? Bu departmana bağlı üyeler korunacaktır.`)) {
+        return;
+      }
+
+      appData.departments = appData.departments.filter(d => d.id !== depId);
+      saveLocal();
+
+      try {
+        await fetch(`${API_BASE}/api/departments/delete`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: depId })
+        });
+      } catch(err) {}
+
+      closeDepartmentEditModal();
+      renderDepartments();
+      renderTeamManagementList();
+      renderDeptRoster();
+      updateDeptDatalists();
+      showPanelToast(`"${dep.name}" departmanı silindi.`);
+    }
+
+    function updateDeptDatalists() {
+      const depts = (appData && Array.isArray(appData.departments)) ? appData.departments : [];
+      const optionsHtml = depts.map(d => `<option value="${d.name}">${d.name}</option>`).join('');
+
+      const dlNew = document.getElementById('dept-datalist-new');
+      if (dlNew) dlNew.innerHTML = optionsHtml;
+
+      const dlMgmt = document.getElementById('dept-datalist-mgmt');
+      if (dlMgmt) dlMgmt.innerHTML = optionsHtml;
     }
 
     function goToDepartmentTasks(deptNameEncoded) {
@@ -9608,13 +9708,10 @@
         return;
       }
 
-      const deptColorMap = {
-        "Üst Yönetim & Genel Koordinasyon": "#C98A2C",
-        "Sahne, Ses, Işık & Canlı Performans": "#EC4899",
-        "Saha İçeriği, Deneyim & Oyun Alanları": "#3B82F6",
-        "Saha İçi Operasyon & Tamamlayıcı Lojistik": "#10B981",
-        "Ar-Ge, Konsept & Atmosfer Tasarımı": "#8B5CF6"
-      };
+      const deptColorMap = {};
+      (appData.departments || []).forEach(d => {
+        if (d.name && d.color) deptColorMap[d.name] = d.color;
+      });
 
       container.innerHTML = filtered.map(m => {
         const initial = m.name ? m.name.charAt(0) : 'U';
@@ -9643,7 +9740,7 @@
                 </div>
               </div>
               <span style="background:${deptColor}18; color:${deptColor}; border:1px solid ${deptColor}44; font-size:0.68rem; font-weight:700; padding:2px 8px; border-radius:12px; white-space:nowrap;">
-                ${m.badge || 'Ekip'}
+                ${m.badge || 'Yönetim Ekibi'}
               </span>
             </div>
 
@@ -9740,11 +9837,32 @@
       const name = (document.getElementById('new-tm-name').value || '').trim();
       const username = (document.getElementById('new-tm-username').value || '').trim().toLowerCase();
       const pin = (document.getElementById('new-tm-pin').value || '').trim();
-      const department = document.getElementById('new-tm-dept').value;
+      const department = (document.getElementById('new-tm-dept').value || '').trim();
       const role = (document.getElementById('new-tm-role').value || '').trim() || 'Saha Operasyon Görevlisi';
-      const badge = (document.getElementById('new-tm-badge').value || '').trim() || 'Ekip';
+      const badge = (document.getElementById('new-tm-badge').value || '').trim() || 'Yönetim Ekibi';
       const phone = (document.getElementById('new-tm-phone').value || '').trim();
-      const roleType = document.getElementById('new-tm-role-type').value || 'member';
+      const roleType = 'member'; // Sadece Berke Saygılı başkandır, tüm yeni üyeler Yönetim Ekibidir
+
+      // Auto-register department if new
+      if (department && appData.departments && !appData.departments.some(d => d.name.toLowerCase() === department.toLowerCase())) {
+        const newDepObj = {
+          id: 'dep_' + Date.now(),
+          name: department,
+          lead: name,
+          tagline: department + ' Departmanı',
+          description: department + ' operasyonel süreçleri ve saha koordinasyonu.',
+          responsibilities: [department + ' saha yönetimi'],
+          color: '#3B82F6'
+        };
+        appData.departments.push(newDepObj);
+        try {
+          fetch(`${API_BASE}/api/departments/add`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newDepObj)
+          });
+        } catch(e) {}
+      }
 
       if (!name || !username || !pin) {
         alert('Lütfen Ad Soyad, Kullanıcı Adı ve PIN alanlarını doldurun.');

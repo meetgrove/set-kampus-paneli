@@ -840,6 +840,104 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 self.send_json_response({'success': False, 'error': 'Üye bulunamadı'}, 404)
             return
 
+        
+        elif path == '/api/departments/update':
+            dep_id = req_data.get('id')
+            new_name = req_data.get('name', '').strip()
+            new_lead = req_data.get('lead', '').strip()
+            new_tagline = req_data.get('tagline', '').strip()
+            new_desc = req_data.get('description', '').strip()
+            new_resps = req_data.get('responsibilities', [])
+            new_color = req_data.get('color', '').strip()
+
+            found_dep = None
+            for d in data.get('departments', []):
+                if d.get('id') == dep_id:
+                    found_dep = d
+                    break
+
+            if not found_dep:
+                self.send_json_response({'success': False, 'error': 'Departman bulunamadı'}, 404)
+                return
+
+            old_name = found_dep.get('name')
+            if new_name:
+                found_dep['name'] = new_name
+            if new_lead is not None:
+                found_dep['lead'] = new_lead
+            if new_tagline is not None:
+                found_dep['tagline'] = new_tagline
+            if new_desc is not None:
+                found_dep['description'] = new_desc
+            if isinstance(new_resps, list):
+                found_dep['responsibilities'] = new_resps
+            if new_color:
+                found_dep['color'] = new_color
+
+            if new_name and old_name and new_name != old_name:
+                for tm in data.get('team_members', []):
+                    if tm.get('department') == old_name:
+                        tm['department'] = new_name
+                for t in data.get('tasks', []):
+                    if t.get('category') == old_name:
+                        t['category'] = new_name
+
+            save_ekip_data(data)
+            self.send_json_response({
+                'success': True,
+                'departments': data['departments'],
+                'team_members': data.get('team_members', []),
+                'tasks': data.get('tasks', [])
+            })
+            return
+
+        elif path == '/api/departments/add':
+            name = req_data.get('name', '').strip()
+            lead = req_data.get('lead', '').strip()
+            tagline = req_data.get('tagline', '').strip()
+            desc = req_data.get('description', '').strip()
+            resps = req_data.get('responsibilities', [])
+            color = req_data.get('color', '#C98A2C').strip() or '#C98A2C'
+
+            if not name:
+                self.send_json_response({'success': False, 'error': 'Departman adı zorunludur'}, 400)
+                return
+
+            existing = [d.get('name', '').lower() for d in data.get('departments', [])]
+            if name.lower() in existing:
+                self.send_json_response({'success': False, 'error': f"'{name}' departmanı zaten mevcut"}, 400)
+                return
+
+            new_id = f"dep_{int(time.time() * 1000)}"
+            new_dept = {
+                'id': new_id,
+                'name': name,
+                'lead': lead or 'Atanmadı',
+                'color': color,
+                'tagline': tagline or 'Operasyonel Birim',
+                'description': desc or f"{name} departmanı görev ve operasyonları.",
+                'responsibilities': resps if isinstance(resps, list) and resps else ['Departman görevlerinin icrası', 'Saha koordinasyonu']
+            }
+            data.setdefault('departments', []).append(new_dept)
+            save_ekip_data(data)
+            self.send_json_response({'success': True, 'departments': data['departments'], 'department': new_dept})
+            return
+
+        elif path == '/api/departments/delete':
+            dep_id = req_data.get('id')
+            if not dep_id:
+                self.send_json_response({'success': False, 'error': 'ID belirtilmedi'}, 400)
+                return
+
+            original_len = len(data.get('departments', []))
+            data['departments'] = [d for d in data.get('departments', []) if d.get('id') != dep_id]
+            if len(data['departments']) < original_len:
+                save_ekip_data(data)
+                self.send_json_response({'success': True, 'departments': data['departments']})
+            else:
+                self.send_json_response({'success': False, 'error': 'Departman bulunamadı'}, 404)
+            return
+
         elif path == '/api/contacts/delete':
             cnt_id = req_data.get('id')
             phone = req_data.get('phone')
