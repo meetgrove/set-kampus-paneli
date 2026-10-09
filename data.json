@@ -1,9 +1,9 @@
 {
   "festival": {
-    "name": "SET Kampüse Hoş Geldin Fest",
+    "name": "SET 17-18 Ekim Kampüse Hoş Geldin Fest",
     "sub": "Tekirdağ Namık Kemal Üniversitesi Topluluk Tanıtım Günleri Festivali",
-    "dates": "6 - 7 - 8 Ekim 2026",
-    "start_time": "2026-10-06T10:00:00",
+    "dates": "17 - 18 Ekim 2026",
+    "start_time": "2026-10-17T10:00:00",
     "location": "NKÜ Spor Kompleksi Önü Açık Çim Alan & Tartan Parkur",
     "backup_location": "NKÜ Kapalı Spor Salonu"
   },
@@ -176,7 +176,7 @@
     {
       "id": "tsk_3",
       "title": "Büyükşehir ve Rektörlük Festival Açılış Protokolü",
-      "description": "6 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
+      "description": "17 Ekim 12:00 açılış seremonisi konuşmacıları, kürsü ve kurumsal protokol akışının onaylatılması.",
       "assignee": "Berke Saygılı",
       "category": "Üst Yönetim & Genel Koordinasyon",
       "priority": "Yüksek",
@@ -199,7 +199,7 @@
     {
       "id": "tsk_6",
       "title": "SKS ile 60 Çadır, 120 Sandalye ve Masa Zimmet Protokolü",
-      "description": "SKS ambarındaki envanterin 5 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
+      "description": "SKS ambarındaki envanterin 16 Ekim sabahı sahada teslim alınması için yazılı onay ve tutanakların tamamlanması.",
       "assignee": "Selin Aşkın",
       "category": "Üst Yönetim & Genel Koordinasyon",
       "priority": "Kritik",
@@ -231,7 +231,7 @@
     },
     {
       "id": "tsk_9",
-      "title": "3 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
+      "title": "2 Günlük Festival Sahne Akış Çizelgesinin Kesinleştirilmesi",
       "description": "Açılış, kulüp performansları, yarışmalar ve kapanış konserlerinin saat saat dakika dakika akış planı.",
       "assignee": "Mecit Çalık",
       "category": "Sahne, Ses, Işık & Canlı Performans",
@@ -345,7 +345,7 @@
     {
       "id": "tsk_20",
       "title": "SKS Masa ve Sandalyelerinin Stantlara Dağıtım Krokisi",
-      "description": "5 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
+      "description": "16 Ekim kurulum günü her çadıra 1 masa + 2 sandalye gelecek şekilde zimmetli hızlı dağıtım planı.",
       "assignee": "Mert Akmeşe",
       "category": "Saha İçeriği, Deneyim & Oyun Alanları",
       "priority": "Yüksek",
@@ -392,13 +392,13 @@
     },
     {
       "id": "tsk_26",
-      "title": "5 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
+      "title": "16 Ekim Kapsamlı Soundcheck ve Canlı Müzik Grupları Provası",
       "description": "Konser verecek üniversite grupları ve DJ ile ses sisteminin test edilmesi, desibel ayarlarının kilitlenmesi.",
       "assignee": "Efe Kağan Yağcı",
       "category": "Sahne, Ses, Işık & Canlı Performans",
       "priority": "Kritik",
       "status": "yapilacak",
-      "deadline": "2026-10-05"
+      "deadline": "2026-10-16"
     },
     {
       "id": "tsk_27",
@@ -893,84 +893,70 @@
   ],
   "schedule": [
     {
-      "day": "6 Ekim Pazartesi",
-      "theme": "Açılış, Canlılık & Kampüse Merhaba",
+      "day": "17 Ekim Cumartesi",
+      "theme": "Büyük Açılış, Stantlar, Canlı Gösteriler & Kampüse Merhaba",
       "items": [
         {
-          "time": "09:00 - 10:00",
+          "time": "09:30 - 10:30",
           "title": "Topluluk Stantlarının Açılışı ve Sabah Akustiği"
         },
         {
-          "time": "10:00 - 16:30",
+          "time": "10:30 - 17:00",
           "title": "Topluluk Tanıtım Stantları Açık & Üye Kayıtları"
         },
         {
           "time": "12:00 - 13:00",
-          "title": "Açılış Seremonisi & Rektörlük / SET Açılış Konuşması"
+          "title": "Resmi Açılış Seremonisi & Protokol Konuşmaları"
         },
         {
           "time": "13:30 - 15:30",
-          "title": "Kulüplerarası Tanışma & Dev Jenga Şampiyonası"
+          "title": "Kulüplerarası Tanışma, Dans/Tiyatro Gösterileri & Dev Jenga Şampiyonası"
         },
         {
           "time": "16:00 - 17:30",
-          "title": "Öğrenci Müzik Kulüpleri Sahne Performansları"
+          "title": "Öğrenci Müzik Kulüpleri & Genç Sahne Canlı Performansları"
         },
         {
           "time": "18:00 - 20:00",
-          "title": "Kampüse Merhaba Açık Hava DJ Performansı & Gün Batımı"
+          "title": "Kampüse Merhaba Açık Hava Konserleri & DJ Performansı"
+        },
+        {
+          "time": "20:30 - 23:00",
+          "title": "Ana Sahne Canlı Headliner Konseri & Gece Kapanışı"
         }
       ]
     },
     {
-      "day": "7 Ekim Salı",
-      "theme": "Topluluk Gösterileri, Sanat & Alternatif Turnuvalar",
+      "day": "18 Ekim Pazar",
+      "theme": "Turnuvalar, Ödül Töreni, Canlı Konserler & Büyük Festival Kapanışı",
       "items": [
         {
           "time": "10:00 - 16:30",
-          "title": "Topluluk Tanıtım Stantları Açık & Üye Kayıtları"
+          "title": "Topluluk Stantları Açık, Networking & Atölye Çalışmaları"
         },
         {
-          "time": "11:30 - 13:00",
-          "title": "Dans, Tiyatro ve Spor Toplulukları Canlı Gösterileri"
+          "time": "11:30 - 13:30",
+          "title": "Langırt, Cornhole ve Halat Çekme Kulüpler Ligi Finalleri"
         },
         {
-          "time": "13:30 - 15:30",
-          "title": "Langırt, Cornhole ve Halat Çekme Kulüpler Ligi"
+          "time": "14:00 - 15:30",
+          "title": "Sanat ve Tasarım Kulüpleri Açık Sergi Turu & Canlı Sahne Şovları"
         },
         {
-          "time": "16:00 - 17:30",
-          "title": "İnteraktif Çim Atölyeleri (Resim, Kaligrafi, Akıl Oyunları)"
-        },
-        {
-          "time": "18:00 - 20:30",
-          "title": "Genç Sahne: Üniversite Rock ve Pop Grupları Canlı Konseri"
-        }
-      ]
-    },
-    {
-      "day": "8 Ekim Çarşamba",
-      "theme": "Ödül Töreni, Birlik Ruhu & Festival Büyük Kapanışı",
-      "items": [
-        {
-          "time": "10:00 - 16:00",
-          "title": "Topluluk Kapanış Kayıtları ve Networking"
-        },
-        {
-          "time": "13:00 - 14:30",
-          "title": "Sanat ve Tasarım Toplulukları Açık Sergi Turu"
-        },
-        {
-          "time": "15:30 - 16:30",
-          "title": "Turnuva Finalleri ve En Yaratıcı Stant Ödül Töreni"
+          "time": "16:00 - 17:00",
+          "title": "Turnuva Finalleri & En Yaratıcı Stant Ödül Töreni"
         },
         {
           "time": "17:00 - 18:00",
           "title": "Teşekkür Plaketleri Takdimi (Rektörlük, Büyükşehir & Sponsorlar)"
         },
         {
-          "time": "18:00 - 20:30",
-          "title": "Festival Büyük Kapanış Konseri ve Sahne Işık Şovları"
+          "time": "18:30 - 20:30",
+          "title": "Festival Kapanış Konseri & Sahne Işık / Görsel Şovları"
+        },
+        {
+          "time": "21:00 - 23:30",
+          "title": "Büyük Festival Kapanış Galası & Elektronik Müzik After Party"
         }
       ]
     }
@@ -3068,7 +3054,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Alternatif Rock & Akustik Klarnet",
-      "proposed_day": "6 Ekim (1. Gün - Açılış Konseri)",
+      "proposed_day": "17 Ekim (1. Gün - Açılış Konseri)",
       "proposed_day_key": "day_1",
       "status": "in_progress",
       "contact_name": "Mustafa Bey (Menajerlik)",
@@ -3092,7 +3078,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Indie Pop & Alternatif Rock",
-      "proposed_day": "7 Ekim (2. Gün - Gençlik Konseri)",
+      "proposed_day": "18 Ekim (2. Gün - Gençlik & Kapanış Konseri)",
       "proposed_day_key": "day_2",
       "status": "in_progress",
       "contact_name": "Kaan Alıcı (Menajer)",
@@ -3103,7 +3089,7 @@
       "stage_time": "21:30 - 23:15",
       "stage_needs": "Geniş Sahne, LED Ekran Görselleri, Synth ve Akustik/Elektro Davul Seti Girişleri, 5x In-Ear",
       "hospitality_rider": "10 kişilik kulis ikramı, festival alanı güvenlik eşliği, 2 binek transfer aracı",
-      "notes": "'Seni Dert Etmeler' ve 'Dip' şarkıları tüm üniversite gençliğinin marşı. 7 Ekim Çarşamba akşamı için ideal.",
+      "notes": "'Seni Dert Etmeler' ve 'Dip' şarkıları tüm üniversite gençliğinin marşı. 18 Ekim Pazar akşamı için ideal.",
       "mail_sent": false,
       "mail_sent_by": "",
       "mail_sent_at": ""
@@ -3114,8 +3100,8 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Bağımsız Rock & Sahne Performansı",
-      "proposed_day": "8 Ekim (3. Gün - Kapanış Galası)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün - Kapanış Galası)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Can Ozan / İpek Hanım (Tur Menajeri)",
       "agency": "DKTT Independent Management",
@@ -3136,7 +3122,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Alternatif Rock & Garage",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "in_progress",
       "contact_name": "Artun Ertürk (Menajerlik)",
@@ -3158,7 +3144,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Pop-Rock & Romantik Alternatif",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Akif Alkan (Menajer)",
@@ -3180,8 +3166,8 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Türkçe Rock & Pop-Rock",
-      "proposed_day": "8 Ekim (3. Gün)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Zuhal Koç (Kişisel Menajer)",
       "agency": "FT Production & Koç Menajerlik",
@@ -3202,7 +3188,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Pop, Akustik & Şehir Şarkıları",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Tolga Akış / Menajerlik Ekibi",
@@ -3224,7 +3210,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Nostaljik & Modern Türkçe Rock",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "pending",
       "contact_name": "Sinan Kaynakçı (Grup İletişim)",
@@ -3246,8 +3232,8 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Synth-Pop & Elektronik Dans",
-      "proposed_day": "8 Ekim (3. Gün)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Salman Tin / Menajerlik",
       "agency": "Hypers Music",
@@ -3268,7 +3254,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Balkan Rock, Alaturka & Enerjik Pop",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Ece Çelebi (Menajer)",
@@ -3290,7 +3276,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Indie Folk & Akustik Pop",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "in_progress",
       "contact_name": "Ozan Bey (İletişim)",
@@ -3312,7 +3298,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Synthwave, Indie Pop & Retro Disco",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "pending",
       "contact_name": "İdil & Ömer (Grup Temsilcisi)",
@@ -3334,8 +3320,8 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Klasik Türkçe Rock",
-      "proposed_day": "8 Ekim (3. Gün)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Kutlu Özmakinacı",
       "agency": "DMC & Menajerlik",
@@ -3356,7 +3342,7 @@
       "category": "headliner_band",
       "category_title": "🎸 Ana Sahne & Canlı Grup",
       "genre": "Balkan, Rumeli & Trakya Coşkusu",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Suzan Hanım Menajerlik",
@@ -3378,7 +3364,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Deep House, Melodic & Festival Hits",
-      "proposed_day": "6 Ekim (1. Gün - Gece Kapanışı)",
+      "proposed_day": "17 Ekim (1. Gün - Gece Kapanışı)",
       "proposed_day_key": "day_1",
       "status": "in_progress",
       "contact_name": "Mesut Uğurlu (Menajer)",
@@ -3400,8 +3386,8 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Deep House, Indie Dance & Global Hits",
-      "proposed_day": "8 Ekim (3. Gün - Büyük After Party)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün - Büyük After Party)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Batu Ertürk (Global Booking)",
       "agency": "Ultra Records & Sibourne Music",
@@ -3422,7 +3408,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Festival Trap, EDM & Hype Remixes",
-      "proposed_day": "7 Ekim (2. Gün - Gece Kapanışı)",
+      "proposed_day": "18 Ekim (2. Gün - Gece Kapanışı)",
       "proposed_day_key": "day_2",
       "status": "in_progress",
       "contact_name": "Arem & Arman Menajerlik",
@@ -3444,7 +3430,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Commercial House & Pop Mashup",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "pending",
       "contact_name": "Çabakçor Media Booking",
@@ -3466,8 +3452,8 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Electro Pop & Uluslararası Hit Parçalar",
-      "proposed_day": "8 Ekim (3. Gün)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün)",
+      "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Connection Records Booking",
       "agency": "Spinnin' Records & Connection",
@@ -3488,7 +3474,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "90'lar & 2000'ler Türkçe Pop Festival Seti",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "approved",
       "contact_name": "Ece Hanım (Direkt)",
@@ -3510,7 +3496,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "Melodic House & Sunset Vibes",
-      "proposed_day": "6 Ekim (1. Gün)",
+      "proposed_day": "17 Ekim (1. Gün)",
       "proposed_day_key": "day_1",
       "status": "pending",
       "contact_name": "Hakan Akkuş Management",
@@ -3532,7 +3518,7 @@
       "category": "dj_electronic",
       "category_title": "🎧 DJ & Elektronik Performans",
       "genre": "TikTok Viral, Türkçe Hip-Hop & Bass House",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "approved",
       "contact_name": "Yiğit Özdemir",
@@ -3554,14 +3540,14 @@
       "category": "mc_hype",
       "category_title": "🎤 MC & Sahne Hype Şov",
       "genre": "Açık Hava Festival Sunumu, Kalabalık Yönetimi & Sahne Şovları",
-      "proposed_day": "6-7-8 Ekim (3 Gün Kesintisiz Sahne)",
+      "proposed_day": "17-18 Ekim (2 Gün Kesintisiz Sahne)",
       "proposed_day_key": "all_days",
       "status": "in_progress",
       "contact_name": "Kaan Yıldız (MC Kaan)",
       "agency": "Hype Event Management",
       "email": "mckaan.official@gmail.com",
       "phone": "0535 440 22 19",
-      "estimated_budget": "50.000 - 75.000 ₺ (3 Gün Paket)",
+      "estimated_budget": "50.000 - 75.000 ₺ (2 Gün Paket)",
       "stage_time": "Tüm Günler (Sahne Araları & Yarışmalar)",
       "stage_needs": "2x Kablosuz Telsiz Mikrofon (Yüksek Menzilli), Sahneye Çıkış Rahatlığı, DJ ile Doğrudan İletişim Hattı",
       "hospitality_rider": "Festival ekibiyle ortak yemek ve su temini, dinlenme çadırı",
@@ -3576,7 +3562,7 @@
       "category": "mc_hype",
       "category_title": "🎤 MC & Sahne Hype Şov",
       "genre": "Gençlik & Spor Festivalleri Enerji Sunumu",
-      "proposed_day": "7-8 Ekim (2. ve 3. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Burak Can",
@@ -3598,7 +3584,7 @@
       "category": "mc_hype",
       "category_title": "🎤 MC & Sahne Hype Şov",
       "genre": "Freestyle Rap & Beatbox Battle",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "approved",
       "contact_name": "Semih (Beatbox Sorumlusu)",
@@ -3620,7 +3606,7 @@
       "category": "host_moderator",
       "category_title": "🎙️ Sunucu & Sahne Moderatörü",
       "genre": "Radyo Şovmeni, Stand-up & Festival Açılış Moderatörü",
-      "proposed_day": "6 Ekim (1. Gün - Resmi Açılış & Gala)",
+      "proposed_day": "17 Ekim (1. Gün - Resmi Açılış & Gala)",
       "proposed_day_key": "day_1",
       "status": "in_progress",
       "contact_name": "Serkan Bey (Menajer)",
@@ -3642,7 +3628,7 @@
       "category": "host_moderator",
       "category_title": "🎙️ Sunucu & Sahne Moderatörü",
       "genre": "Mizahi Sahne Sunumu & İnteraktif Öğrenci Söyleşisi",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "pending",
       "contact_name": "Zalma Medya Booking",
@@ -3664,8 +3650,8 @@
       "category": "host_moderator",
       "category_title": "🎙️ Sunucu & Sahne Moderatörü",
       "genre": "Gençlik Radyo Sunucusu & İnteraktif Sahne Yarışmaları",
-      "proposed_day": "8 Ekim (3. Gün - Kapanış)",
-      "proposed_day_key": "day_3",
+      "proposed_day": "18 Ekim (2. Gün - Kapanış Galası)",
+      "proposed_day_key": "day_2",
       "status": "in_progress",
       "contact_name": "Doğancan Özadlı (Direkt)",
       "agency": "Süper FM Medya",
@@ -3686,7 +3672,7 @@
       "category": "host_moderator",
       "category_title": "🎙️ Sunucu & Sahne Moderatörü",
       "genre": "Öğrenci Sunucular & Kulüp Tanıtım Moderatörleri",
-      "proposed_day": "6-7-8 Ekim (Gündüz Saatleri)",
+      "proposed_day": "17-18 Ekim (Gündüz Saatleri)",
       "proposed_day_key": "all_days",
       "status": "approved",
       "contact_name": "Elifnur (Radyo Kulübü Başkanı)",
@@ -3708,7 +3694,7 @@
       "category": "campus_talent",
       "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
       "genre": "Türkçe Rock & Pop-Rock Cover Ekibi",
-      "proposed_day": "6 Ekim (1. Gün - Açılış Ön Grubu)",
+      "proposed_day": "17 Ekim (1. Gün - Açılış Ön Grubu)",
       "proposed_day_key": "day_1",
       "status": "approved",
       "contact_name": "Berke / Müzik Topluluğu Temsilcisi",
@@ -3730,7 +3716,7 @@
       "category": "campus_talent",
       "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
       "genre": "Klasik, Film Müzikleri & Senfonik Gençlik Düzenlemeleri",
-      "proposed_day": "6 Ekim (1. Gün - Resmi Açılış Töreni)",
+      "proposed_day": "17 Ekim (1. Gün - Resmi Açılış Töreni)",
       "proposed_day_key": "day_1",
       "status": "approved",
       "contact_name": "Öğr. Gör. Arda Bey (Orkestra Şefi)",
@@ -3752,7 +3738,7 @@
       "category": "campus_talent",
       "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
       "genre": "Hard Rock, Grunge & Anadolu Rock Coverları",
-      "proposed_day": "7 Ekim (2. Gün)",
+      "proposed_day": "18 Ekim (2. Gün)",
       "proposed_day_key": "day_2",
       "status": "approved",
       "contact_name": "Barış (Solist)",
@@ -3774,14 +3760,14 @@
       "category": "campus_talent",
       "category_title": "🎓 Kampüs & Öğrenci Topluluğu",
       "genre": "Akustik Gitar, Çello, Yan Flüt & Cajon (Chill Out)",
-      "proposed_day": "6-7-8 Ekim (Gün Boyu Chill Alanı)",
+      "proposed_day": "17-18 Ekim (Gün Boyu Chill Alanı)",
       "proposed_day_key": "all_days",
       "status": "approved",
       "contact_name": "Damla & Kerem",
       "agency": "Bağımsız Öğrenci Müzisyenler",
       "email": "akustik.nku@gmail.com",
       "phone": "0531 223 45 67",
-      "estimated_budget": "15.000 ₺ (3 Gün Harçlık & Akustik Ekipman)",
+      "estimated_budget": "15.000 ₺ (2 Gün Harçlık & Akustik Ekipman)",
       "stage_time": "13:00 - 17:00 (Armut & Varil Alanında Dinletiler)",
       "stage_needs": "Küçük Seyyar Akülü Amfi, Halı, 4 Armut Minder",
       "hospitality_rider": "Sürekli soğuk meşrubat ve sandviç",
@@ -3799,10 +3785,10 @@
       "is_general": true,
       "title": "🎉 Festival Bildirim Sistemi Devrede!",
       "task_id": "",
-      "task_title": "SET Kampüse Hoş Geldin Fest",
+      "task_title": "SET 17-18 Ekim Kampüse Hoş Geldin Fest",
       "description": "Kişiye özel atanan tüm görevler ve genel festival güncellemeleri artık anlık sesli ve tarayıcı bildirimi olarak iletilecektir.",
       "priority": "Kritik",
-      "deadline": "2026-10-06",
+      "deadline": "2026-10-17",
       "created_by": "Berke Saygılı",
       "created_at": "26.09.2026 20:20",
       "read_by": []

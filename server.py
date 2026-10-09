@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-SET Kampüse Hoş Geldin Fest — 7/24 Kesintisiz Bulut Sunucusu (Unified Cloud Server)
+SET 17-18 Ekim Kampüse Hoş Geldin Fest — 7/24 Kesintisiz Bulut Sunucusu (Unified Cloud Server)
 Tekirdağ Namık Kemal Üniversitesi | Sportif ve Sosyal Etkinlikler Topluluğu (SET)
 
 Bu sunucu hem 'SET Ekip Koordinasyon Paneli'ni hem de 'Festival Kroki ve Stand Yerleşim Paneli'ni
@@ -846,7 +846,7 @@ class SetUnifiedHandler(SimpleHTTPRequestHandler):
                 'category': req_data.get('category', 'headliner_band'),
                 'category_title': req_data.get('category_title', '🎸 Ana Sahne & Canlı Grup'),
                 'genre': req_data.get('genre', 'Canlı Müzik'),
-                'proposed_day': req_data.get('proposed_day', '6 Ekim (1. Gün - Açılış)'),
+                'proposed_day': req_data.get('proposed_day', '17 Ekim (1. Gün - Açılış)'),
                 'proposed_day_key': req_data.get('proposed_day_key', 'day_1'),
                 'status': req_data.get('status', 'pending'),
                 'contact_name': req_data.get('contact_name', 'Menajer'),

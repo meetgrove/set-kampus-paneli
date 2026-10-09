@@ -1,4 +1,4 @@
-// SET KAMPÜSE HOŞ GELDİN FEST — SERVICE WORKER (BACKGROUND PUSH NOTIFICATIONS)
+// SET 17-18 EKİM KAMPÜSE HOŞ GELDİN FEST — SERVICE WORKER (BACKGROUND PUSH NOTIFICATIONS)
 const CACHE_NAME = 'set-fest-v2';
 
 self.addEventListener('install', function(event) {
@@ -22,7 +22,7 @@ self.addEventListener('push', function(event) {
 
   const title = data.title || '📋 Sana Yeni Görev Atandı!';
   const options = {
-    body: data.body || 'SET Kampüse Hoş Geldin Fest için yeni bir görev atandı.',
+    body: data.body || 'SET 17-18 Ekim Kampüse Hoş Geldin Fest için yeni bir görev atandı.',
     icon: './SET WS LOGO.png',
     badge: './SET WS LOGO.png',
     vibrate: [350, 150, 350, 150, 450],
